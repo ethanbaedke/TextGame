@@ -54,7 +54,7 @@ while [ $stats_locked_in -eq 0 ]; do
         print_stats
 
         # Have the user select a stat to put a point into
-        bash request-selection.sh "strength" "dexterity" "intellect" "reset"
+        bash "src/request-selection.sh" "strength" "dexterity" "intellect" "reset"
 
         case $? in
             1)
@@ -76,7 +76,7 @@ while [ $stats_locked_in -eq 0 ]; do
     echo
     print_stats
     echo "Are you satisfied with these stats?"
-    bash request-selection.sh "yes" "no"
+    bash "src/request-selection.sh" "yes" "no"
 
     case $? in
         1)
@@ -109,7 +109,7 @@ while [ $name_locked_in -eq 0 ]; do
     # Allow the user to lock in their name or choose another one
     echo
     echo "Are you satisfied with the name $character_name?"
-    bash request-selection.sh "yes" "no"
+    bash "src/request-selection.sh" "yes" "no"
 
     case $? in
         1)
@@ -141,7 +141,7 @@ while [ $favorite_color_locked_in -eq 0 ]; do
     # Allow the user to lock in their favorite color or choose another one
     echo
     echo "Are you satisfied with $favorite_color as your favorite color?"
-    bash request-selection.sh "yes" "no"
+    bash "src/request-selection.sh" "yes" "no"
 
     case $? in
         1)

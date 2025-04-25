@@ -6,11 +6,11 @@ program_running=1
 while [ $program_running -ne 0 ]; do
 
     echo
-    bash request-selection.sh "start game" "exit game"
+    bash src/request-selection.sh "start game" "exit game"
 
     case $? in
         1)
-            bash game.sh
+            bash src/game.sh
             ;;
         2)
             echo
