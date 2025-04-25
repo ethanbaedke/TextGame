@@ -15,7 +15,6 @@ while [ $program_running -ne 0 ]; do
         2)
             echo
             echo "Thank you for playing!"
-            echo
             program_running=0
             ;;
     esac

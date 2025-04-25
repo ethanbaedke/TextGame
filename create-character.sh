@@ -1,7 +1,7 @@
 #!/bin/bash
 
+# Stats
 readonly NUM_POINTS_FOR_DISTRIBUTION=5
-
 remaining_points=$NUM_POINTS_FOR_DISTRIBUTION
 
 strength=0
@@ -9,6 +9,11 @@ dexterity=0
 intellect=0
 
 max_points_per_stat=5
+
+# Info
+readonly MAX_CHARACTERS_FOR_STRING_INFO=32
+character_name="---------------------------------" # 33 characters, over max size of 32
+favorite_color="---------------------------------" # 33 characters, over max size of 32
 
 print_stats() {
     echo "Strength: $strength / $max_points_per_stat"
@@ -75,8 +80,6 @@ while [ $stats_locked_in -eq 0 ]; do
 
     case $? in
         1)
-            echo
-            echo "Character created!"
             stats_locked_in=1
             ;;
         2)
@@ -84,3 +87,69 @@ while [ $stats_locked_in -eq 0 ]; do
             ;;
     esac
 done
+
+# Have the user fill out the characters name
+name_locked_in=0
+while [ $name_locked_in -eq 0 ]; do
+
+    # Have the user fill out the characters name
+    echo
+    while [ true ]; do
+        echo "What is your name?"
+        read character_name
+
+        if [ ${#character_name} -le $MAX_CHARACTERS_FOR_STRING_INFO ]; then
+            break
+        fi
+
+        echo
+        echo "Please choose a shorter name."
+    done
+
+    # Allow the user to lock in their name or choose another one
+    echo
+    echo "Are you satisfied with the name $character_name?"
+    bash request-selection.sh "yes" "no"
+
+    case $? in
+        1)
+            name_locked_in=1
+            ;;
+        2)
+            ;;
+    esac
+done
+
+# Have the user fill out the characters favorite color
+favorite_color_locked_in=0
+while [ $favorite_color_locked_in -eq 0 ]; do
+
+    # Have the user fill out the characters favorite color
+    echo
+    while [ true ]; do
+        echo "What is your favorite color?"
+        read favorite_color
+
+        if [ ${#favorite_color} -le $MAX_CHARACTERS_FOR_STRING_INFO ]; then
+            break
+        fi
+
+        echo
+        echo "Please choose a color with a shorter name."
+    done
+
+    # Allow the user to lock in their favorite color or choose another one
+    echo
+    echo "Are you satisfied with $favorite_color as your favorite color?"
+    bash request-selection.sh "yes" "no"
+
+    case $? in
+        1)
+            favorite_color_locked_in=1
+            ;;
+        2)
+            ;;
+    esac
+done
+
+echo "Character Created!"
