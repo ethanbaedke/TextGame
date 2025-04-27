@@ -2,9 +2,14 @@
 
 echo
 
-# There is already character data on this device
+# There is already character-data present on this computer
 if [ -f "data/character-data.bin" ]; then
-    echo "Character data was found on this device. Would you like to continue your adventure?"
+    echo "The following character data was found on this device..."
+    bash src/print-character-data-full.sh
+
+    # Does the user want to continue their adventure?
+    echo
+    echo "Would you like to continue your adventure?"
     bash "src/request-selection.sh" "yes" "no"
 
     case $? in
@@ -13,35 +18,64 @@ if [ -f "data/character-data.bin" ]; then
         echo "NOT YET IMPLEMENTED (continue adventure)"
         ;;
     2)
+        # Does the user want to create a new character?
         echo
         echo "Would you like to create a new character?"
-
         bash "src/request-selection.sh" "yes" "no"
 
         case $? in
             1)
                 bash "src/create-character.sh"
                 echo
-                echo "NOT YET IMPLEMENTED (start adventure)"
+                echo "Here is the character you created..."
+                bash src/print-character-data-full.sh
+
+                # Is the user ready to begin their adventure?
+                echo
+                echo "Are you ready to begin your adventure?"
+                bash "src/request-selection.sh" "yes" "no"
+
+                case $? in
+                    1)
+                        echo "NOT YET IMPLEMENTED (start adventure)"
+                        ;;
+                    2)
+                        echo "Okay! Returning to the main menu."
+                        ;;
+                esac
                 ;;
             2)
                 echo
-                echo "Okay! Returning to main menu."
+                echo "Okay! Returning to the main menu."
                 ;;
         esac
         ;;
     esac
 
-#There is not already character data on this device
+# There is no character-data present on this computer
 else
+    # Does the user want to create a new character?
     echo "No character data was found on this device. Would you like to create a new character?"
     bash "src/request-selection.sh" "yes" "no"
 
     case $? in
         1)
             bash "src/create-character.sh"
+
+            # Is the user ready to begin their adventure?
             echo
-            echo "NOT YET IMPLEMENTED (start adventure)"
+            echo "Are you ready to begin your adventure?"
+            bash "src/request-selection.sh" "yes" "no"
+
+            case $? in
+                1)
+                    echo "NOT YET IMPLEMENTED (start adventure)"
+                    ;;
+                2)
+                    echo
+                    echo "Okay! Returning to the main menu."
+                    ;;
+            esac
             ;;
         2)
             echo
