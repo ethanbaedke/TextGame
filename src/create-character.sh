@@ -152,4 +152,7 @@ while [ $favorite_color_locked_in -eq 0 ]; do
     esac
 done
 
-echo "Character Created!"
+echo
+echo "Character created."
+bash src/save-character-data.sh "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
+echo "Character saved."
