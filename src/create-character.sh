@@ -154,5 +154,5 @@ done
 
 echo
 echo "Character created."
-bash src/save-character-data.sh "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
+bash src/save-character-data.sh "player" "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
 echo "Character saved."

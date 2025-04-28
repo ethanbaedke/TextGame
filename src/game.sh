@@ -2,10 +2,10 @@
 
 echo
 
-# There is already character-data present on this computer
-if [ -f "data/character-data.bin" ]; then
-    echo "The following character data was found on this device..."
-    bash src/print-character-data-full.sh
+# There is already player-data present on this computer
+if [ -f "data/player-data.bin" ]; then
+    echo "The following player data was found on this device..."
+    bash src/print-character-data-full.sh "player"
 
     # Does the user want to continue their adventure?
     echo
@@ -28,7 +28,7 @@ if [ -f "data/character-data.bin" ]; then
                 bash "src/create-character.sh"
                 echo
                 echo "Here is the character you created..."
-                bash src/print-character-data-full.sh
+                bash src/print-character-data-full.sh "player"
 
                 # Is the user ready to begin their adventure?
                 echo
@@ -55,7 +55,7 @@ if [ -f "data/character-data.bin" ]; then
 # There is no character-data present on this computer
 else
     # Does the user want to create a new character?
-    echo "No character data was found on this device. Would you like to create a new character?"
+    echo "No player data was found on this device. Would you like to create a new character?"
     bash "src/request-selection.sh" "yes" "no"
 
     case $? in
