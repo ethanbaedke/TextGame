@@ -1,5 +1,9 @@
 #!/bin/bash
 
+erase_all_character_data() {
+    rm data/*
+}
+
 echo
 
 # There is already player-data present on this computer
@@ -14,6 +18,7 @@ if [ -f "data/player-data.bin" ]; then
 
     case $? in
     1)
+        bash src/verify-npc-data.sh
         echo
         echo "NOT YET IMPLEMENTED (continue adventure)"
         ;;
@@ -25,6 +30,7 @@ if [ -f "data/player-data.bin" ]; then
 
         case $? in
             1)
+                erase_all_character_data
                 bash "src/create-character.sh"
                 echo
                 echo "Here is the character you created..."
@@ -37,6 +43,7 @@ if [ -f "data/player-data.bin" ]; then
 
                 case $? in
                     1)
+                        bash src/verify-npc-data.sh
                         echo "NOT YET IMPLEMENTED (start adventure)"
                         ;;
                     2)
@@ -60,6 +67,7 @@ else
 
     case $? in
         1)
+            erase_all_character_data
             bash "src/create-character.sh"
 
             # Is the user ready to begin their adventure?
@@ -69,6 +77,7 @@ else
 
             case $? in
                 1)
+                    bash src/verify-npc-data.sh
                     echo "NOT YET IMPLEMENTED (start adventure)"
                     ;;
                 2)
