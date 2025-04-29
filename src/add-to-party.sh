@@ -6,7 +6,6 @@ FILE_SIZE=41 # Holds 1 byte for how many characters are in the party and 4 chara
 
 # Create the party-data file if it doesn't exist
 if [ ! -f "data/party-data.bin" ]; then
-    echo $FILE_SIZE
     dd if=/dev/zero of=data/party-data.bin bs=1 count="$FILE_SIZE" status=none
     printf "0" | dd of=data/party-data.bin bs=1 seek=0 count="$FILE_SIZE" status=none conv=notrunc
 fi
