@@ -1,13 +1,13 @@
 #!/bin/bash
 
 erase_all_character_data() {
-    rm data/*
+    rm data/characters/*
 }
 
 echo
 
 # There is already player-data present on this computer
-if [ -f "data/player-data.bin" ]; then
+if [ -f "data/characters/player-data.bin" ]; then
     echo "The following player data was found on this device..."
     bash src/print-character-data-full.sh "player"
 
