@@ -10,7 +10,7 @@ while [ $program_running -ne 0 ]; do
 
     case $? in
         1)
-            bash src/game.sh
+            bash src/prepare-game.sh
             ;;
         2)
             echo
