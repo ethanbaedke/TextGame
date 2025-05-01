@@ -7,10 +7,16 @@ current_map_x_coord=0
 current_map_y_coord=0
 
 describe_current_area() {
-    # Describe the area the party is in
     (
         source src/map/area-$current_map_x_coord-$current_map_y_coord.sh
         print_area_name | bash src/map/describe-area.sh
+    )
+}
+
+trigger_individual_encounter_in_current_area() {
+    (
+        source src/map/area-$current_map_x_coord-$current_map_y_coord.sh
+        print_area_name | bash src/trigger-individual-encounter.sh
     )
 }
 
@@ -47,6 +53,7 @@ while [ $exited -eq 0 ]; do
                     else
                         current_map_x_coord=$((current_map_x_coord + 1))
                         describe_current_area
+                        trigger_individual_encounter_in_current_area
                     fi
                     ;;
                 2)
@@ -55,6 +62,7 @@ while [ $exited -eq 0 ]; do
                     else
                         current_map_y_coord=$((current_map_y_coord + 1))
                         describe_current_area
+                        trigger_individual_encounter_in_current_area
                     fi
                     ;;
                 3)
@@ -63,6 +71,7 @@ while [ $exited -eq 0 ]; do
                     else
                         current_map_x_coord=$((current_map_x_coord - 1))
                         describe_current_area
+                        trigger_individual_encounter_in_current_area
                     fi
                     ;;
                 4)
@@ -71,6 +80,7 @@ while [ $exited -eq 0 ]; do
                     else
                         current_map_y_coord=$((current_map_y_coord - 1))
                         describe_current_area
+                        trigger_individual_encounter_in_current_area
                     fi
                     ;;
             esac
