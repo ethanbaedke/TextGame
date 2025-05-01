@@ -81,3 +81,8 @@ fi
 if [ ! -f "data/characters/jackson-data.bin" ]; then
     bash src/save-character-data.sh "jackson" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Jackson" "CR_COL" "Unknown"
 fi
+
+# Fletch - Ent
+if [ ! -f "data/characters/fletch-data.bin" ]; then
+    bash src/save-character-data.sh "fletch" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Fletch" "CR_COL" "Unknown"
+fi
