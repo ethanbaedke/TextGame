@@ -1,12 +1,82 @@
 #!/bin/bash
 
-area="test-area"
+MAP_WIDTH=3
+MAP_HEIGHT=3
+
+current_map_x_coord=0
+current_map_y_coord=0
+
+describe_current_area() {
+    # Describe the area the party is in
+    (
+        source src/map/area-$current_map_x_coord-$current_map_y_coord.sh
+        print_area_name | bash src/map/describe-area.sh
+    )
+}
 
 rm data/party-data.bin # TEMPORARY, REMOVE WHEN LOADING GAME
 
+# Populate party
 bash src/add-to-party.sh player
 bash src/add-to-party.sh aidan
 bash src/add-to-party.sh aly
 bash src/add-to-party.sh ceci
 
-bash src/trigger-individual-encounter.sh "$area"
+# Describe where the party is starting
+describe_current_area
+
+exited=0
+while [ $exited -eq 0 ]; do
+
+    # Give the user standard options
+    echo
+    echo "What would you like to do?"
+    bash "src/request-selection.sh" "move" "exit to menu"
+
+    case $? in
+        1)
+            # Allow the party to move
+            echo
+            echo "In which direction shall you set forth?"
+            bash "src/request-selection.sh" "east" "north" "west" "south"
+
+            case $? in
+                1)
+                    if [ $current_map_x_coord -eq $((MAP_WIDTH - 1)) ]; then
+                        echo "ocean" | bash src/map/describe-area.sh
+                    else
+                        current_map_x_coord=$((current_map_x_coord + 1))
+                        describe_current_area
+                    fi
+                    ;;
+                2)
+                    if [ $current_map_y_coord -eq $((MAP_HEIGHT - 1)) ]; then
+                        echo "ocean" | bash src/map/describe-area.sh
+                    else
+                        current_map_y_coord=$((current_map_y_coord + 1))
+                        describe_current_area
+                    fi
+                    ;;
+                3)
+                    if [ $current_map_x_coord -eq 0 ]; then
+                        echo "ocean" | bash src/map/describe-area.sh
+                    else
+                        current_map_x_coord=$((current_map_x_coord - 1))
+                        describe_current_area
+                    fi
+                    ;;
+                4)
+                    if [ $current_map_y_coord -eq 0 ]; then
+                        echo "ocean" | bash src/map/describe-area.sh
+                    else
+                        current_map_y_coord=$((current_map_y_coord - 1))
+                        describe_current_area
+                    fi
+                    ;;
+            esac
+            ;;
+        2)
+            exited=1
+            ;;
+    esac
+done
