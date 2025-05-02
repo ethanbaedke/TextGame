@@ -20,12 +20,17 @@ trigger_individual_encounter_in_current_area() {
     )
 }
 
-rm data/party-data.bin # TEMPORARY, REMOVE WHEN LOADING GAME
+# TEMPORARY, REMOVE WHEN LOADING GAME
+rm data/party-data.bin
+rm data/unlocked-character-data.bin
 
 # Populate party
 bash src/add-to-party.sh player
+bash src/unlock-character.sh aidan
 bash src/add-to-party.sh aidan
+bash src/unlock-character.sh aly
 bash src/add-to-party.sh aly
+bash src/unlock-character.sh ceci
 bash src/add-to-party.sh ceci
 
 # Describe where the party is starting

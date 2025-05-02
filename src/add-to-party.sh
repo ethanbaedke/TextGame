@@ -18,7 +18,9 @@ fi
 
 party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)
 
-if [ $party_size -lt 4 ]; then
+bash src/check-party-full.sh
+
+if [ $? -eq 0 ]; then
 
     # Add the character to the party
     printf "$1" | dd of=data/party-data.bin bs=1 seek=$(((party_size * 10) + 1)) count="$FILE_SIZE" status=none conv=notrunc
