@@ -38,7 +38,7 @@ while [ $exited -eq 0 ]; do
     # Give the user standard options
     echo
     echo "What would you like to do?"
-    bash "src/request-selection.sh" "move" "exit to menu"
+    bash "src/request-selection.sh" "move" "view party" "exit to menu"
 
     case $? in
         1)
@@ -87,6 +87,9 @@ while [ $exited -eq 0 ]; do
             esac
             ;;
         2)
+            bash src/party/open-party-menu.sh
+            ;;
+        3)
             exited=1
             ;;
     esac

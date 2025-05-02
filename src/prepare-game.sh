@@ -1,9 +1,26 @@
 #!/bin/bash
 
-echo
+if ! command -v catimg >/dev/null 2>&1; then
+    echo
+    echo "catimg may be installed for visuals."
+    echo "Install now?"
+    bash src/request-selection.sh "y" "n"
+    if [ $? -eq 1 ]; then
+        if command -v apt >/dev/null 2>&1; then
+            sudo apt update && sudo apt install catimg
+        elif command -v pacman >/dev/null 2>&1; then
+            sudo pacman -Sy catimg
+        elif command -v brew >/dev/null 2>&1; then
+            brew install catimg
+        else
+            echo "Unsupported package manager. For visuals, install catimg manually."
+        fi
+    fi
+fi
 
 # There is already player-data present on this computer
 if [ -f "data/characters/player-data.bin" ]; then
+    echo
     echo "The following player data was found on this device..."
     bash src/print-character-data-full.sh "player"
 
@@ -57,6 +74,7 @@ if [ -f "data/characters/player-data.bin" ]; then
 # There is no character-data present on this computer
 else
     # Does the user want to create a new character?
+    echo
     echo "No player data was found on this device. Would you like to create a new character?"
     bash "src/request-selection.sh" "yes" "no"
 

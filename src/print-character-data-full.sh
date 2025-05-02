@@ -9,6 +9,8 @@ if [ ! -f "data/characters/$1-data.bin" ]; then
     exit
 fi
 
+bash src/display-image.sh "images/characters/beautiful/$1.png"
+
 cr_str=$(dd if=data/characters/$1-data.bin bs=1 skip=0 count=1 status=none)
 cr_dex=$(dd if=data/characters/$1-data.bin bs=1 skip=1 count=1 status=none)
 cr_int=$(dd if=data/characters/$1-data.bin bs=1 skip=2 count=1 status=none)

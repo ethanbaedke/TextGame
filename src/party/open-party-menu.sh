@@ -6,6 +6,7 @@ if [ ! -f "data/party-data.bin" ]; then
     exit
 fi
 
+echo
 echo "Members in your party..."
 
 party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)
