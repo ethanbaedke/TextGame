@@ -8,14 +8,14 @@ current_map_y_coord=0
 
 describe_current_area() {
     (
-        source src/map/area-$current_map_x_coord-$current_map_y_coord.sh
-        print_area_name | bash src/map/describe-area.sh
+        source src/world/map/area-$current_map_x_coord-$current_map_y_coord.sh
+        print_area_name | bash src/world/map/describe-area.sh
     )
 }
 
 trigger_individual_encounter_in_current_area() {
     (
-        source src/map/area-$current_map_x_coord-$current_map_y_coord.sh
+        source src/world/map/area-$current_map_x_coord-$current_map_y_coord.sh
         print_area_name | bash src/trigger-individual-encounter.sh
     )
 }
@@ -49,7 +49,7 @@ while [ $exited -eq 0 ]; do
             case $? in
                 1)
                     if [ $current_map_x_coord -eq $((MAP_WIDTH - 1)) ]; then
-                        echo "ocean" | bash src/map/describe-area.sh
+                        echo "ocean" | bash src/world/map/describe-area.sh
                     else
                         current_map_x_coord=$((current_map_x_coord + 1))
                         describe_current_area
@@ -58,7 +58,7 @@ while [ $exited -eq 0 ]; do
                     ;;
                 2)
                     if [ $current_map_y_coord -eq $((MAP_HEIGHT - 1)) ]; then
-                        echo "ocean" | bash src/map/describe-area.sh
+                        echo "ocean" | bash src/world/map/describe-area.sh
                     else
                         current_map_y_coord=$((current_map_y_coord + 1))
                         describe_current_area
@@ -67,7 +67,7 @@ while [ $exited -eq 0 ]; do
                     ;;
                 3)
                     if [ $current_map_x_coord -eq 0 ]; then
-                        echo "ocean" | bash src/map/describe-area.sh
+                        echo "ocean" | bash src/world/map/describe-area.sh
                     else
                         current_map_x_coord=$((current_map_x_coord - 1))
                         describe_current_area
@@ -76,7 +76,7 @@ while [ $exited -eq 0 ]; do
                     ;;
                 4)
                     if [ $current_map_y_coord -eq 0 ]; then
-                        echo "ocean" | bash src/map/describe-area.sh
+                        echo "ocean" | bash src/world/map/describe-area.sh
                     else
                         current_map_y_coord=$((current_map_y_coord - 1))
                         describe_current_area
