@@ -1,9 +1,5 @@
 #!/bin/bash
 
-erase_data() {
-    find data -type f -delete
-}
-
 echo
 
 # There is already player-data present on this computer
@@ -18,7 +14,7 @@ if [ -f "data/characters/player-data.bin" ]; then
 
     case $? in
     1)
-        bash src/verify-npc-data.sh
+        bash src/verify-data.sh
         bash src/game.sh
         ;;
     2)
@@ -29,7 +25,7 @@ if [ -f "data/characters/player-data.bin" ]; then
 
         case $? in
             1)
-                erase_data
+                bash src/erase-data.sh
                 bash "src/create-character.sh"
                 echo
                 echo "Here is the character you created..."
@@ -42,7 +38,7 @@ if [ -f "data/characters/player-data.bin" ]; then
 
                 case $? in
                     1)
-                        bash src/verify-npc-data.sh
+                        bash src/verify-data.sh
                         bash src/game.sh
                         ;;
                     2)
@@ -66,7 +62,7 @@ else
 
     case $? in
         1)
-            erase_data
+            bash src/erase-data.sh
             bash "src/create-character.sh"
 
             # Is the user ready to begin their adventure?
@@ -76,7 +72,7 @@ else
 
             case $? in
                 1)
-                    bash src/verify-npc-data.sh
+                    bash src/verify-data.sh
                     bash src/game.sh
                     ;;
                 2)

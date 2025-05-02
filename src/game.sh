@@ -20,10 +20,6 @@ trigger_individual_encounter_in_current_area() {
     )
 }
 
-# TEMPORARY, REMOVE WHEN LOADING GAME
-rm data/party-data.bin
-rm data/unlocked-character-data.bin
-
 # Populate party
 bash src/add-to-party.sh player
 bash src/unlock-character.sh aidan

@@ -3,12 +3,10 @@
 # PARAMS: CHARACTER_NAME
 # NOTE: If no params are passed, this function asks the user who they would like to remove
 
-FILE_SIZE=41 # Holds 1 byte for how many characters are in the party and 4 character names at 10 bytes each
-
-# Create the party-data file if it doesn't exist
+# Exit if the party-data file doesn't exist
 if [ ! -f "data/party-data.bin" ]; then
-    dd if=/dev/zero of=data/party-data.bin bs=1 count="$FILE_SIZE" status=none
-    printf "0" | dd of=data/party-data.bin bs=1 seek=0 count="$FILE_SIZE" status=none conv=notrunc
+    echo "ERROR! $0 called but data/party-data.bin could not be found."
+    exit
 fi
 
 party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)

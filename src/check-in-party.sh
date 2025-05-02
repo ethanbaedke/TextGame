@@ -3,6 +3,12 @@
 # PARAMS: CHARACTER_NAME
 # EXIT CODE: 1 if CHARACTER_NAME is in the party and 0 if not
 
+# Exit if the party-data file doesn't exist
+if [ ! -f "data/party-data.bin" ]; then
+    echo "ERROR! $0 called but data/party-data.bin could not be found."
+    exit
+fi
+
 party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)
 
 # Check if the character is in the party

@@ -152,7 +152,12 @@ while [ $favorite_color_locked_in -eq 0 ]; do
     esac
 done
 
-echo
-echo "Character created."
-bash src/save-character-data.sh "player" "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
-echo "Character saved."
+if [ ! -f "data/characters/player-data.bin" ]; then
+    dd if=/dev/zero of=data/characters/player-data.bin bs=1 count=63 status=none
+    bash src/save-character-data.sh "player" "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
+    echo
+    echo "Character created."
+else
+    echo "ERROR! $0 called but data/characters/player-data.bin already exists."
+    exit
+fi

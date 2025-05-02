@@ -2,10 +2,10 @@
 
 # PARAMS: CHARACTER_NAME
 
-# Create the unlocked-character-data file if it doesn't exist
+# Exit if the unlocked-character-data file doesn't exist
 if [ ! -f "data/unlocked-character-data.bin" ]; then
-    dd if=/dev/zero of=data/unlocked-character-data.bin bs=1 count=1 status=none
-    printf "0" | dd of=data/unlocked-character-data.bin bs=1 seek=0 count=1 status=none conv=notrunc
+    echo "ERROR! $0 called but data/unlocked-character-data.bin could not be found."
+    exit
 fi
 
 # Exit if character-data for CHARACTER_NAME does not exist
