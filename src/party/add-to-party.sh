@@ -16,7 +16,7 @@ fi
 
 party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)
 
-bash src/check-party-full.sh
+bash src/party/check-party-full.sh
 
 if [ $? -eq 0 ]; then
 
@@ -29,6 +29,15 @@ if [ $? -eq 0 ]; then
     bash src/print-character-data-inline.sh "" $1 "CR_NAM" " has been added to the party."
 else
 
-    # The party is full
-    echo "ERROR! $0 called but the party is full"
+    # The party is full, give the user the option to remove a party member
+    echo
+    echo "Your party is full!"
+    echo "Would you like to remove a member from your party?"
+
+    bash src/request-selection.sh "yes" "no"
+
+    if [ $? -eq 1 ]; then
+        bash src/party/remove-from-party.sh
+        bash src/party/add-to-party.sh $1
+    fi
 fi

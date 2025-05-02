@@ -21,13 +21,13 @@ trigger_individual_encounter_in_current_area() {
 }
 
 # Populate party
-bash src/add-to-party.sh player
+bash src/party/add-to-party.sh player
 bash src/unlock-character.sh aidan
-bash src/add-to-party.sh aidan
+bash src/party/add-to-party.sh aidan
 bash src/unlock-character.sh aly
-bash src/add-to-party.sh aly
+bash src/party/add-to-party.sh aly
 bash src/unlock-character.sh ceci
-bash src/add-to-party.sh ceci
+bash src/party/add-to-party.sh ceci
 
 # Describe where the party is starting
 describe_current_area

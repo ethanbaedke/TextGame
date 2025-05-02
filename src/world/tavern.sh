@@ -14,7 +14,7 @@ for ((i=0; i<num_characters; i++)); do
 
     party_member=$(dd if=data/unlocked-character-data.bin bs=1 skip=$(((i * 10) + 1)) count=10 status=none | tr -d '\0')
 
-    bash src/check-in-party.sh $party_member
+    bash src/party/check-in-party.sh $party_member
     
     if [ ! $? -eq 1 ]; then
         swapable_characters+=("$party_member ")
@@ -52,18 +52,4 @@ selection_ind=$?
 # Get the list index of the user's selection
 character_ind=$((selection_ind-1))
 
-bash src/check-party-full.sh
-if [ $? -eq 0 ]; then
-    bash src/add-to-party.sh ${swapable_characters[$character_ind]}
-else
-    echo
-    echo "Your party is full!"
-    echo "Would you like to remove a member from your party?"
-
-    bash src/request-selection.sh "yes" "no"
-
-    if [ $? -eq 1 ]; then
-        bash src/remove-from-party.sh
-        bash src/add-to-party.sh ${swapable_characters[$character_ind]}
-    fi
-fi
+bash src/party/add-to-party.sh ${swapable_characters[$character_ind]}
