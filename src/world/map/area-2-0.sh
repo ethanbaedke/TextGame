@@ -1,5 +1,3 @@
 #!/bin/bash
 
-print_area_name() {
-    echo "plains"
-}
+bash src/world/plains/describe-plains.sh
