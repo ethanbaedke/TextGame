@@ -16,6 +16,17 @@ fi
 
 num_characters_unlocked=$(dd if=data/unlocked-character-data.bin bs=1 skip=0 count=1 status=none)
 
+# Exit if the character is already unlocked
+for ((i=0; i<$num_characters_unlocked; i++)); do
+
+    unlocked_character=$(dd if=data/unlocked-character-data.bin bs=1 skip=$(((i * 10) + 1)) count=10 status=none | tr -d '\0')
+
+    if [ "$unlocked_character" == "$1" ]; then
+        echo "ERROR! $0 called but character $1 is already unlocked."
+        exit
+    fi
+done
+
 # Add the character to the party
 printf "$1" | dd of=data/unlocked-character-data.bin bs=1 seek=$(((num_characters_unlocked * 10) + 1)) count=10 status=none conv=notrunc
 new_num_characters_unlocked=$((num_characters_unlocked + 1))
