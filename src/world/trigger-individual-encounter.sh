@@ -1,17 +1,10 @@
 #!/bin/bash
 
-# PIPE-INPUT: AREA_NAME
-
-if [ ! -t 0 ]; then
-    read area_name
-else
-    echo "ERROR! $0 called but no area piped in."
-    exit
-fi
+# PARAMS: AREA_NAME
 
 # Exit if area does not exist
-if [ ! -d "src/world/map/$area_name" ]; then
-    echo "ERROR! $0 called but src/biomes/$area_name could not be found."
+if [ ! -d "src/world/$1" ]; then
+    echo "ERROR! $0 called but src/world/$1 could not be found."
     exit
 fi
 
@@ -26,5 +19,5 @@ fi
 random_party_index=$((RANDOM % $party_size))
 party_member=$(dd if=data/party-data.bin bs=1 skip=$(((random_party_index * 10) + 1)) count=10 status=none | tr -d '\0')
 
-individual_encounter=$(find src/world/map/$area_name/individual-encounters -maxdepth 1 -type f | shuf -n 1)
+individual_encounter=$(find src/world/$1/individual-encounters -maxdepth 1 -type f | shuf -n 1)
 bash $individual_encounter "$party_member"
