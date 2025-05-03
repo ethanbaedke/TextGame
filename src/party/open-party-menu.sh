@@ -9,11 +9,11 @@ fi
 echo
 echo "Members in your party..."
 
-party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)
+party_size=$(dd if=data/party-data.bin bs=1 skip=2 count=1 status=none)
 party_members=()
 
 for ((i=0; i<$party_size; i++)); do
-    party_member=$(dd if=data/party-data.bin bs=1 skip=$(((i * 10) + 1)) count=10 status=none | tr -d '\0')
+    party_member=$(dd if=data/party-data.bin bs=1 skip=$(((i * 10) + 3)) count=10 status=none | tr -d '\0')
     party_members+=("$party_member ")
     bash src/print-character-data-inline.sh "" $party_member "CR_NAM" ""
 done

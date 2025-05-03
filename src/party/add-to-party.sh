@@ -14,16 +14,16 @@ if [ ! -f "data/characters/$1-data.bin" ]; then
     exit
 fi
 
-party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)
+party_size=$(dd if=data/party-data.bin bs=1 skip=2 count=1 status=none)
 
 bash src/party/check-party-full.sh
 
 if [ $? -eq 0 ]; then
 
     # Add the character to the party
-    printf "$1" | dd of=data/party-data.bin bs=1 seek=$(((party_size * 10) + 1)) count=10 status=none conv=notrunc
+    printf "$1" | dd of=data/party-data.bin bs=1 seek=$(((party_size * 10) + 3)) count=10 status=none conv=notrunc
     new_party_size=$((party_size + 1))
-    printf "$new_party_size" | dd of=data/party-data.bin bs=1 seek=0 count=10 status=none conv=notrunc
+    printf "$new_party_size" | dd of=data/party-data.bin bs=1 seek=2 count=10 status=none conv=notrunc
 
     echo
     bash src/print-character-data-inline.sh "" $1 "CR_NAM" " has been added to the party."

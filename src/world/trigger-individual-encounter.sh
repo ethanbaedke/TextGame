@@ -9,7 +9,7 @@ if [ ! -d "src/world/$1" ]; then
 fi
 
 # Ensure the party is not empty
-party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)
+party_size=$(dd if=data/party-data.bin bs=1 skip=2 count=1 status=none)
 if [ $party_size -eq 0 ]; then
     echo "ERROR! $0 called but party size is 0."
     exit
@@ -17,7 +17,7 @@ fi
 
 # Select a random party member
 random_party_index=$((RANDOM % $party_size))
-party_member=$(dd if=data/party-data.bin bs=1 skip=$(((random_party_index * 10) + 1)) count=10 status=none | tr -d '\0')
+party_member=$(dd if=data/party-data.bin bs=1 skip=$(((random_party_index * 10) + 3)) count=10 status=none | tr -d '\0')
 
 individual_encounter=$(find src/world/$1/individual-encounters -maxdepth 1 -type f | shuf -n 1)
 bash $individual_encounter "$party_member"

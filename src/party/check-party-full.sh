@@ -8,7 +8,7 @@ if [ ! -f "data/party-data.bin" ]; then
     exit
 fi
 
-party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)
+party_size=$(dd if=data/party-data.bin bs=1 skip=2 count=1 status=none)
 
 if [ $party_size -lt 4 ]; then
     exit 0

@@ -6,20 +6,35 @@ MAP_HEIGHT=3
 current_map_x_coord=0
 current_map_y_coord=0
 
+retrieve_map_coordinates() {
+    bash src/party/get-party-location-x.sh
+    current_map_x_coord=$?
+    bash src/party/get-party-location-y.sh
+    current_map_y_coord=$?
+}
+
+save_map_coordinates() {
+    bash src/party/update-party-location.sh $current_map_x_coord $current_map_y_coord
+}
+
 enter_current_area() {
     bash src/world/map/area-$current_map_x_coord-$current_map_y_coord.sh
 }
 
-# Populate party
-bash src/party/add-to-party.sh player
-bash src/unlock-character.sh aidan
-bash src/party/add-to-party.sh aidan
-bash src/unlock-character.sh aly
-bash src/party/add-to-party.sh aly
-bash src/unlock-character.sh ceci
-bash src/party/add-to-party.sh ceci
+# Exit if quest-data does not exist
+if [ ! -f "data/quest-data.bin" ]; then
+    echo "ERROR! $0 called but data/quest-data.bin could not be found."
+    exit
+fi
+
+# QUEST #0 = MAIN QUEST
+bash src/get-quest-progress.sh 0
+if [ $? -eq 0 ]; then
+    bash src/increment-quest-progress.sh 0
+fi
 
 # Starting point
+retrieve_map_coordinates
 enter_current_area
 
 exited=0
@@ -33,6 +48,7 @@ while [ $exited -eq 0 ]; do
     case $? in
         1)
             # Allow the party to move
+            retrieve_map_coordinates
             echo
             echo "In which direction shall you set forth?"
             bash "src/request-selection.sh" "east" "north" "west" "south"
@@ -43,6 +59,7 @@ while [ $exited -eq 0 ]; do
                         bash src/world/describe-map-edge.sh
                     else
                         current_map_x_coord=$((current_map_x_coord + 1))
+                        save_map_coordinates
                         enter_current_area
                     fi
                     ;;
@@ -51,6 +68,7 @@ while [ $exited -eq 0 ]; do
                         bash src/world/describe-map-edge.sh
                     else
                         current_map_y_coord=$((current_map_y_coord + 1))
+                        save_map_coordinates
                         enter_current_area
                     fi
                     ;;
@@ -59,6 +77,7 @@ while [ $exited -eq 0 ]; do
                         bash src/world/describe-map-edge.sh
                     else
                         current_map_x_coord=$((current_map_x_coord - 1))
+                        save_map_coordinates
                         enter_current_area
                     fi
                     ;;
@@ -67,6 +86,7 @@ while [ $exited -eq 0 ]; do
                         bash src/world/describe-map-edge.sh
                     else
                         current_map_y_coord=$((current_map_y_coord - 1))
+                        save_map_coordinates
                         enter_current_area
                     fi
                     ;;

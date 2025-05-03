@@ -9,7 +9,7 @@ if [ ! -f "data/party-data.bin" ]; then
     exit
 fi
 
-party_size=$(dd if=data/party-data.bin bs=1 skip=0 count=1 status=none)
+party_size=$(dd if=data/party-data.bin bs=1 skip=2 count=1 status=none)
 
 # Ask the user who to remove if an input parameter was not used
 if [ -z "$1" ]; then
@@ -17,7 +17,7 @@ if [ -z "$1" ]; then
     # Get all characters currently in party excluding the player
     in_party=()
     for ((i=1; i<$party_size; i++)); do
-        party_member=$(dd if=data/party-data.bin bs=1 skip=$(((i * 10) + 1)) count=10 status=none | tr -d '\0')
+        party_member=$(dd if=data/party-data.bin bs=1 skip=$(((i * 10) + 3)) count=10 status=none | tr -d '\0')
         in_party+=("$party_member ")
     done
 
@@ -40,20 +40,20 @@ fi
 removed=0
 for ((i=1; i<$party_size; i++)); do
 
-    party_member=$(dd if=data/party-data.bin bs=1 skip=$(((i * 10) + 1)) count=10 status=none | tr -d '\0')
+    party_member=$(dd if=data/party-data.bin bs=1 skip=$(((i * 10) + 3)) count=10 status=none | tr -d '\0')
 
     # Search for the character's name in the data-file
     if [ $removed -eq 0 ]; then
         if [ "$party_member" == "$to_remove" ]; then
-            dd if=/dev/zero of=data/party-data.bin bs=1 seek=$(((i * 10) + 1)) count=10 status=none conv=notrunc
+            dd if=/dev/zero of=data/party-data.bin bs=1 seek=$(((i * 10) + 3)) count=10 status=none conv=notrunc
             removed=1
         fi
 
     # The character's name was found, move subsequent names back one index in the data-file
     else
         ii=$((i - 1))
-        printf "$party_member" | dd of=data/party-data.bin bs=1 seek=$(((ii * 10) + 1)) count=10 status=none conv=notrunc
-        dd if=/dev/zero of=data/party-data.bin bs=1 seek=$(((i * 10) + 1)) count=10 status=none conv=notrunc
+        printf "$party_member" | dd of=data/party-data.bin bs=1 seek=$(((ii * 10) + 3)) count=10 status=none conv=notrunc
+        dd if=/dev/zero of=data/party-data.bin bs=1 seek=$(((i * 10) + 3)) count=10 status=none conv=notrunc
     fi
 done
 
@@ -61,7 +61,7 @@ if [ ! $removed -eq 0 ]; then
 
     # Decrease the party size by one
     new_party_size=$((party_size - 1))
-    printf "$new_party_size" | dd of=data/party-data.bin bs=1 seek=0 count=1 status=none conv=notrunc
+    printf "$new_party_size" | dd of=data/party-data.bin bs=1 seek=2 count=1 status=none conv=notrunc
 
     echo
     bash src/print-character-data-inline.sh "" $to_remove "CR_NAM" " has been removed from the party."

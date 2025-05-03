@@ -1,11 +1,12 @@
 #!/bin/bash
 
-PARTY_FILE_SIZE=41 # Holds 1 byte for how many characters are in the party and 4 character names at 10 bytes each
+PARTY_FILE_SIZE=43 # Holds 2 bytes for world-location of party (x, y), 1 byte for how many characters are in the party, and 4 character names at 10 bytes each
 
 # Create the party-data file if it doesn't exist
 if [ ! -f "data/party-data.bin" ]; then
     dd if=/dev/zero of=data/party-data.bin bs=1 count=$PARTY_FILE_SIZE status=none
-    printf "0" | dd of=data/party-data.bin bs=1 seek=0 count=1 status=none conv=notrunc
+    printf "0" | dd of=data/party-data.bin bs=1 seek=2 count=1 status=none conv=notrunc
+    bash src/party/add-to-party.sh player
 fi
 
 UNLOCKED_CHARACTER_FILE_SIZE=1 # Holds 1 byte for the number of unlocked characters, names are appended as added with 10 bytes of space each
@@ -14,6 +15,13 @@ UNLOCKED_CHARACTER_FILE_SIZE=1 # Holds 1 byte for the number of unlocked charact
 if [ ! -f "data/unlocked-character-data.bin" ]; then
     dd if=/dev/zero of=data/unlocked-character-data.bin bs=1 count=$UNLOCKED_CHARACTER_FILE_SIZE status=none
     printf "0" | dd of=data/unlocked-character-data.bin bs=1 seek=0 count=1 status=none conv=notrunc
+fi
+
+QUEST_FILE_SIZE=1 # Holds 1 byte per quest
+
+# Create quest-data file if it doesn't exist
+if [ ! -f "data/quest-data.bin" ]; then
+    dd if=/dev/zero of=data/quest-data.bin bs=1 count=$QUEST_FILE_SIZE status=none
 fi
 
 # Creates character-data for all npc's ONLY IF character-data does not already exist for them
