@@ -85,7 +85,7 @@ while [ $exited -eq 0 ]; do
             esac
             ;;
         2)
-            bash src/party/open-party-menu.sh
+            bash src/open-party-menu.sh
             ;;
         3)
             exited=1

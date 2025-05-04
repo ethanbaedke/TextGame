@@ -11,7 +11,7 @@ case $? in
         # Party had space
         display_name=$(bash src/data/get-character-info.sh $1 "CR_NAM")
         echo
-        echo "$display_name has been added to the party"
+        echo "$display_name has been added to the party."
         ;;
     1)
         # Unknown error
@@ -26,8 +26,8 @@ case $? in
         bash src/request-selection.sh "yes" "no"
 
         if [ $? -eq 1 ]; then
-            bash src/party/remove-from-party.sh
-            bash src/party/add-to-party.sh $1
+            bash src/remove-from-party.sh
+            bash src/add-to-party.sh $1
         fi
         ;;
 esac

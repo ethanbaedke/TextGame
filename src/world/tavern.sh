@@ -4,7 +4,7 @@
 unlocked_characters=($(bash src/data/get-unlocked-characters.sh))
 non_party_unlocked_characters=()
 for character in ${unlocked_characters[@]}; do
-    bash src/party/check-in-party.sh $character
+    bash src/check-in-party.sh $character
     if [ ! $? -eq 1 ]; then
         non_party_unlocked_characters+=("$character ")
     fi
@@ -40,4 +40,4 @@ selection_ind=$?
 # Get the list index of the user's selection
 character_ind=$((selection_ind-1))
 
-bash src/party/add-to-party.sh ${non_party_unlocked_characters[$character_ind]}
+bash src/add-to-party.sh ${non_party_unlocked_characters[$character_ind]}

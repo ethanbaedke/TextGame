@@ -5,7 +5,7 @@ PARTY_FILE_SIZE=43 # Holds 2 bytes for world-location of party (x, y), 1 byte fo
 # Create the party-data file if it doesn't exist
 if [ ! -f "data/party-data.bin" ]; then
     bash src/data/core/write-null.sh data/party-data.bin $PARTY_FILE_SIZE 0
-    bash src/party/add-to-party.sh player
+    bash src/add-to-party.sh player
 fi
 
 UNLOCKED_CHARACTER_FILE_SIZE=171 # Holds 1 byte for the number of unlocked characters and 10 bytes for each unlockable characters name

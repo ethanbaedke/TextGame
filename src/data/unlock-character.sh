@@ -18,7 +18,7 @@ for character in ${unlocked_characters[@]}; do
     fi
 done
 
-# Add the character to the party
+# Add the character to the unlocked character file
 byte_offset=$(((num_characters_unlocked * 10) + 1))
 bash src/data/core/write-string.sh data/unlocked-character-data.bin "$1" 10 $byte_offset
 new_num_characters_unlocked=$((num_characters_unlocked + 1))
@@ -27,4 +27,4 @@ bash src/data/core/write-byte.sh data/unlocked-character-data.bin $new_num_chara
 display_name=$(bash src/data/get-character-info.sh $1 "CR_NAM")
 
 echo
-echo "$diplay_name has been unlocked."
+echo "$display_name has been unlocked."
