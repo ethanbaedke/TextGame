@@ -2,22 +2,16 @@
 
 # PARAMS: AREA_NAME
 
-# Exit if area does not exist
-if [ ! -d "src/world/$1" ]; then
-    echo "ERROR! $0 called but src/world/$1 could not be found."
-    exit
+# Ensure a directory for the input area exists
+bash src/data/verify-directory-existence.sh "src/world/$1"
+if [ $? -eq 1 ]; then
+    exit 1
 fi
 
-# Ensure the party is not empty
-party_size=$(dd if=data/party-data.bin bs=1 skip=2 count=1 status=none)
-if [ $party_size -eq 0 ]; then
-    echo "ERROR! $0 called but party size is 0."
-    exit
-fi
+# Select a random party character
+party_character=($(bash src/data/get-random-party-character.sh))
 
-# Select a random party member
-random_party_index=$((RANDOM % $party_size))
-party_member=$(dd if=data/party-data.bin bs=1 skip=$(((random_party_index * 10) + 3)) count=10 status=none | tr -d '\0')
-
+# Select a random encounter from the input area
 individual_encounter=$(find src/world/$1/individual-encounters -maxdepth 1 -type f | shuf -n 1)
-bash $individual_encounter "$party_member"
+
+bash $individual_encounter "$party_character"

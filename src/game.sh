@@ -7,30 +7,22 @@ current_map_x_coord=0
 current_map_y_coord=0
 
 retrieve_map_coordinates() {
-    bash src/party/get-party-location-x.sh
-    current_map_x_coord=$?
-    bash src/party/get-party-location-y.sh
-    current_map_y_coord=$?
+    current_map_x_coord=$(bash src/data/get-party-location-x.sh)
+    current_map_y_coord=$(bash src/data/get-party-location-y.sh)
 }
 
 save_map_coordinates() {
-    bash src/party/update-party-location.sh $current_map_x_coord $current_map_y_coord
+    bash src/data/update-party-location.sh $current_map_x_coord $current_map_y_coord
 }
 
 enter_current_area() {
     bash src/world/map/area-$current_map_x_coord-$current_map_y_coord.sh
 }
 
-# Exit if quest-data does not exist
-if [ ! -f "data/quest-data.bin" ]; then
-    echo "ERROR! $0 called but data/quest-data.bin could not be found."
-    exit
-fi
-
 # QUEST #0 = MAIN QUEST
-bash src/get-quest-progress.sh 0
-if [ $? -eq 0 ]; then
-    bash src/increment-quest-progress.sh 0
+main_quest_progress=$(bash src/data/get-quest-progress.sh 0)
+if [ $main_quest_progress -eq 0 ]; then
+    bash src/data/increment-quest-progress.sh 0
 fi
 
 # Starting point

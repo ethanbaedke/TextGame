@@ -2,5 +2,6 @@
 
 # PARAMS: CHARACTER_NAME
 
+display_name=$(bash src/data/get-character-info.sh $1 "CR_NAM")
 echo
-bash src/print-character-data-inline.sh "" $1 "CR_NAM" " stumbled across $0!"
+echo "$display_name stumbled across $0!"

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Asking the user to install catimg
 if ! command -v catimg >/dev/null 2>&1; then
     echo
     echo "catimg may be installed for visuals."
@@ -18,8 +19,9 @@ if ! command -v catimg >/dev/null 2>&1; then
     fi
 fi
 
+bash src/data/verify-file-existence.sh data/characters/player-data.bin
 # There is already player-data present on this computer
-if [ -f "data/characters/player-data.bin" ]; then
+if [ $? -eq 0 ]; then
     echo
     echo "The following player data was found on this device..."
     bash src/print-character-data-full.sh "player"
@@ -31,7 +33,7 @@ if [ -f "data/characters/player-data.bin" ]; then
 
     case $? in
     1)
-        bash src/verify-data.sh
+        bash src/data/verify-data.sh
         bash src/game.sh
         ;;
     2)
@@ -42,7 +44,7 @@ if [ -f "data/characters/player-data.bin" ]; then
 
         case $? in
             1)
-                bash src/erase-data.sh
+                bash src/data/erase-data.sh
                 bash "src/create-character.sh"
                 echo
                 echo "Here is the character you created..."
@@ -55,7 +57,7 @@ if [ -f "data/characters/player-data.bin" ]; then
 
                 case $? in
                     1)
-                        bash src/verify-data.sh
+                        bash src/data/verify-data.sh
                         bash src/game.sh
                         ;;
                     2)
@@ -80,7 +82,7 @@ else
 
     case $? in
         1)
-            bash src/erase-data.sh
+            bash src/data/erase-data.sh
             bash "src/create-character.sh"
 
             # Is the user ready to begin their adventure?
@@ -90,7 +92,7 @@ else
 
             case $? in
                 1)
-                    bash src/verify-data.sh
+                    bash src/data/verify-data.sh
                     bash src/game.sh
                     ;;
                 2)
