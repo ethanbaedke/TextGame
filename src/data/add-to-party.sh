@@ -4,7 +4,7 @@
 # EXIT: 0 = success, 1 = fail, 2 = party-full
 
 # Ensure a file exists for the input character
-bash src/data/verify-file-existence.sh data/characters/$1-data.bin
+bash src/data/verify-file-existence.sh data/actors/$1-data.bin
 if [ $? -eq 1 ]; then
     exit 1
 fi

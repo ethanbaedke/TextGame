@@ -28,135 +28,135 @@ CHARACTER_FILE_SIZE=63 # 3 for stats, 60 for name and color
 
 # Aidan - Hobbit
 character_name=aidan
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Aidan" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Aidan" "CR_COL" "Unknown"
 fi
 
 # Dylan - Wizard
 character_name=dylan
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Dylan" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Dylan" "CR_COL" "Unknown"
 fi
 
 # Max - Jockey
 character_name=max
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Max" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Max" "CR_COL" "Unknown"
 fi
 
 character_name=liberty
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Liberty" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Liberty" "CR_COL" "Unknown"
 fi
 
 # Chelsea - Hobbit or Mermaid
 character_name=chelsea
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Chelsea" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Chelsea" "CR_COL" "Unknown"
 fi
 
 # Josie - Mage
 character_name=josie
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Josie" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Josie" "CR_COL" "Unknown"
 fi
 
 # Madelyn - Elf
 character_name=madelyn
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Madelyn" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Madelyn" "CR_COL" "Unknown"
 fi
 
 # Jake - Dwarf
 character_name=jake
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Jake" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Jake" "CR_COL" "Unknown"
 fi
 
 # Aly - Dragon
 character_name=aly
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Aly" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Aly" "CR_COL" "Unknown"
 fi
 
 # Loklin - Hobbit or Elf
 character_name=loklin
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Loklin" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Loklin" "CR_COL" "Unknown"
 fi
 
 # Jack - Dwarf
 character_name=jack
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Jack" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Jack" "CR_COL" "Unknown"
 fi
 
 # Emma - Wizard (lesser known?)
 character_name=emma
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Emma" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Emma" "CR_COL" "Unknown"
 fi
 
 # Phoebe - Craftswoman
 character_name=phoebe
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Phoebe" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Phoebe" "CR_COL" "Unknown"
 fi
 
 # Keely - Griffon?
 character_name=keely
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Keely" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Keely" "CR_COL" "Unknown"
 fi
 
 # Ceci - Elf
 character_name=ceci
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Ceci" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Ceci" "CR_COL" "Unknown"
 fi
 
 # Jackson - Paladin or Elf
 character_name=jackson
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Jackson" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Jackson" "CR_COL" "Unknown"
 fi
 
 # Fletch - Ent
 character_name=fletch
-bash src/data/verify-file-existence.sh data/characters/$character_name-data.bin > /dev/null 2>&1
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-    bash src/data/create-character-data.sh $character_name
-    bash src/data/save-character-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Fletch" "CR_COL" "Unknown"
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_NAM" "Fletch" "CR_COL" "Unknown"
 fi

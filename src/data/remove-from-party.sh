@@ -35,7 +35,7 @@ if [ ! $removed -eq 0 ]; then
     new_party_size=$((party_size - 1))
     bash src/data/core/write-byte.sh data/party-data.bin $new_party_size 2
 
-    display_name=$(bash src/data/get-character-info.sh $1 "CR_NAM")
+    display_name=$(bash src/data/get-actor-info.sh $1 "CR_NAM")
 
     echo
     echo "$display_name has been removed from the party."

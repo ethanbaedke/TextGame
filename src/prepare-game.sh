@@ -19,7 +19,7 @@ if ! command -v catimg >/dev/null 2>&1; then
     fi
 fi
 
-bash src/data/verify-file-existence.sh data/characters/player-data.bin
+bash src/data/verify-file-existence.sh data/actors/player-data.bin > /dev/null 2>&1
 # There is already player-data present on this computer
 if [ $? -eq 0 ]; then
     echo

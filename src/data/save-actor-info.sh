@@ -12,19 +12,19 @@ for ((i=2; i<=$#; i+=2)); do
 
     case "$data_name" in
         "CR_STR")
-            bash src/data/core/write-byte.sh data/characters/$1-data.bin $data_value 0
+            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 0
             ;;
         "CR_DEX")
-            bash src/data/core/write-byte.sh data/characters/$1-data.bin $data_value 1
+            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 1
             ;;
         "CR_INT")
-            bash src/data/core/write-byte.sh data/characters/$1-data.bin $data_value 2
+            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 2
             ;;
         "CR_NAM")
-            bash src/data/core/write-string.sh data/characters/$1-data.bin "$data_value" 30 3
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 3
             ;;
         "CR_COL")
-            bash src/data/core/write-string.sh data/characters/$1-data.bin "$data_value" 30 33
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 33
             ;;
     esac
 done

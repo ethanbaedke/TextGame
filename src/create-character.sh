@@ -152,8 +152,8 @@ while [ $favorite_color_locked_in -eq 0 ]; do
     esac
 done
 
-bash src/data/create-character-data.sh player
-bash src/data/save-character-info.sh "player" "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
+bash src/data/create-actor-data.sh player
+bash src/data/save-actor-info.sh "player" "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
 
 echo
 echo "Character created."
