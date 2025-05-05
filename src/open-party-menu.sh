@@ -6,7 +6,7 @@ echo "Members in your party..."
 party_characters=($(bash src/data/get-party-characters.sh))
 
 for character in ${party_characters[@]}; do
-    display_name=$(bash src/data/get-actor-info.sh $1 "CR_NAM")
+    display_name=$(bash src/data/get-actor-info.sh $character "CR_NAM")
     echo "$display_name"
 done
 

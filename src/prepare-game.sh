@@ -33,7 +33,6 @@ if [ $? -eq 0 ]; then
 
     case $? in
     1)
-        bash src/data/verify-data.sh
         bash src/game.sh
         ;;
     2)
@@ -45,6 +44,7 @@ if [ $? -eq 0 ]; then
         case $? in
             1)
                 bash src/data/erase-data.sh
+                bash src/data/verify-data.sh
                 bash "src/create-character.sh"
                 echo
                 echo "Here is the character you created..."
@@ -57,7 +57,6 @@ if [ $? -eq 0 ]; then
 
                 case $? in
                     1)
-                        bash src/data/verify-data.sh
                         bash src/game.sh
                         ;;
                     2)
@@ -83,6 +82,7 @@ else
     case $? in
         1)
             bash src/data/erase-data.sh
+            bash src/data/verify-data.sh
             bash "src/create-character.sh"
 
             # Is the user ready to begin their adventure?
@@ -92,7 +92,6 @@ else
 
             case $? in
                 1)
-                    bash src/data/verify-data.sh
                     bash src/game.sh
                     ;;
                 2)

@@ -88,6 +88,42 @@ while [ $stats_locked_in -eq 0 ]; do
     esac
 done
 
+# Have the user choose the characters starting weapon
+weapon_locked_in=0
+while [ $weapon_locked_in -eq 0 ]; do
+
+    # Have the user choose the characters starting weapon
+    echo
+    echo "Choose your starting weapon..."
+    bash src/request-selection.sh sword hammer bow
+
+    case $? in
+        1)
+            starting_weapon="sword"
+            ;;
+        2)
+            starting_weapon="hammer"
+            ;;
+        3)
+            starting_weapon="bow"
+            ;;
+    esac
+
+    # Allow the user to lock in their starting weapon or choose another one
+    echo
+    echo "Are you satisfied with a $starting_weapon as your starting weapon?"
+    bash "src/request-selection.sh" "yes" "no"
+
+    case $? in
+        1)
+            weapon_locked_in=1
+            ;;
+        2)
+            ;;
+    esac
+done
+
+
 # Have the user fill out the characters name
 name_locked_in=0
 while [ $name_locked_in -eq 0 ]; do
@@ -153,7 +189,7 @@ while [ $favorite_color_locked_in -eq 0 ]; do
 done
 
 bash src/data/create-actor-data.sh player
-bash src/data/save-actor-info.sh "player" "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
+bash src/data/save-actor-info.sh "player" "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_WEP" $starting_weapon "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
 
 echo
 echo "Character created."

@@ -2,12 +2,6 @@
 
 # PARAMS: CHARACTER_NAME, STAT_NAME
 
-# Ensure a file exists for the input character
-bash src/data/verify-file-existence.sh data/actors/$1-data.bin
-if [ $? -eq 1 ]; then
-    exit 1
-fi
-
 case "$2" in
         "CR_STR")
             value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 0))
@@ -27,6 +21,10 @@ case "$2" in
             ;;
         "CR_COL")
             value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 33)
+            echo $value
+            ;;
+        "CR_WEP")
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 63)
             echo $value
             ;;
 esac
