@@ -20,18 +20,21 @@ for ((i=2; i<=$#; i+=2)); do
         "CR_INT")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 2
             ;;
+        "CR_SPE")
+            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 3
+            ;;
         "CR_NAM")
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 3
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 4
             ;;
         "CR_COL")
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 33
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 34
             ;;
         "CR_WEP")
             bash src/data/verify-file-existence.sh data/weapons/$data_value-data.bin
             if [ $? -eq 1 ]; then
                 exit 1
             fi
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 63
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 64
             ;;
     esac
 done

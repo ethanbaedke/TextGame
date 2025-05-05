@@ -7,6 +7,7 @@ remaining_points=$NUM_POINTS_FOR_DISTRIBUTION
 strength=0
 dexterity=0
 intellect=0
+speed=0
 
 max_points_per_stat=5
 
@@ -19,10 +20,12 @@ print_stats() {
     echo "Strength: $strength / $max_points_per_stat"
     echo "Dexterity: $dexterity / $max_points_per_stat"
     echo "Intellect: $intellect / $max_points_per_stat"
+    echo "Speed: $speed / $max_points_per_stat"
 }
 
 # Takes in the name of the stat to increase
 try_add_point() {
+
     # Make sure a parameter was passed in
     if [ -z $1 ]; then
         return
@@ -38,6 +41,7 @@ reset_stats() {
     strength=0
     dexterity=0
     intellect=0
+    speed=0
     remaining_points=$NUM_POINTS_FOR_DISTRIBUTION
 }
 
@@ -54,7 +58,7 @@ while [ $stats_locked_in -eq 0 ]; do
         print_stats
 
         # Have the user select a stat to put a point into
-        bash "src/request-selection.sh" "strength" "dexterity" "intellect" "reset"
+        bash "src/request-selection.sh" "strength" "dexterity" "intellect" "speed" "reset"
 
         case $? in
             1)
@@ -67,6 +71,9 @@ while [ $stats_locked_in -eq 0 ]; do
                 try_add_point intellect
                 ;;
             4)
+                try_add_point speed
+                ;;
+            5)
                 reset_stats
                 ;;
         esac
@@ -189,7 +196,7 @@ while [ $favorite_color_locked_in -eq 0 ]; do
 done
 
 bash src/data/create-actor-data.sh player
-bash src/data/save-actor-info.sh "player" "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_WEP" $starting_weapon "CR_NAM" "$character_name" "CR_COL" "$favorite_color"
+bash src/data/save-actor-info.sh "player" "CR_STR" $strength "CR_DEX" $dexterity "CR_INT" $intellect "CR_SPE" $speed "CR_NAM" "$character_name" "CR_COL" "$favorite_color" "CR_WEP" $starting_weapon
 
 echo
 echo "Character created."
