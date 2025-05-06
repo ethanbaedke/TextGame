@@ -1,10 +1,17 @@
 #!/bin/bash
 
 # PARAMS: ENEMY_NAME ENEMY_NAME ...
+# EXIT CODE: 0 if characters win the combat and 1 if enemies win the combat
 
 characters=$(bash src/data/get-party-characters.sh)
 enemies=($@)
 all_actors=(${characters[@]} ${enemies[@]})
+
+# Initialize all actors combat health to their current health
+(for actor in ${all_actors[@]}; do
+    current_health=$(bash src/data/get-actor-info.sh $actor "CURRENT_HEALTH")
+    bash src/data/save-actor-info.sh $actor "COMBAT_HEALTH" $current_health
+done)
 
 # Sort all actors in order of highest speed to lowest speed
 turn_order=($(for actor in "${all_actors[@]}"; do
@@ -21,7 +28,9 @@ print_combat_info() {
     local character
     for character in ${characters[@]}; do
         local character_display_name=$(bash src/data/get-actor-info.sh $character "DISPLAY_NAME")
-        echo "$character_display_name (health=?/?)"
+        local character_max_health=$(bash src/data/get-actor-info.sh $character "MAX_HEALTH")
+        local character_combat_health=$(bash src/data/get-actor-info.sh $character "COMBAT_HEALTH")
+        echo "$character_display_name (health=$character_combat_health/$character_max_health)"
     done
 
     echo
@@ -29,19 +38,43 @@ print_combat_info() {
     local enemy
     for enemy in ${enemies[@]}; do
         local enemy_display_name=$(bash src/data/get-actor-info.sh $enemy "DISPLAY_NAME")
-        echo "$enemy_display_name (health=?/?)"
+        local enemy_max_health=$(bash src/data/get-actor-info.sh $enemy "MAX_HEALTH")
+        local enemy_combat_health=$(bash src/data/get-actor-info.sh $enemy "COMBAT_HEALTH")
+        echo "$enemy_display_name (health=$enemy_combat_health/$enemy_max_health)"
     done
+}
 
-    # Display actor whos turn it is
-    local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
-    echo
-    echo "Turn: $display_name"
+# Returns 0 if the characters have won, and 1 otherwise
+get_characters_won() {
+    # If any enemy has health remaining, characters have not yet won the combat
+    local enemy
+    for enemy in ${enemies[@]}; do
+        local combat_health=$(bash src/data/get-actor-info.sh $enemy "COMBAT_HEALTH")
+        if [ ! $combat_health -eq 0 ]; then
+            return 1
+        fi
+    done
+    return 0
+}
+
+# Returns 0 if the enemies have won, and 1 otherwise
+get_enemies_won() {
+    # If any character has health remaining, enemies have not yet won the combat
+    local character
+    for character in ${characters[@]}; do
+        local combat_health=$(bash src/data/get-actor-info.sh $character "COMBAT_HEALTH")
+        if [ ! $combat_health -eq 0 ]; then
+            return 1
+        fi
+    done
+    return 0
 }
 
 # PARAMS: CHARACTER_NAME
 character_turn() {
 
     # Have the actor make a common combat decision
+    echo
     bash src/request-selection.sh "use weapon" "mend self"
 
     case $? in
@@ -54,7 +87,9 @@ character_turn() {
         2)
             local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
             echo
-            echo "$display_name healed themselves 1 point of health"
+            echo "$display_name healed themselves 1 point of health."
+            bash src/await-continuation.sh
+            bash src/combat/modify-combat-health.sh $1 1
             ;;
     esac
 }
@@ -88,10 +123,28 @@ while (true); do
 
     print_combat_info
 
-    current_actor=${turn_order[$turn_index]}
-    take_turn $current_actor
+    get_enemies_won
+    if [ $? -eq 0 ]; then
+        echo
+        echo "All characters have been knocked out."
+        exit 1
+    fi
 
-    bash src/await-continuation.sh
+    get_characters_won
+    if [ $? -eq 0 ]; then
+        echo
+        echo "All enemies have been defeated."
+        exit 0
+    fi
+
+    current_actor=${turn_order[$turn_index]}
+
+    # Display actor whos turn it is
+    current_actor_display_name=$(bash src/data/get-actor-info.sh $current_actor "DISPLAY_NAME")
+    echo
+    echo "Turn: $current_actor_display_name"
+
+    take_turn $current_actor
 
     # Move the index to the next actor in the turn_order, looping to 0 if the end of the array was hit
     turn_index=$(((turn_index + 1) % ${#turn_order[@]}))
