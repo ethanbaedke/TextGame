@@ -19,16 +19,30 @@ case "$2" in
             value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 3))
             echo $value
             ;;
+        "MAX_HEALTH")
+            value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 4))
+            echo $value
+            ;;
+        "CURRENT_HEALTH")
+            value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 5))
+            echo $value
+            ;;
+        "COMBAT_HEALTH")
+            # This is a temporary data slot to track current health while the actor is in combat
+            # This way, combat damage is only saved if desired (for characters) and only after combat has finished (doesn't save if combat ends abruptly)
+            value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 6))
+            echo $value
+            ;;
         "DISPLAY_NAME")
-            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 4)
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 7)
             echo $value
             ;;
         "FAVORITE_COLOR")
-            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 34)
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 37)
             echo $value
             ;;
-        "CR_WEP")
-            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 64)
+        "WEAPON")
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 67)
             echo $value
             ;;
 esac
