@@ -7,7 +7,8 @@ remaining_points=$NUM_POINTS_FOR_DISTRIBUTION
 strength=0
 dexterity=0
 intellect=0
-speed=0
+charisma=0
+luck=0
 
 max_points_per_stat=5
 
@@ -20,7 +21,8 @@ print_stats() {
     echo "Strength: $strength / $max_points_per_stat"
     echo "Dexterity: $dexterity / $max_points_per_stat"
     echo "Intellect: $intellect / $max_points_per_stat"
-    echo "Speed: $speed / $max_points_per_stat"
+    echo "Charisma: $charisma / $max_points_per_stat"
+    echo "Luck: $luck / $max_points_per_stat"
 }
 
 # Takes in the name of the stat to increase
@@ -41,7 +43,8 @@ reset_stats() {
     strength=0
     dexterity=0
     intellect=0
-    speed=0
+    charisma=0
+    luck=0
     remaining_points=$NUM_POINTS_FOR_DISTRIBUTION
 }
 
@@ -58,7 +61,7 @@ while [ $stats_locked_in -eq 0 ]; do
         print_stats
 
         # Have the user select a stat to put a point into
-        bash "src/request-selection.sh" "strength" "dexterity" "intellect" "speed" "reset"
+        bash "src/request-selection.sh" "strength" "dexterity" "intellect" "charisma" "luck" "reset"
 
         case $? in
             1)
@@ -71,9 +74,12 @@ while [ $stats_locked_in -eq 0 ]; do
                 try_add_point intellect
                 ;;
             4)
-                try_add_point speed
+                try_add_point charisma
                 ;;
             5)
+                try_add_point luck
+                ;;
+            6)
                 reset_stats
                 ;;
         esac
@@ -196,7 +202,7 @@ while [ $favorite_color_locked_in -eq 0 ]; do
 done
 
 bash src/data/create-actor-data.sh player
-bash src/data/save-actor-info.sh "player" "STRENGTH" $strength "DEXTERITY" $dexterity "INTELLIGENCE" $intellect "SPEED" $speed "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "$character_name" "FAVORITE_COLOR" "$favorite_color" "WEAPON" $starting_weapon
+bash src/data/save-actor-info.sh "player" "STRENGTH" $strength "DEXTERITY" $dexterity "INTELLIGENCE" $intellect "CHARISMA" $charisma "LUCK" $luck "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "$character_name" "FAVORITE_COLOR" "$favorite_color" "WEAPON" $starting_weapon
 
 echo
 echo "Character created."

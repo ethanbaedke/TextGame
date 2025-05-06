@@ -20,32 +20,35 @@ for ((i=2; i<=$#; i+=2)); do
         "INTELLIGENCE")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 2
             ;;
-        "SPEED")
+        "CHARISMA")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 3
             ;;
-        "MAX_HEALTH")
+        "LUCK")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 4
             ;;
-        "CURRENT_HEALTH")
+        "MAX_HEALTH")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 5
+            ;;
+        "CURRENT_HEALTH")
+            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 6
             ;;
         "COMBAT_HEALTH")
             # This is a temporary data slot to track current health while the actor is in combat
             # This way, combat damage is only saved if desired (for characters) and only after combat has finished (doesn't save if combat ends abruptly)
-            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 6
+            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 7
             ;;
         "DISPLAY_NAME")
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 7
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 8
             ;;
         "FAVORITE_COLOR")
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 37
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 38
             ;;
         "WEAPON")
             bash src/data/verify-file-existence.sh data/weapons/$data_value-data.bin
             if [ $? -eq 1 ]; then
                 exit 1
             fi
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 67
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 68
             ;;
     esac
 done

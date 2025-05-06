@@ -8,7 +8,8 @@ bash src/display-image.sh "images/characters/beautiful/$1.png"
 strength=$(bash src/data/get-actor-info.sh $1 "STRENGTH")
 dexterity=$(bash src/data/get-actor-info.sh $1 "DEXTERITY")
 intelligence=$(bash src/data/get-actor-info.sh $1 "INTELLIGENCE")
-speed=$(bash src/data/get-actor-info.sh $1 "SPEED")
+charisma=$(bash src/data/get-actor-info.sh $1 "CHARISMA")
+luck=$(bash src/data/get-actor-info.sh $1 "LUCK")
 max_health=$(bash src/data/get-actor-info.sh $1 "MAX_HEALTH")
 current_health=$(bash src/data/get-actor-info.sh $1 "CURRENT_HEALTH")
 display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
@@ -22,7 +23,8 @@ echo "Name: $display_name"
 echo "Strength: $strength"
 echo "Dexterity: $dexterity"
 echo "Intelligence: $intelligence"
-echo "Speed: $speed"
+echo "Charisma: $charisma"
+echo "Luck: $luck"
 echo "Health: $current_health/$max_health"
 echo "Weapon: $weapon_display_name (damage=$weapon_damage)"
 echo "Favorite Color: $favorite_color"

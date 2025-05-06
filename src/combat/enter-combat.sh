@@ -13,9 +13,9 @@ all_actors=(${characters[@]} ${enemies[@]})
     bash src/data/save-actor-info.sh $actor "COMBAT_HEALTH" $current_health
 done)
 
-# Sort all actors in order of highest speed to lowest speed
+# Sort all actors in order of highest dexterity to lowest dexterity
 turn_order=($(for actor in "${all_actors[@]}"; do
-        printf "%s\t%s\n" "$(bash src/data/get-actor-info.sh $actor "SPEED")" "$actor"
+        printf "%s\t%s\n" "$(bash src/data/get-actor-info.sh $actor "DEXTERITY")" "$actor"
     done | sort -n -r | cut -f2))
 
 # Tracks which actor's turn it is in the turn_order array
