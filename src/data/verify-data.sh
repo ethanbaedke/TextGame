@@ -27,28 +27,28 @@ weapon_name=fist
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "WP_DAM" 1 "WP_NAM" "Fists"
+    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 1 "DISPLAY_NAME" "Fists"
 fi
 
 weapon_name=sword
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "WP_DAM" 1 "WP_NAM" "Sword"
+    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 1 "DISPLAY_NAME" "Sword"
 fi
 
 weapon_name=hammer
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "WP_DAM" 1 "WP_NAM" "Hammer"
+    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 1 "DISPLAY_NAME" "Hammer"
 fi
 
 weapon_name=bow
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "WP_DAM" 1 "WP_NAM" "Bow"
+    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 1 "DISPLAY_NAME" "Bow"
 fi
 
 # Creates actor-data for all npc's ONLY IF actor-data does not already exist for them
@@ -58,7 +58,7 @@ character_name=aidan
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Aidan" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Aidan" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Dylan - Wizard
@@ -66,7 +66,7 @@ character_name=dylan
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Dylan" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Dylan" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Max - Jockey
@@ -74,14 +74,14 @@ character_name=max
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Max" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Max" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 character_name=liberty
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Liberty" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Liberty" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Chelsea - Hobbit or Mermaid
@@ -89,7 +89,7 @@ character_name=chelsea
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Chelsea" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Chelsea" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Josie - Mage
@@ -97,7 +97,7 @@ character_name=josie
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Josie" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Josie" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Madelyn - Elf
@@ -105,7 +105,7 @@ character_name=madelyn
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Madelyn" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Madelyn" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Jake - Dwarf
@@ -113,7 +113,7 @@ character_name=jake
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Jake" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Jake" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Aly - Dragon
@@ -121,7 +121,7 @@ character_name=aly
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Aly" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Aly" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Loklin - Hobbit or Elf
@@ -129,7 +129,7 @@ character_name=loklin
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Loklin" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Loklin" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Jack - Dwarf
@@ -137,7 +137,7 @@ character_name=jack
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Jack" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Jack" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Emma - Wizard (lesser known?)
@@ -145,7 +145,7 @@ character_name=emma
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Emma" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Emma" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Phoebe - Craftswoman
@@ -153,7 +153,7 @@ character_name=phoebe
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Phoebe" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Phoebe" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Keely - Griffon?
@@ -161,7 +161,7 @@ character_name=keely
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Keely" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Keely" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Ceci - Elf
@@ -169,7 +169,7 @@ character_name=ceci
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Ceci" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Ceci" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Jackson - Paladin or Elf
@@ -177,7 +177,7 @@ character_name=jackson
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Jackson" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Jackson" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Fletch - Ent
@@ -185,7 +185,7 @@ character_name=fletch
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Fletch" "CR_COL" "Unknown" "CR_WEP" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Fletch" "FAVORITE_COLOR" "Unknown" "CR_WEP" "fist"
 fi
 
 # Creates actor-data for all enemies ONLY IF actor-data does not already exist for them
@@ -194,5 +194,5 @@ enemy_name=goblin
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "CR_STR" 0 "CR_DEX" 0 "CR_INT" 0 "CR_SPE" 0 "CR_NAM" "Goblin" "CR_COL" "Unknown" "CR_WEP" "hammer"
+    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "SPEED" 0 "DISPLAY_NAME" "Goblin" "FAVORITE_COLOR" "Unknown" "CR_WEP" "hammer"
 fi

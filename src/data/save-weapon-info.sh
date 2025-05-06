@@ -11,10 +11,10 @@ for ((i=2; i<=$#; i+=2)); do
     data_value="${!ii}"
 
     case "$data_name" in
-        "WP_DAM")
+        "DAMAGE")
             bash src/data/core/write-byte.sh data/weapons/$1-data.bin $data_value 0
             ;;
-        "WP_NAM")
+        "DISPLAY_NAME")
             bash src/data/core/write-string.sh data/weapons/$1-data.bin "$data_value" 30 1
             ;;
     esac

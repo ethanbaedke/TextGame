@@ -11,22 +11,22 @@ for ((i=2; i<=$#; i+=2)); do
     data_value="${!ii}"
 
     case "$data_name" in
-        "CR_STR")
+        "STRENGTH")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 0
             ;;
-        "CR_DEX")
+        "DEXTERITY")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 1
             ;;
-        "CR_INT")
+        "INTELLIGENCE")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 2
             ;;
-        "CR_SPE")
+        "SPEED")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 3
             ;;
-        "CR_NAM")
+        "DISPLAY_NAME")
             bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 4
             ;;
-        "CR_COL")
+        "FAVORITE_COLOR")
             bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 34
             ;;
         "CR_WEP")

@@ -24,7 +24,7 @@ bash src/data/core/write-string.sh data/unlocked-character-data.bin "$1" 10 $byt
 new_num_characters_unlocked=$((num_characters_unlocked + 1))
 bash src/data/core/write-byte.sh data/unlocked-character-data.bin $new_num_characters_unlocked 0
 
-display_name=$(bash src/data/get-actor-info.sh $1 "CR_NAM")
+display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
 
 echo
 echo "$display_name has been unlocked."

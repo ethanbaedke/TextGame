@@ -8,7 +8,7 @@ all_actors=(${characters[@]} ${enemies[@]})
 
 # Sort all actors in order of highest speed to lowest speed
 turn_order=($(for actor in "${all_actors[@]}"; do
-        printf "%s\t%s\n" "$(bash src/data/get-actor-info.sh $actor "CR_SPE")" "$actor"
+        printf "%s\t%s\n" "$(bash src/data/get-actor-info.sh $actor "SPEED")" "$actor"
     done | sort -n -r | cut -f2))
 
 # Tracks which actor's turn it is in the turn_order array
@@ -20,7 +20,7 @@ print_combat_info() {
     echo "CHARACTERS"
     local character
     for character in ${characters[@]}; do
-        local character_display_name=$(bash src/data/get-actor-info.sh $character "CR_NAM")
+        local character_display_name=$(bash src/data/get-actor-info.sh $character "DISPLAY_NAME")
         echo "$character_display_name (health=?/?)"
     done
 
@@ -28,12 +28,12 @@ print_combat_info() {
     echo "ENEMIES"
     local enemy
     for enemy in ${enemies[@]}; do
-        local enemy_display_name=$(bash src/data/get-actor-info.sh $enemy "CR_NAM")
+        local enemy_display_name=$(bash src/data/get-actor-info.sh $enemy "DISPLAY_NAME")
         echo "$enemy_display_name (health=?/?)"
     done
 
     # Display actor whos turn it is
-    local display_name=$(bash src/data/get-actor-info.sh $1 "CR_NAM")
+    local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
     echo
     echo "Turn: $display_name"
 }
@@ -49,10 +49,10 @@ character_turn() {
             echo
             echo "Select a target..."
             bash src/request-selection.sh ${enemies[@]}
-            handle_weapon_attack $1 ${enemies[(($? - 1))]}
+            bash src/combat/handle-weapon-attack.sh $1 ${enemies[(($? - 1))]}
             ;;
         2)
-            local display_name=$(bash src/data/get-actor-info.sh $1 "CR_NAM")
+            local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
             echo
             echo "$display_name healed themselves 1 point of health"
             ;;
@@ -64,7 +64,7 @@ enemy_turn() {
 
     # Attack a random character
     random_character=$((RANDOM % ${#characters[@]}))
-    handle_weapon_attack $1 ${characters[$random_character]}
+    bash src/combat/handle-weapon-attack.sh $1 ${characters[$random_character]}
 }
 
 # PARAMS: ACTOR_NAME

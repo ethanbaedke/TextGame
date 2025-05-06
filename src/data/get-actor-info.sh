@@ -3,27 +3,27 @@
 # PARAMS: CHARACTER_NAME, STAT_NAME
 
 case "$2" in
-        "CR_STR")
+        "STRENGTH")
             value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 0))
             echo $value
             ;;
-        "CR_DEX")
+        "DEXTERITY")
             value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 1))
             echo $value
             ;;
-        "CR_INT")
+        "INTELLIGENCE")
             value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 2))
             echo $value
             ;;
-        "CR_SPE")
+        "SPEED")
             value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 3))
             echo $value
             ;;
-        "CR_NAM")
+        "DISPLAY_NAME")
             value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 4)
             echo $value
             ;;
-        "CR_COL")
+        "FAVORITE_COLOR")
             value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 34)
             echo $value
             ;;

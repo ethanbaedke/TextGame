@@ -9,7 +9,7 @@ bash src/data/add-to-party.sh $1
 case $? in
     0)
         # Party had space
-        display_name=$(bash src/data/get-actor-info.sh $1 "CR_NAM")
+        display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
         echo
         echo "$display_name has been added to the party."
         ;;
