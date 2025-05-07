@@ -1,2 +1,5 @@
 # Use LF line endings for all files
 * text eol=lf
+
+# Make sure png's stay binary
+*.png binary
