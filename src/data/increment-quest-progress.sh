@@ -1,7 +1,20 @@
 #!/bin/bash
 
-# PARAMS: QUEST_INDEX
+# PARAMS: QUEST_NAME
 
-progress=$(src/data/get-quest-progress.sh $1)
-new_progress=$((progress + 1))
-bash src/data/core/write-byte.sh data/quest-data.bin $new_progress $1
+num_quests=$(bash src/data/core/read-byte.sh data/quest-data.bin 0)
+
+for ((i=0; i<num_quests; i++)); do
+    name_offset=$(((i * 21) + 1))
+    quest_name=$(bash src/data/core/read-string.sh data/quest-data.bin 20 $name_offset)
+    if [ "$quest_name" == "$1" ]; then
+        progress_offset=$((name_offset + 20))
+        quest_progress=$(bash src/data/core/read-byte.sh data/quest-data.bin $progress_offset)
+        new_progress=$((quest_progress + 1))
+        bash src/data/core/write-byte.sh data/quest-data.bin $new_progress $progress_offset
+        exit 0
+    fi
+done
+
+echo "ERROR! $0 called but no quest with the name $1 could be found."
+exit 1

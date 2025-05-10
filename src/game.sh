@@ -20,11 +20,11 @@ enter_current_area() {
 }
 
 # QUEST #0 = MAIN QUEST
-main_quest_progress=$(bash src/data/get-quest-progress.sh 0)
+main_quest_progress=$(bash src/data/get-quest-progress.sh main)
 if [ $main_quest_progress -eq 0 ]; then
     bash src/data/unlock-character.sh ethan
     bash src/add-to-party.sh ethan
-    bash src/data/increment-quest-progress.sh 0
+    bash src/data/increment-quest-progress.sh main
 fi
 
 # Starting point

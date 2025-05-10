@@ -40,6 +40,8 @@ if [ $? -eq 0 ]; then
         case $? in
             1)
                 bash src/data/erase-data.sh
+                echo
+                echo "Creating save data..."
                 bash src/data/verify-data.sh
                 bash src/game.sh
                 ;;
@@ -61,6 +63,8 @@ else
     case $? in
         1)
             bash src/data/erase-data.sh
+            echo
+            echo "Creating save data..."
             bash src/data/verify-data.sh
             bash src/game.sh
             ;;
