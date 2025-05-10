@@ -22,7 +22,8 @@ enter_current_area() {
 # QUEST #0 = MAIN QUEST
 main_quest_progress=$(bash src/data/get-quest-progress.sh 0)
 if [ $main_quest_progress -eq 0 ]; then
-    bash src/add-to-party.sh player
+    bash src/data/unlock-character.sh ethan
+    bash src/add-to-party.sh ethan
     bash src/data/increment-quest-progress.sh 0
 fi
 

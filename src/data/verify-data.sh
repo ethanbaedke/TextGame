@@ -188,6 +188,14 @@ if [ $? -eq 1 ]; then
     bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Fletch" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
 fi
 
+# Ethan - Human
+character_name=ethan
+bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
+if [ $? -eq 1 ]; then
+    bash src/data/create-actor-data.sh $character_name
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Ethan" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
+fi
+
 # Creates actor-data for all enemies ONLY IF actor-data does not already exist for them
 
 enemy_name=goblin

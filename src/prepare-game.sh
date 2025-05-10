@@ -19,16 +19,12 @@ if ! command -v catimg >/dev/null 2>&1; then
     fi
 fi
 
-bash src/data/verify-file-existence.sh data/actors/player-data.bin > /dev/null 2>&1
-# There is already player-data present on this computer
+bash src/data/verify-file-existence.sh data/quest-data.bin > /dev/null 2>&1
+# There is already quest-data present on this computer
 if [ $? -eq 0 ]; then
-    echo
-    echo "The following player data was found on this device..."
-    bash src/print-character-data-full.sh "player"
-
     # Does the user want to continue their adventure?
     echo
-    echo "Would you like to continue your adventure?"
+    echo "Quest data was found on this computer, would you like to continue your adventure?"
     bash "src/request-selection.sh" "yes" "no"
 
     case $? in
@@ -36,33 +32,16 @@ if [ $? -eq 0 ]; then
         bash src/game.sh
         ;;
     2)
-        # Does the user want to create a new character?
+        # Does the user want to start a new adventure?
         echo
-        echo "Would you like to create a new character?"
+        echo "Would you like to start a new adventure? (this will delete your old save data)"
         bash "src/request-selection.sh" "yes" "no"
 
         case $? in
             1)
                 bash src/data/erase-data.sh
                 bash src/data/verify-data.sh
-                bash "src/create-character.sh"
-                echo
-                echo "Here is the character you created..."
-                bash src/print-character-data-full.sh "player"
-
-                # Is the user ready to begin their adventure?
-                echo
-                echo "Are you ready to begin your adventure?"
-                bash "src/request-selection.sh" "yes" "no"
-
-                case $? in
-                    1)
-                        bash src/game.sh
-                        ;;
-                    2)
-                        echo "Okay! Returning to the main menu."
-                        ;;
-                esac
+                bash src/game.sh
                 ;;
             2)
                 echo
@@ -72,33 +51,18 @@ if [ $? -eq 0 ]; then
         ;;
     esac
 
-# There is no character-data present on this computer
+# There is no quest-data present on this computer
 else
-    # Does the user want to create a new character?
+    # Does the user want to start a new adventure?
     echo
-    echo "No player data was found on this device. Would you like to create a new character?"
+    echo "No save data was found on this device. Would you like to start a new adventure?"
     bash "src/request-selection.sh" "yes" "no"
 
     case $? in
         1)
             bash src/data/erase-data.sh
             bash src/data/verify-data.sh
-            bash "src/create-character.sh"
-
-            # Is the user ready to begin their adventure?
-            echo
-            echo "Are you ready to begin your adventure?"
-            bash "src/request-selection.sh" "yes" "no"
-
-            case $? in
-                1)
-                    bash src/game.sh
-                    ;;
-                2)
-                    echo
-                    echo "Okay! Returning to the main menu."
-                    ;;
-            esac
+            bash src/game.sh
             ;;
         2)
             echo

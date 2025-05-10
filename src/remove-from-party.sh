@@ -1,13 +1,19 @@
 #!/bin/bash
 
 # PARAMS: CHARACTER_NAME
+# EXIT: 0 = success, 1 = fail
 # NOTE: If no params are passed, this function asks the user who they would like to remove
 
 # Ask the user who to remove if an input parameter was not used
 if [ -z "$1" ]; then
 
-    # Get all characters currently in party excluding the player
-    in_party=($(bash src/data/get-party-non-player-characters.sh))
+    # Get all characters currently in party
+    in_party=($(bash src/data/get-party-characters.sh))
+
+    if [ ${#in_party[@]} -eq 1 ]; then
+        echo "ERROR: $0 called with 1 member in the party, and party cannot be empty"
+        exit 1
+    fi
 
     # Allow the user to select a character from the list
     echo
@@ -24,3 +30,5 @@ else
 fi
 
 bash src/data/remove-from-party.sh $to_remove
+
+exit 0

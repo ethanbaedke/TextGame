@@ -5,9 +5,14 @@
 
 party_size=($(bash src/data/get-party-size.sh))
 
+if [ $party_size -eq 1 ]; then
+    echo "ERROR: $0 called with 1 member in the party, and party cannot be empty"
+    exit 1
+fi
+
 # Remove the character from the party
 removed=0
-for ((i=1; i<$party_size; i++)); do
+for ((i=0; i<$party_size; i++)); do
 
     byte_offset=$(((i * 10) + 3))
     party_member=($(bash src/data/core/read-string.sh data/party-data.bin 10 $byte_offset))
