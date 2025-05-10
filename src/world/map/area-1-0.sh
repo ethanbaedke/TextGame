@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bash src/world/plains/describe-plains.sh
-bash src/await-continuation.sh
+# BEACH
 
-bash src/world/trigger-individual-encounter.sh plains
+bash src/world/beach/describe-beach.sh
+bash src/await-continuation.sh

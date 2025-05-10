@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MAP_WIDTH=3
-MAP_HEIGHT=3
+MAP_WIDTH=5
+MAP_HEIGHT=5
 
 current_map_x_coord=0
 current_map_y_coord=0
@@ -58,10 +58,10 @@ while [ $exited -eq 0 ]; do
                     fi
                     ;;
                 2)
-                    if [ $current_map_y_coord -eq $((MAP_HEIGHT - 1)) ]; then
+                    if [ $current_map_y_coord -eq 0 ]; then
                         bash src/world/describe-map-edge.sh
                     else
-                        current_map_y_coord=$((current_map_y_coord + 1))
+                        current_map_y_coord=$((current_map_y_coord - 1))
                         save_map_coordinates
                         enter_current_area
                     fi
@@ -76,10 +76,10 @@ while [ $exited -eq 0 ]; do
                     fi
                     ;;
                 4)
-                    if [ $current_map_y_coord -eq 0 ]; then
+                    if [ $current_map_y_coord -eq $((MAP_HEIGHT - 1)) ]; then
                         bash src/world/describe-map-edge.sh
                     else
-                        current_map_y_coord=$((current_map_y_coord - 1))
+                        current_map_y_coord=$((current_map_y_coord + 1))
                         save_map_coordinates
                         enter_current_area
                     fi
