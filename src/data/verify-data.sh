@@ -84,7 +84,7 @@ if [ $? -eq 1 ]; then
     bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Liberty" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
 fi
 
-# Chelsea - Hobbit or Mermaid
+# Chelsea - Mermaid
 character_name=chelsea
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
@@ -124,7 +124,7 @@ if [ $? -eq 1 ]; then
     bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Aly" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
 fi
 
-# Loklin - Hobbit or Elf
+# Loklin - Hobbit
 character_name=loklin
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
@@ -140,7 +140,7 @@ if [ $? -eq 1 ]; then
     bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Jack" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
 fi
 
-# Emma - Wizard (lesser known?)
+# Emma - Wizard
 character_name=emma
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
@@ -156,7 +156,7 @@ if [ $? -eq 1 ]; then
     bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Phoebe" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
 fi
 
-# Keely - Griffon?
+# Keely - Eagle
 character_name=keely
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
@@ -172,7 +172,7 @@ if [ $? -eq 1 ]; then
     bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Ceci" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
 fi
 
-# Jackson - Paladin or Elf
+# Jackson - Paladin
 character_name=jackson
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
