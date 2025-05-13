@@ -6,7 +6,9 @@ if ! command -v catimg >/dev/null 2>&1; then
     echo "catimg may be installed for visuals."
     echo "Install now?"
     bash src/request-selection.sh "y" "n"
-    if [ $? -eq 1 ]; then
+    selection=$(bash src/data/get-selection.sh)
+
+    if [ "$selection" == "y" ]; then
         if command -v apt >/dev/null 2>&1; then
             sudo apt update && sudo apt install catimg
         elif command -v pacman >/dev/null 2>&1; then
@@ -26,26 +28,28 @@ if [ $? -eq 0 ]; then
     echo
     echo "Quest data was found on this computer, would you like to continue your adventure?"
     bash "src/request-selection.sh" "yes" "no"
-
-    case $? in
-    1)
+    selection=$(bash src/data/get-selection.sh)
+    
+    case "$selection" in
+    "yes")
         bash src/game.sh
         ;;
-    2)
+    "no")
         # Does the user want to start a new adventure?
         echo
         echo "Would you like to start a new adventure? (this will delete your old save data)"
         bash "src/request-selection.sh" "yes" "no"
+        selection=$(bash src/data/get-selection.sh)
 
-        case $? in
-            1)
+        case "$selection" in
+            "yes")
                 bash src/data/erase-data.sh
                 echo
                 echo "Creating save data..."
                 bash src/data/verify-data.sh
                 bash src/game.sh
                 ;;
-            2)
+            "no")
                 echo
                 echo "Okay! Returning to the main menu."
                 ;;
@@ -59,16 +63,17 @@ else
     echo
     echo "No save data was found on this device. Would you like to start a new adventure?"
     bash "src/request-selection.sh" "yes" "no"
+    selection=$(bash src/data/get-selection.sh)
 
-    case $? in
-        1)
+    case "$selection" in
+        "yes")
             bash src/data/erase-data.sh
             echo
             echo "Creating save data..."
             bash src/data/verify-data.sh
             bash src/game.sh
             ;;
-        2)
+        "no")
             echo
             echo "Okay! Returning to main menu."
             ;;

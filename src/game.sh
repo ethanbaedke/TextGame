@@ -84,36 +84,20 @@ while [ $exited -eq 0 ]; do
     # Give the user standard options
     echo
     echo "What would you like to do?"
-    bash "src/request-selection.sh" "move" "view party" "exit to menu"
+    bash "src/request-selection.sh" "move" "view party" "exit to main menu"
+    selection=$(bash src/data/get-selection.sh)
 
-    case $? in
-        1)
+    case "$selection" in
+        "move")
             # Allow the party to move
             retrieve_map_coordinates
             echo
             echo "In which direction shall you set forth?"
-            bash "src/request-selection.sh" "east" "north" "west" "south"
+            bash "src/request-selection.sh" "west" "north" "south" "east"
+            selection=$(bash src/data/get-selection.sh)
 
-            case $? in
-                1)
-                    if [ $current_map_x_coord -eq $((MAP_WIDTH - 1)) ]; then
-                        bash src/world/describe-map-edge.sh
-                    else
-                        current_map_x_coord=$((current_map_x_coord + 1))
-                        save_map_coordinates
-                        enter_current_area
-                    fi
-                    ;;
-                2)
-                    if [ $current_map_y_coord -eq 0 ]; then
-                        bash src/world/describe-map-edge.sh
-                    else
-                        current_map_y_coord=$((current_map_y_coord - 1))
-                        save_map_coordinates
-                        enter_current_area
-                    fi
-                    ;;
-                3)
+            case "$selection" in
+                "west")
                     if [ $current_map_x_coord -eq 0 ]; then
                         bash src/world/describe-map-edge.sh
                     else
@@ -122,7 +106,16 @@ while [ $exited -eq 0 ]; do
                         enter_current_area
                     fi
                     ;;
-                4)
+                "north")
+                    if [ $current_map_y_coord -eq 0 ]; then
+                        bash src/world/describe-map-edge.sh
+                    else
+                        current_map_y_coord=$((current_map_y_coord - 1))
+                        save_map_coordinates
+                        enter_current_area
+                    fi
+                    ;;
+                "south")
                     if [ $current_map_y_coord -eq $((MAP_HEIGHT - 1)) ]; then
                         bash src/world/describe-map-edge.sh
                     else
@@ -131,12 +124,21 @@ while [ $exited -eq 0 ]; do
                         enter_current_area
                     fi
                     ;;
+                "east")
+                    if [ $current_map_x_coord -eq $((MAP_WIDTH - 1)) ]; then
+                        bash src/world/describe-map-edge.sh
+                    else
+                        current_map_x_coord=$((current_map_x_coord + 1))
+                        save_map_coordinates
+                        enter_current_area
+                    fi
+                    ;;
             esac
             ;;
-        2)
+        "view party")
             bash src/open-party-menu.sh
             ;;
-        3)
+        "exit to main menu")
             exited=1
             ;;
     esac

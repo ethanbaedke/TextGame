@@ -76,15 +76,18 @@ character_turn() {
     # Have the actor make a common combat decision
     echo
     bash src/request-selection.sh "use weapon" "mend self"
+    selection=$(bash src/data/get-selection.sh)
 
-    case $? in
-        1)
+    case "$selection" in
+        "use weapon")
             echo
             echo "Select a target..."
             bash src/request-selection.sh ${enemies[@]}
-            bash src/combat/handle-weapon-attack.sh $1 ${enemies[(($? - 1))]}
+            selection=$(bash src/data/get-selection.sh)
+
+            bash src/combat/handle-weapon-attack.sh $1 $selection
             ;;
-        2)
+        "mend self")
             local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
             echo
             echo "$display_name healed themselves 1 point of health."

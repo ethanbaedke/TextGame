@@ -1,11 +1,10 @@
 #!/bin/bash
 
 # Input a sequence of strings to be displayed as options to the user
-# The user will type one of the strings, and this script will place the parameter index of that string in it's exit code (1-indexed)
+# The user will type one of the strings and that string will be printed to standard output
 
-option_index=0; # Starts at zero since no parameter can have index zero (1-indexed)
-
-while [ $option_index -eq 0 ]
+echo
+while [ true ]
 do
     # Print the options
     for ((i=1; i<($#); i++))
@@ -23,9 +22,8 @@ do
         if [ "${!i}" == "${user_input}" ]
         then
             # A match was found
-            option_index=$i
+            bash src/data/save-selection.sh "$user_input"
+            exit
         fi
     done
 done
-
-exit $option_index

@@ -13,15 +13,13 @@ done
 echo
 echo "Inspect a particular party member?"
 bash src/request-selection.sh "yes" "no"
+selection=$(bash src/data/get-selection.sh)
 
-if [ $? -eq 1 ]; then
+if [ "$selection" == "yes" ]; then
     echo
     echo "Which party member would you like to inspect?"
     bash src/request-selection.sh ${party_characters[@]}
-    selection_ind=$?
+    selection=$(bash src/data/get-selection.sh)
 
-    # Get the list index of the user's selection
-    character_ind=$((selection_ind-1))
-
-    bash src/print-character-data-full.sh ${party_characters[$character_ind]}
+    bash src/print-character-data-full.sh $selection
 fi

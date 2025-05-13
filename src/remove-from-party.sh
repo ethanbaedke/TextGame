@@ -19,12 +19,9 @@ if [ -z "$1" ]; then
     echo
     echo "Who would you like to remove from your party?"
     bash src/request-selection.sh ${in_party[@]}
-    selection_ind=$?
+    selection=$(bash src/data/get-selection.sh)
 
-    # Get the list index of the user's selection
-    character_ind=$((selection_ind-1))
-
-    to_remove=${in_party[$character_ind]}
+    to_remove=$selection
 else
     to_remove=$1
 fi

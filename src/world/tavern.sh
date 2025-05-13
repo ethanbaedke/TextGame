@@ -24,8 +24,9 @@ fi
 echo "You see some adventurers awaiting desiny's call."
 echo "Would you like to add an unlocked character to your party?"
 bash src/request-selection.sh "yes" "no"
+selection=$(bash src/data/get-selection.sh)
 
-if [ $? -eq 2 ]; then
+if [ "$selection" == "no" ]; then
     echo
     echo "You leave the tavern."
     exit
@@ -35,9 +36,6 @@ fi
 echo
 echo "Who would you like to accompany you on your journey?"
 bash src/request-selection.sh ${non_party_unlocked_characters[@]}
-selection_ind=$?
+selection=$(bash src/data/get-selection.sh)
 
-# Get the list index of the user's selection
-character_ind=$((selection_ind-1))
-
-bash src/add-to-party.sh ${non_party_unlocked_characters[$character_ind]}
+bash src/add-to-party.sh $selection

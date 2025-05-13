@@ -24,8 +24,9 @@ case $? in
         echo "Would you like to remove a member from your party?"
 
         bash src/request-selection.sh "yes" "no"
+        selection=$(bash src/data/get-selection.sh)
 
-        if [ $? -eq 1 ]; then
+        if [ "$selection" == "yes" ]; then
             bash src/remove-from-party.sh
             bash src/add-to-party.sh $1
         fi

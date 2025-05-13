@@ -9,6 +9,6 @@ if [ ! -f $1 ]; then
     exit 1
 fi
 
-printf "$2" | dd of=$1 bs=1 seek=$4 count=$3 status=none conv=notrunc
+(printf "%s" "$2"; head -c $(( $3 - ${#2} )) < /dev/zero) | dd of="$1" bs=1 seek="$4" count="$3" status=none conv=notrunc
 
 exit 0

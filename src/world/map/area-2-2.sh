@@ -26,3 +26,4 @@ fi
 options+=("leave")
 
 bash src/request-selection.sh "${options[@]}"
+selection=$(bash src/data/get-selection.sh)

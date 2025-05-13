@@ -1,6 +1,16 @@
 #!/bin/bash
 
+# Create the selection-data file if it doesn't exist, which holds 20 bytes for the name of the last made selection
+if [ ! -f "data/selection-data.bin" ]; then
+    bash src/data/core/write-null.sh data/selection-data.bin 20 0
+fi
+
 PARTY_FILE_SIZE=43 # Holds 2 bytes for world-location of party (x, y), 1 byte for how many characters are in the party, and 4 character names at 10 bytes each
+
+# Create the party-data file if it doesn't exist
+if [ ! -f "data/party-data.bin" ]; then
+    bash src/data/core/write-null.sh data/party-data.bin $PARTY_FILE_SIZE 0
+fi
 
 # Create the party-data file if it doesn't exist
 if [ ! -f "data/party-data.bin" ]; then

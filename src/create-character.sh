@@ -62,24 +62,25 @@ while [ $stats_locked_in -eq 0 ]; do
 
         # Have the user select a stat to put a point into
         bash "src/request-selection.sh" "strength" "dexterity" "intellect" "charisma" "luck" "reset"
+        selection=$(bash src/data/get-selection.sh)
 
-        case $? in
-            1)
+        case "$selection" in
+            "strength")
                 try_add_point strength
                 ;;
-            2)
+            "dexterity")
                 try_add_point dexterity
                 ;;
-            3)
+            "intellect")
                 try_add_point intellect
                 ;;
-            4)
+            "charisma")
                 try_add_point charisma
                 ;;
-            5)
+            "luck")
                 try_add_point luck
                 ;;
-            6)
+            "reset")
                 reset_stats
                 ;;
         esac
@@ -90,12 +91,13 @@ while [ $stats_locked_in -eq 0 ]; do
     print_stats
     echo "Are you satisfied with these stats?"
     bash "src/request-selection.sh" "yes" "no"
+    selection=$(bash src/data/get-selection.sh)
 
-    case $? in
-        1)
+    case "$selection" in
+        "yes")
             stats_locked_in=1
             ;;
-        2)
+        "no")
             reset_stats
             ;;
     esac
@@ -109,15 +111,16 @@ while [ $weapon_locked_in -eq 0 ]; do
     echo
     echo "Choose your starting weapon..."
     bash src/request-selection.sh sword hammer bow
+    selection=$(bash src/data/get-selection.sh)
 
-    case $? in
-        1)
+    case "$selection" in
+        "sword")
             starting_weapon="sword"
             ;;
-        2)
+        "hammer")
             starting_weapon="hammer"
             ;;
-        3)
+        "bow")
             starting_weapon="bow"
             ;;
     esac
@@ -126,12 +129,13 @@ while [ $weapon_locked_in -eq 0 ]; do
     echo
     echo "Are you satisfied with a $starting_weapon as your starting weapon?"
     bash "src/request-selection.sh" "yes" "no"
+    selection=$(bash src/data/get-selection.sh)
 
-    case $? in
-        1)
+    case "$selection" in
+        "yes")
             weapon_locked_in=1
             ;;
-        2)
+        "no")
             ;;
     esac
 done
@@ -159,12 +163,13 @@ while [ $name_locked_in -eq 0 ]; do
     echo
     echo "Are you satisfied with the name $character_name?"
     bash "src/request-selection.sh" "yes" "no"
+    selection=$(bash src/data/get-selection.sh)
 
-    case $? in
-        1)
+    case "$selection" in
+        "yes")
             name_locked_in=1
             ;;
-        2)
+        "no")
             ;;
     esac
 done
@@ -191,12 +196,13 @@ while [ $favorite_color_locked_in -eq 0 ]; do
     echo
     echo "Are you satisfied with $favorite_color as your favorite color?"
     bash "src/request-selection.sh" "yes" "no"
+    selection=$(bash src/data/get-selection.sh)
 
-    case $? in
-        1)
+    case "$selection" in
+        "yes")
             favorite_color_locked_in=1
             ;;
-        2)
+        "no")
             ;;
     esac
 done
