@@ -11,3 +11,18 @@ echo "Smoke drifts lazily from chimneys, and the air hums with the sounds of tra
 echo "Modest yet proud, the villagers thrive between golden fields and the open sky, rooted in tradition and neighborly strength."
 
 bash src/await-continuation.sh
+
+echo
+echo "Welcome to Schwartzville."
+
+options=()
+
+# Main quest
+main_quest_progress=$(bash src/data/get-quest-progress.sh main)
+if [ $main_quest_progress -eq 2 ]; then
+    options+=("visit smithy")
+fi
+
+options+=("leave")
+
+bash src/request-selection.sh "${options[@]}"
