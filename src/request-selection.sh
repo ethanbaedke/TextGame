@@ -3,7 +3,6 @@
 # Input a sequence of strings to be displayed as options to the user
 # The user will type one of the strings and that string will be printed to standard output
 
-echo
 while [ true ]
 do
     # Print the options
