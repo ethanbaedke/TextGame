@@ -2,7 +2,7 @@
 
 # Create the selection-data file if it doesn't exist, which holds 20 bytes for the name of the last made selection
 if [ ! -f "data/selection-data.bin" ]; then
-    bash src/data/core/write-null.sh data/selection-data.bin 20 0
+    bash src/data/core/write-null.sh data/selection-data.bin 30 0
 fi
 
 PARTY_FILE_SIZE=43 # Holds 2 bytes for world-location of party (x, y), 1 byte for how many characters are in the party, and 4 character names at 10 bytes each
@@ -94,6 +94,13 @@ bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
     bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 1 "DISPLAY_NAME" "Bow"
+fi
+
+weapon_name=teeth
+bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
+if [ $? -eq 1 ]; then
+    bash src/data/create-weapon-data.sh $weapon_name
+    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 1 "DISPLAY_NAME" "Teeth"
 fi
 
 # Creates actor-data for all npc's ONLY IF actor-data does not already exist for them
@@ -243,9 +250,10 @@ fi
 
 # Creates actor-data for all enemies ONLY IF actor-data does not already exist for them
 
-enemy_name=goblin
+# Plainsrunner Jackel
+enemy_name=plainsrunner
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Goblin" "FAVORITE_COLOR" "Unknown" "WEAPON" "hammer"
+    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
 fi

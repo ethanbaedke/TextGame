@@ -70,6 +70,16 @@ get_enemies_won() {
     return 0
 }
 
+# PARAMS: ACTOR_NAME
+# Returns 0 if the actor is alive, and 1 otherwise
+is_actor_alive() {
+    local combat_health=$(bash src/data/get-actor-info.sh $1 "COMBAT_HEALTH")
+    if [ $combat_health -eq 0 ]; then
+        return 1
+    fi
+    return 0
+}
+
 # PARAMS: CHARACTER_NAME
 character_turn() {
 
@@ -80,12 +90,16 @@ character_turn() {
 
     case "$selection" in
         "use weapon")
-            echo
-            echo "Select a target..."
-            bash src/request-selection.sh ${enemies[@]}
-            selection=$(bash src/data/get-selection.sh)
-
-            bash src/combat/handle-weapon-attack.sh $1 $selection
+            # If there is more than one enemy, have the user select a target
+            if [ ${#enemies[@]} -gt 1 ]; then
+                echo
+                echo "Select a target..."
+                bash src/request-selection.sh ${enemies[@]}
+                selection=$(bash src/data/get-selection.sh)
+                bash src/combat/handle-weapon-attack.sh $1 $selection
+            else
+                bash src/combat/handle-weapon-attack.sh $1 ${enemies[0]}
+            fi
             ;;
         "mend self")
             local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
@@ -121,6 +135,14 @@ take_turn() {
     enemy_turn $1
 }
 
+update_party_health() {
+    local character
+    for character in ${characters[@]}; do
+        local combat_health=$(bash src/data/get-actor-info.sh $character "COMBAT_HEALTH")
+        bash src/data/save-actor-info.sh $character "CURRENT_HEALTH" $combat_health
+    done
+}
+
 # Loop through the turn_order array activating actors turns
 while (true); do
 
@@ -137,10 +159,16 @@ while (true); do
     if [ $? -eq 0 ]; then
         echo
         echo "All enemies have been defeated."
+        update_party_health
         exit 0
     fi
 
     current_actor=${turn_order[$turn_index]}
+
+    is_actor_alive $current_actor
+    if [ $? -eq 1 ]; then
+        continue
+    fi
 
     # Display actor whos turn it is
     current_actor_display_name=$(bash src/data/get-actor-info.sh $current_actor "DISPLAY_NAME")

@@ -4,7 +4,7 @@ clear
 
 # Create the selection-data file if it doesn't exist, which holds 20 bytes for the name of the last made selection
 if [ ! -f "data/selection-data.bin" ]; then
-    bash src/data/core/write-null.sh data/selection-data.bin 20 0
+    bash src/data/core/write-null.sh data/selection-data.bin 30 0
 fi
 
 program_running=1
