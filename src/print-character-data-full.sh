@@ -3,6 +3,7 @@
 # PARAMS: CHARACTER_NAME
 # Prints all character data on CHARACTER_NAME
 
+clear
 bash src/display-image.sh "images/characters/beautiful/$1.png"
 
 strength=$(bash src/data/get-actor-info.sh $1 "STRENGTH")
@@ -28,3 +29,5 @@ echo "Luck: $luck"
 echo "Health: $current_health/$max_health"
 echo "Weapon: $weapon_display_name (damage=$weapon_damage)"
 echo "Favorite Color: $favorite_color"
+
+bash src/print-dialogue.sh "[Press ENTER to continue]"

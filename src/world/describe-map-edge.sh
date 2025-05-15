@@ -2,6 +2,7 @@
 
 # PROMPT: Vast fantasy ocean scene, deep blue water with white-capped waves, glistening sunlight on the surface, distant seagulls, hints of ruins or ships beneath the water, magical and adventurous atmosphere, high detail, fantasy concept art style.
 
+clear
 bash src/display-image.sh "images/landscapes/ocean.png"
 
 echo

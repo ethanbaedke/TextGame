@@ -30,7 +30,13 @@ print_combat_info() {
         local character_display_name=$(bash src/data/get-actor-info.sh $character "DISPLAY_NAME")
         local character_max_health=$(bash src/data/get-actor-info.sh $character "MAX_HEALTH")
         local character_combat_health=$(bash src/data/get-actor-info.sh $character "COMBAT_HEALTH")
-        echo "$character_display_name (health=$character_combat_health/$character_max_health)"
+
+        # Color the characters's info yellow if it's their turn, and leave it uncolored if not
+        if [ "$character" == "${turn_order[$turn_index]}" ]; then
+            echo -e "\\e[33m$character_display_name (health=$character_combat_health/$character_max_health)\\e[0m"
+        else
+            echo "$character_display_name (health=$character_combat_health/$character_max_health)"
+        fi
     done
 
     echo
@@ -40,7 +46,13 @@ print_combat_info() {
         local enemy_display_name=$(bash src/data/get-actor-info.sh $enemy "DISPLAY_NAME")
         local enemy_max_health=$(bash src/data/get-actor-info.sh $enemy "MAX_HEALTH")
         local enemy_combat_health=$(bash src/data/get-actor-info.sh $enemy "COMBAT_HEALTH")
-        echo "$enemy_display_name (health=$enemy_combat_health/$enemy_max_health)"
+
+        # Color the enemy's info yellow if it's their turn
+        if [ "$enemy" == "${turn_order[$turn_index]}" ]; then
+            echo -e "\\e[33m$enemy_display_name (health=$enemy_combat_health/$enemy_max_health)\\e[0m"
+        else
+            echo "$enemy_display_name (health=$enemy_combat_health/$enemy_max_health)"
+        fi
     done
 }
 
@@ -104,8 +116,7 @@ character_turn() {
         "mend self")
             local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
             echo
-            echo "$display_name healed themselves 1 point of health."
-            bash src/await-continuation.sh
+            read -p "$display_name healed themselves 1 point of health."
             bash src/combat/modify-combat-health.sh $1 1
             ;;
     esac
@@ -146,7 +157,12 @@ update_party_health() {
 # Loop through the turn_order array activating actors turns
 while (true); do
 
+    clear
+    echo
+    echo "------------------------------------------------------------"
     print_combat_info
+    echo
+    echo "------------------------------------------------------------"
 
     get_enemies_won
     if [ $? -eq 0 ]; then
@@ -169,11 +185,6 @@ while (true); do
     if [ $? -eq 1 ]; then
         continue
     fi
-
-    # Display actor whos turn it is
-    current_actor_display_name=$(bash src/data/get-actor-info.sh $current_actor "DISPLAY_NAME")
-    echo
-    echo "Turn: $current_actor_display_name"
 
     take_turn $current_actor
 

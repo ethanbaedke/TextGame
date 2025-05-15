@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo
+clear
 echo "Members in your party..."
 
 party_characters=($(bash src/data/get-party-characters.sh))

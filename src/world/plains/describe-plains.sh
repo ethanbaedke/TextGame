@@ -7,4 +7,4 @@ bash src/display-image.sh "images/landscapes/plains.png"
 echo
 echo "Endless plains stretch to the horizon, covered in golden grasses that sway like waves under a wide, cloud-dappled sky."
 echo "Occasional clusters of wildflowers and standing stones break the monotony, whispering of ancient rites and forgotten paths."
-echo "The wind carries the scent of earth and freedom, stirring memories of old battles and roaming spirits."
+read -p "The wind carries the scent of earth and freedom, stirring memories of old battles and roaming spirits."

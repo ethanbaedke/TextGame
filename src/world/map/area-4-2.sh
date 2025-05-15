@@ -8,6 +8,4 @@ bash src/display-image.sh "images/landscapes/tyus-estates.png"
 
 echo "Rising from the plains like a jewel in the grass, the upper-class settlement boasts elegant stone manors, manicured gardens, and wrought iron gates."
 echo "Decorative banners flutter in the breeze, and finely dressed citizens stroll along polished walkways beneath carefully planted trees."
-echo "Though serene and refined, the air carries a sense of quiet vigilance."
-
-bash src/await-continuation.sh
+read -p "Though serene and refined, the air carries a sense of quiet vigilance."

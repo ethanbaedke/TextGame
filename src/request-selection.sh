@@ -6,14 +6,15 @@
 while [ true ]
 do
     # Print the options
+    options=""
     for ((i=1; i<($#); i++))
     do
-        echo -n "${!i} | "
+        options+=$(echo -e "\\e[34m${!i}\\e[0m | ")
     done
-    echo "${!#}"
+    options+=$(echo -e "\\e[34m${!#}\\e[0m")
 
     # Request input
-    read user_input
+    read -p "($options) -> " user_input
 
     # Compare input to the available options
     for ((i=1; i<($#+1); i++))
