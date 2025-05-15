@@ -257,3 +257,11 @@ if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
     bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
 fi
+
+# Nomad Bandit
+enemy_name=bandit
+bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
+if [ $? -eq 1 ]; then
+    bash src/data/create-actor-data.sh $enemy_name
+    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Nomad Bandit" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
+fi

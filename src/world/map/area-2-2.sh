@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # SCHWARTZVILLE
-
 # PROMPT: Fantasy middle-class human village on open plains, timber-framed houses with thatched and tiled roofs, cobblestone streets, golden grass fields in the distance, smoke rising from chimneys, people working and talking, warm lighting, grounded fantasy atmosphere, high detail, fantasy concept art style.
+
+# EXIT CODE: 1 if the party was knocked out in this area
 
 area_left=0
 while [ $area_left -eq 0 ]; do
@@ -23,7 +24,7 @@ while [ $area_left -eq 0 ]; do
     elif [ $schwartzville_quest_progress -eq 3 ]; then
 
         clear
-        party_characters=$(bash src/data/get-party-characters.sh)
+        party_characters=($(bash src/data/get-party-characters.sh))
         player_display_name=$(bash src/data/get-actor-info.sh ${party_characters[0]} "DISPLAY_NAME")
         leader_display_name=$(bash src/data/get-actor-info.sh max "DISPLAY_NAME")
 
@@ -53,7 +54,7 @@ while [ $area_left -eq 0 ]; do
         "recruit schwartzville")
 
             clear
-            party_characters=$(bash src/data/get-party-characters.sh)
+            party_characters=($(bash src/data/get-party-characters.sh))
             player_display_name=$(bash src/data/get-actor-info.sh ${party_characters[0]} "DISPLAY_NAME")
             leader_display_name=$(bash src/data/get-actor-info.sh max "DISPLAY_NAME")
 

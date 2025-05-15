@@ -3,7 +3,7 @@
 # PARAMS: ENEMY_NAME ENEMY_NAME ...
 # EXIT CODE: 0 if characters win the combat and 1 if enemies win the combat
 
-characters=$(bash src/data/get-party-characters.sh)
+characters=($(bash src/data/get-party-characters.sh))
 enemies=($@)
 all_actors=(${characters[@]} ${enemies[@]})
 
