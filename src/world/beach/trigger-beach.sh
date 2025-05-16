@@ -1,3 +1,0 @@
-#!/bin/bash
-
-# PARAMS: TRIGGERER_CHARACTER_NAME

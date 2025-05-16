@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# TYUS ESTATES
-# PROMPT: Elegant upper-class fantasy settlement on grassy plains, grand stone manors with ornate details, manicured gardens, wrought iron fences, decorative banners, well-dressed people walking tree-lined paths, warm afternoon light, refined and serene atmosphere, high detail, fantasy concept art style.
-
-# EXIT CODE: 1 if the party was knocked out in this area
+# EXIT CODE: 1 if the party was wiped out in this area
 
 area_left=0
 while [ $area_left -eq 0 ]; do

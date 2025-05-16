@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# PROMPT: Golden fantasy beach at sunset, glowing seashells scattered across the sand, driftwood and seaweed along the shore, gentle waves reflecting orange and pink sky, distant magical glow on the horizon, soft lighting, ethereal atmosphere, high detail, fantasy concept art style.
+# EXIT CODE: 1 if the party was wiped out in this area
 
+# PROMPT: Golden fantasy beach at sunset, glowing seashells scattered across the sand, driftwood and seaweed along the shore, gentle waves reflecting orange and pink sky, distant magical glow on the horizon, soft lighting, ethereal atmosphere, high detail, fantasy concept art style.
 bash src/display-image.sh "images/landscapes/beach.png"
 
 echo

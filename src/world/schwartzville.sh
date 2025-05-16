@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# SCHWARTZVILLE
-# PROMPT: Fantasy middle-class human village on open plains, timber-framed houses with thatched and tiled roofs, cobblestone streets, golden grass fields in the distance, smoke rising from chimneys, people working and talking, warm lighting, grounded fantasy atmosphere, high detail, fantasy concept art style.
-
-# EXIT CODE: 1 if the party was knocked out in this area
+# EXIT CODE: 1 if the party was wiped out in this area
 
 area_left=0
 while [ $area_left -eq 0 ]; do

@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# PROMPT: Fantasy forest river scene, clear flowing water reflecting sunlight through trees, smooth river stones, soft shadows, shimmering fish, magical atmosphere, high detail, fantasy concept art style.
+# EXIT CODE: 1 if the party was wiped out in this area
 
+# PROMPT: Fantasy forest river scene, clear flowing water reflecting sunlight through trees, smooth river stones, soft shadows, shimmering fish, magical atmosphere, high detail, fantasy concept art style.
 bash src/display-image.sh "images/landscapes/river.png"
 
 echo

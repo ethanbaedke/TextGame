@@ -18,7 +18,8 @@ save_map_coordinates() {
 enter_current_area() {
 
     clear
-    bash src/world/map/area-$current_map_x_coord-$current_map_y_coord.sh
+    local area_name=$(bash src/data/get-map-area.sh $current_map_x_coord $current_map_y_coord)
+    bash src/world/$area_name.sh
 
     # Party died in the area
     if [ $? -eq 1 ]; then

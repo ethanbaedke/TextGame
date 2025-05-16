@@ -265,3 +265,44 @@ if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
     bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Nomad Bandit" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
 fi
+
+# Create the map-data file if it doesn't exist
+MAP_FILE_SIZE=4160 # Holds 20 bytes for the name of each area, the map is (width=16, height=13)
+if [ ! -f "data/map-data.bin" ]; then
+    bash src/data/core/write-null.sh data/map-data.bin $MAP_FILE_SIZE 0
+
+    y=0
+    bash src/data/save-map-area.sh 0 $y "beach"
+    bash src/data/save-map-area.sh 1 $y "beach"
+    bash src/data/save-map-area.sh 2 $y "beach"
+    bash src/data/save-map-area.sh 3 $y "beach"
+    bash src/data/save-map-area.sh 4 $y "beach"
+
+    y=1
+    bash src/data/save-map-area.sh 0 $y "beach"
+    bash src/data/save-map-area.sh 1 $y "plains"
+    bash src/data/save-map-area.sh 2 $y "plains"
+    bash src/data/save-map-area.sh 3 $y "plains"
+    bash src/data/save-map-area.sh 4 $y "plains"
+
+    y=2
+    bash src/data/save-map-area.sh 0 $y "beach"
+    bash src/data/save-map-area.sh 1 $y "plains"
+    bash src/data/save-map-area.sh 2 $y "schwartzville"
+    bash src/data/save-map-area.sh 3 $y "plains"
+    bash src/data/save-map-area.sh 4 $y "tyus-estates"
+
+    y=3
+    bash src/data/save-map-area.sh 0 $y "river"
+    bash src/data/save-map-area.sh 1 $y "river"
+    bash src/data/save-map-area.sh 2 $y "plains"
+    bash src/data/save-map-area.sh 3 $y "plains"
+    bash src/data/save-map-area.sh 4 $y "plains"
+
+    y=4
+    bash src/data/save-map-area.sh 0 $y "plains"
+    bash src/data/save-map-area.sh 1 $y "river"
+    bash src/data/save-map-area.sh 2 $y "river"
+    bash src/data/save-map-area.sh 3 $y "river"
+    bash src/data/save-map-area.sh 4 $y "river"
+fi
