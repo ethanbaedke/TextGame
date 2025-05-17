@@ -123,7 +123,7 @@ while [ $exited -eq 0 ]; do
     # Give the user standard options
     echo
     echo "What would you like to do?"
-    bash "src/request-selection.sh" "move" "view party" "exit to main menu"
+    bash "src/request-selection.sh" "move" "view map" "view party" "exit to main menu"
     selection=$(bash src/data/get-selection.sh)
 
     case "$selection" in
@@ -173,6 +173,9 @@ while [ $exited -eq 0 ]; do
                     fi
                     ;;
             esac
+            ;;
+        "view map")
+            bash src/print-map.sh
             ;;
         "view party")
             bash src/open-party-menu.sh

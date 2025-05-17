@@ -315,7 +315,7 @@ if [ ! -f "data/map-data.bin" ]; then
     bash src/data/save-map-area.sh 4 $y "plains"
 
     y=4
-    bash src/data/save-map-area.sh 0 $y "plains"
+    bash src/data/save-map-area.sh 0 $y "beach"
     bash src/data/save-map-area.sh 1 $y "river"
     bash src/data/save-map-area.sh 2 $y "river"
     bash src/data/save-map-area.sh 3 $y "river"
