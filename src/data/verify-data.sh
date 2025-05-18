@@ -282,7 +282,8 @@ if [ $? -eq 1 ]; then
 fi
 
 # Create the map-data file if it doesn't exist
-MAP_FILE_SIZE=4160 # Holds 20 bytes for the name of each area, the map is (width=16, height=13)
+MAP_FILE_SIZE=4368 # Holds 20 bytes for the name of each area and 1 byte for the visited states of each area. (w=16, h=13).
+                   # Visited status is 0 for undiscovered, 1 for unvisited, and 2 for visited
 if [ ! -f "data/map-data.bin" ]; then
     bash src/data/core/write-null.sh data/map-data.bin $MAP_FILE_SIZE 0
 

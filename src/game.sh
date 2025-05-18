@@ -16,8 +16,15 @@ save_map_coordinates() {
 }
 
 enter_current_area() {
-
+    
     clear
+
+    bash src/data/update-map-area-visited-status.sh $current_map_x_coord $current_map_y_coord 2
+    bash src/data/update-map-area-visited-status.sh $((current_map_x_coord + 1)) $current_map_y_coord 1
+    bash src/data/update-map-area-visited-status.sh $((current_map_x_coord - 1)) $current_map_y_coord 1
+    bash src/data/update-map-area-visited-status.sh $current_map_x_coord $((current_map_y_coord + 1)) 1
+    bash src/data/update-map-area-visited-status.sh $current_map_x_coord $((current_map_y_coord - 1)) 1
+
     local area_name=$(bash src/data/get-map-area.sh $current_map_x_coord $current_map_y_coord)
     bash src/world/$area_name.sh
 
