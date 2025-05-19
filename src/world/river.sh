@@ -127,12 +127,9 @@ fi
 encounter=$((RANDOM % 3))
 case $encounter in
     0)
-        bash src/print-dialogue.sh "[You have stumbled across plains random encounter 1]"
+        bash src/print-dialogue.sh "[You have stumbled across river random encounter 1]"
         ;;
     1)
-        bash src/print-dialogue.sh "[You have stumbled across plains random encounter 2]"
-        ;;
-    2)
-        bash src/print-dialogue.sh "[You have stumbled across plains random encounter 3]"
+        bash src/print-dialogue.sh "[You have stumbled across river random encounter 2]"
         ;;
 esac
