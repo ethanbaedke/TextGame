@@ -290,12 +290,28 @@ if [ $? -eq 1 ]; then
     bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Alpha Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
 fi
 
-# Nomad Bandit
+# Reedshade Bandit
 enemy_name=bandit
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Nomad Bandit" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
+    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 1 "CURRENT_HEALTH" 1 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Reedshade Bandit" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
+fi
+
+# Reedshade Bandit Snaremaster
+enemy_name=bandit-snaremaster
+bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
+if [ $? -eq 1 ]; then
+    bash src/data/create-actor-data.sh $enemy_name
+    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 2 "CURRENT_HEALTH" 2 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Reedshade Bandit Snaremaster" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
+fi
+
+# Reedshade Bandit Captain
+enemy_name=bandit-captain
+bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
+if [ $? -eq 1 ]; then
+    bash src/data/create-actor-data.sh $enemy_name
+    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Reedshade Bandit Captain" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
 fi
 
 # Create the map-data file if it doesn't exist

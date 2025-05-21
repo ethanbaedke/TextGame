@@ -96,12 +96,12 @@ if [ $tyus_estates_quest_progress -eq 2 ]; then
     esac
 
     if [ $roll_result -eq 1 ]; then
-        bash src/combat/enter-combat.sh bandit
+        bash src/combat/enter-combat.sh bandit bandit-snaremaster bandit-captain
         if [ $? -eq 1 ]; then
             exit 1
         fi
     else
-        bash src/combat/enter-combat.sh bandit
+        bash src/combat/enter-combat.sh bandit-snaremaster bandit-captain
         if [ $? -eq 1 ]; then
             exit 1
         fi
