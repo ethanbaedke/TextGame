@@ -32,7 +32,7 @@ for ((i=2; i<=$#; i+=2)); do
         "CURRENT_HEALTH")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 6
             ;;
-        "COMBAT_HEALTH")
+        "TEMP_HEALTH")
             # This is a temporary data slot to track current health while the actor is in combat
             # This way, combat damage is only saved if desired (for characters) and only after combat has finished (doesn't save if combat ends abruptly)
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 7

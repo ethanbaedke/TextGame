@@ -208,7 +208,7 @@ while [ $favorite_color_locked_in -eq 0 ]; do
 done
 
 bash src/data/create-actor-data.sh player
-bash src/data/save-actor-info.sh "player" "STRENGTH" $strength "DEXTERITY" $dexterity "INTELLIGENCE" $intellect "CHARISMA" $charisma "LUCK" $luck "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "$character_name" "FAVORITE_COLOR" "$favorite_color" "WEAPON" $starting_weapon
+bash src/data/save-actor-info.sh "player" "STRENGTH" $strength "DEXTERITY" $dexterity "INTELLIGENCE" $intellect "CHARISMA" $charisma "LUCK" $luck "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "DISPLAY_NAME" "$character_name" "FAVORITE_COLOR" "$favorite_color" "WEAPON" $starting_weapon
 
 echo
 echo "Character created."

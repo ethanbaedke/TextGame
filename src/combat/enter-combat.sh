@@ -7,11 +7,7 @@ characters=($(bash src/data/get-party-characters.sh))
 enemies=($@)
 all_actors=(${characters[@]} ${enemies[@]})
 
-# Initialize all actors combat health to their current health
-(for actor in ${all_actors[@]}; do
-    current_health=$(bash src/data/get-actor-info.sh $actor "CURRENT_HEALTH")
-    bash src/data/save-actor-info.sh $actor "COMBAT_HEALTH" $current_health
-done)
+bash src/init-temp-health.sh ${all_actors[@]}
 
 # Sort all actors in order of highest dexterity to lowest dexterity
 turn_order=($(for actor in "${all_actors[@]}"; do
@@ -29,13 +25,13 @@ print_combat_info() {
     for character in ${characters[@]}; do
         local character_display_name=$(bash src/data/get-actor-info.sh $character "DISPLAY_NAME")
         local character_max_health=$(bash src/data/get-actor-info.sh $character "MAX_HEALTH")
-        local character_combat_health=$(bash src/data/get-actor-info.sh $character "COMBAT_HEALTH")
+        local character_temp_health=$(bash src/data/get-actor-info.sh $character "TEMP_HEALTH")
 
         # Color the characters's info yellow if it's their turn, and leave it uncolored if not
         if [ "$character" == "${turn_order[$turn_index]}" ]; then
-            echo -e "\\e[33m$character_display_name (health=$character_combat_health/$character_max_health)\\e[0m"
+            echo -e "\\e[33m$character_display_name (health=$character_temp_health/$character_max_health)\\e[0m"
         else
-            echo "$character_display_name (health=$character_combat_health/$character_max_health)"
+            echo "$character_display_name (health=$character_temp_health/$character_max_health)"
         fi
     done
 
@@ -45,48 +41,22 @@ print_combat_info() {
     for enemy in ${enemies[@]}; do
         local enemy_display_name=$(bash src/data/get-actor-info.sh $enemy "DISPLAY_NAME")
         local enemy_max_health=$(bash src/data/get-actor-info.sh $enemy "MAX_HEALTH")
-        local enemy_combat_health=$(bash src/data/get-actor-info.sh $enemy "COMBAT_HEALTH")
+        local enemy_TEMP_HEALTH=$(bash src/data/get-actor-info.sh $enemy "TEMP_HEALTH")
 
         # Color the enemy's info yellow if it's their turn
         if [ "$enemy" == "${turn_order[$turn_index]}" ]; then
-            echo -e "\\e[33m$enemy_display_name (health=$enemy_combat_health/$enemy_max_health)\\e[0m"
+            echo -e "\\e[33m$enemy_display_name (health=$enemy_TEMP_HEALTH/$enemy_max_health)\\e[0m"
         else
-            echo "$enemy_display_name (health=$enemy_combat_health/$enemy_max_health)"
+            echo "$enemy_display_name (health=$enemy_TEMP_HEALTH/$enemy_max_health)"
         fi
     done
-}
-
-# Returns 0 if the characters have won, and 1 otherwise
-get_characters_won() {
-    # If any enemy has health remaining, characters have not yet won the combat
-    local enemy
-    for enemy in ${enemies[@]}; do
-        local combat_health=$(bash src/data/get-actor-info.sh $enemy "COMBAT_HEALTH")
-        if [ ! $combat_health -eq 0 ]; then
-            return 1
-        fi
-    done
-    return 0
-}
-
-# Returns 0 if the enemies have won, and 1 otherwise
-get_enemies_won() {
-    # If any character has health remaining, enemies have not yet won the combat
-    local character
-    for character in ${characters[@]}; do
-        local combat_health=$(bash src/data/get-actor-info.sh $character "COMBAT_HEALTH")
-        if [ ! $combat_health -eq 0 ]; then
-            return 1
-        fi
-    done
-    return 0
 }
 
 # PARAMS: ACTOR_NAME
 # Returns 0 if the actor is alive, and 1 otherwise
 is_actor_alive() {
-    local combat_health=$(bash src/data/get-actor-info.sh $1 "COMBAT_HEALTH")
-    if [ $combat_health -eq 0 ]; then
+    local TEMP_HEALTH=$(bash src/data/get-actor-info.sh $1 "TEMP_HEALTH")
+    if [ $TEMP_HEALTH -eq 0 ]; then
         return 1
     fi
     return 0
@@ -102,20 +72,25 @@ character_turn() {
 
     case "$selection" in
         "use weapon")
-            # If there is more than one enemy, have the user select a living target
-            if [ ${#enemies[@]} -gt 1 ]; then
-                echo
-                echo "Select a target..."
-                living_enemies=()
+
+            # Get the enemies still alive
+            living_enemies=()
                 for enemy in ${enemies[@]}; do
                     is_actor_alive $enemy
                     if [ $? -eq 0 ]; then
                         living_enemies+=($enemy)
                     fi
-                done
+            done
+
+            # If there is more than one enemy still alive, have the user select a target
+            if [ ${#living_enemies[@]} -gt 1 ]; then
+                echo
+                echo "Select a target..."
                 bash src/request-selection.sh ${living_enemies[@]}
                 selection=$(bash src/data/get-selection.sh)
                 bash src/combat/handle-weapon-attack.sh $1 $selection
+            
+            # If there is only one enemy remaining, auto-target that enemy
             else
                 bash src/combat/handle-weapon-attack.sh $1 ${living_enemies[0]}
             fi
@@ -124,7 +99,7 @@ character_turn() {
             local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
             echo
             read -p "$display_name healed themselves 1 point of health."
-            bash src/combat/modify-combat-health.sh $1 1
+            bash src/modify-temp-health.sh $1 1
             ;;
     esac
 }
@@ -156,26 +131,26 @@ take_turn() {
 update_party_health() {
     local character
     for character in ${characters[@]}; do
-        local combat_health=$(bash src/data/get-actor-info.sh $character "COMBAT_HEALTH")
-        bash src/data/save-actor-info.sh $character "CURRENT_HEALTH" $combat_health
+        local TEMP_HEALTH=$(bash src/data/get-actor-info.sh $character "TEMP_HEALTH")
+        bash src/data/save-actor-info.sh $character "CURRENT_HEALTH" $TEMP_HEALTH
     done
 }
 
 # Loop through the turn_order array activating actors turns
 while (true); do
 
-    get_enemies_won
-    if [ $? -eq 0 ]; then
+    bash src/are-actors-knocked-out.sh ${characters[@]}
+    if [ $? -eq 1 ]; then
         echo
         echo "All characters have been knocked out."
         exit 1
     fi
 
-    get_characters_won
-    if [ $? -eq 0 ]; then
+    bash src/are-actors-knocked-out.sh ${enemies[@]}
+    if [ $? -eq 1 ]; then
         echo
         echo "All enemies have been defeated."
-        update_party_health
+        bash src/save-party-temp-health.sh
         exit 0
     fi
 
@@ -187,7 +162,7 @@ while (true); do
         continue
     fi
 
-    clear
+    #clear
     echo
     echo "------------------------------------------------------------"
     print_combat_info
