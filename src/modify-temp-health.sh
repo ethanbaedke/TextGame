@@ -17,7 +17,7 @@ fi
 display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
 if [ $2 -gt 0 ]; then
     bash src/print-dialogue.sh "[*$display_name* gained $2 health]"
-elif [ $2 -lt 0 ]; then
+else
     damage=$((0 - $2))
     bash src/print-dialogue.sh "[*$display_name* took $damage damage]"
 fi
