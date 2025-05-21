@@ -144,6 +144,7 @@ if [ $? -eq 1 ]; then
     bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Max" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
 fi
 
+# Liberty - Shapeshifter (Horse)
 character_name=liberty
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
@@ -260,7 +261,7 @@ character_name=ethan
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Ethan" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Ethan" "FAVORITE_COLOR" "Unknown" "WEAPON" "fist"
 fi
 
 # Creates actor-data for all enemies ONLY IF actor-data does not already exist for them
@@ -270,7 +271,23 @@ enemy_name=plainsrunner
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
+    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 2 "CURRENT_HEALTH" 2 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
+fi
+
+# Plainsrunner Jackel Pup
+enemy_name=plainsrunner-pup
+bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
+if [ $? -eq 1 ]; then
+    bash src/data/create-actor-data.sh $enemy_name
+    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 1 "CURRENT_HEALTH" 1 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Plainsrunner Jackel Pup" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
+fi
+
+# Plainsrunner Jackel Pup
+enemy_name=alpha-plainsrunner
+bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
+if [ $? -eq 1 ]; then
+    bash src/data/create-actor-data.sh $enemy_name
+    bash src/data/save-actor-info.sh "$enemy_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "COMBAT_HEALTH" 0 "DISPLAY_NAME" "Alpha Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown" "WEAPON" "teeth"
 fi
 
 # Nomad Bandit

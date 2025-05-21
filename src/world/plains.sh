@@ -25,7 +25,7 @@ if [ $schwartzville_quest_progress -eq 2 ]; then
     bash src/print-dialogue.sh "[Without a moment to think, you see five furious beasts dart out of the trees, in close pursuit of the riders]"
     bash src/print-dialogue.sh "[As the riders approach, one of the *$plainsrunner_display_name*'s split from the pack and begin dashing toward you]"
 
-    bash src/combat/enter-combat.sh plainsrunner
+    bash src/combat/enter-combat.sh plainsrunner plainsrunner-pup alpha-plainsrunner
 
     # Combat lost
     if [ $? -eq 1 ]; then
@@ -44,7 +44,7 @@ fi
 # RANDOM ENCOUNTERS
 
 # 1/3 chance
-chance=$((RANDOM % 1))
+chance=$((RANDOM % 100))
 
 if [ $chance -gt 0 ]; then
     exit
@@ -141,12 +141,12 @@ case $encounter in
                 esac
 
                 if [ $roll_result -eq 1 ]; then
-                    bash src/combat/enter-combat.sh plainsrunner
+                    bash src/combat/enter-combat.sh plainsrunner plainsrunner-pup alpha-plainsrunner
                     if [ $? -eq 1 ]; then
                         exit 1
                     fi
                 else
-                    bash src/combat/enter-combat.sh plainsrunner
+                    bash src/combat/enter-combat.sh plainsrunner-pup alpha-plainsrunner
                     if [ $? -eq 1 ]; then
                         exit 1
                     fi
@@ -184,7 +184,7 @@ case $encounter in
                 esac
 
                 if [ $roll_result -eq 1 ]; then
-                    bash src/combat/enter-combat.sh plainsrunner
+                    bash src/combat/enter-combat.sh plainsrunner plainsrunner-pup alpha-plainsrunner
                     if [ $? -eq 1 ]; then
                         exit 1
                     fi

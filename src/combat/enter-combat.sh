@@ -102,15 +102,22 @@ character_turn() {
 
     case "$selection" in
         "use weapon")
-            # If there is more than one enemy, have the user select a target
+            # If there is more than one enemy, have the user select a living target
             if [ ${#enemies[@]} -gt 1 ]; then
                 echo
                 echo "Select a target..."
-                bash src/request-selection.sh ${enemies[@]}
+                living_enemies=()
+                for enemy in ${enemies[@]}; do
+                    is_actor_alive $enemy
+                    if [ $? -eq 0 ]; then
+                        living_enemies+=($enemy)
+                    fi
+                done
+                bash src/request-selection.sh ${living_enemies[@]}
                 selection=$(bash src/data/get-selection.sh)
                 bash src/combat/handle-weapon-attack.sh $1 $selection
             else
-                bash src/combat/handle-weapon-attack.sh $1 ${enemies[0]}
+                bash src/combat/handle-weapon-attack.sh $1 ${living_enemies[0]}
             fi
             ;;
         "mend self")
@@ -157,13 +164,6 @@ update_party_health() {
 # Loop through the turn_order array activating actors turns
 while (true); do
 
-    clear
-    echo
-    echo "------------------------------------------------------------"
-    print_combat_info
-    echo
-    echo "------------------------------------------------------------"
-
     get_enemies_won
     if [ $? -eq 0 ]; then
         echo
@@ -183,8 +183,16 @@ while (true); do
 
     is_actor_alive $current_actor
     if [ $? -eq 1 ]; then
+        turn_index=$(((turn_index + 1) % ${#turn_order[@]}))
         continue
     fi
+
+    clear
+    echo
+    echo "------------------------------------------------------------"
+    print_combat_info
+    echo
+    echo "------------------------------------------------------------"
 
     take_turn $current_actor
 
