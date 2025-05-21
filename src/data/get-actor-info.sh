@@ -23,30 +23,38 @@ case "$2" in
             value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 4))
             echo $value
             ;;
+        "PHYSICAL_RESISTANCE")
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 5)
+            echo $value
+            ;;
+        "ELEMENTAL_RESISTANCE")
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 15)
+            echo $value
+            ;;
         "MAX_HEALTH")
-            value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 5))
+            value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 25))
             echo $value
             ;;
         "CURRENT_HEALTH")
-            value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 6))
+            value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 26))
             echo $value
             ;;
         "TEMP_HEALTH")
             # This is a temporary data slot to track current health while the actor is in combat
             # This way, combat damage is only saved if desired (for characters) and only after combat has finished (doesn't save if combat ends abruptly)
-            value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 7))
-            echo $value
-            ;;
-        "DISPLAY_NAME")
-            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 8)
-            echo $value
-            ;;
-        "FAVORITE_COLOR")
-            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 38)
+            value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 27))
             echo $value
             ;;
         "WEAPON")
-            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 68)
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 28)
+            echo $value
+            ;;
+        "DISPLAY_NAME")
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 38)
+            echo $value
+            ;;
+        "FAVORITE_COLOR")
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 68)
             echo $value
             ;;
 esac

@@ -14,8 +14,14 @@ for ((i=2; i<=$#; i+=2)); do
         "DAMAGE")
             bash src/data/core/write-byte.sh data/weapons/$1-data.bin $data_value 0
             ;;
+        "PHYSICAL_TYPE")
+            bash src/data/core/write-string.sh data/weapons/$1-data.bin $data_value 10 1
+            ;;
+        "ELEMENTAL_TYPE")
+            bash src/data/core/write-string.sh data/weapons/$1-data.bin $data_value 10 11
+            ;;
         "DISPLAY_NAME")
-            bash src/data/core/write-string.sh data/weapons/$1-data.bin "$data_value" 30 1
+            bash src/data/core/write-string.sh data/weapons/$1-data.bin "$data_value" 30 21
             ;;
     esac
 done
