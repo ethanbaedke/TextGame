@@ -5,6 +5,7 @@
 area_left=0
 while [ $area_left -eq 0 ]; do
 
+    clear
     bash src/display-image.sh "images/landscapes/tyus-estates.png"
     echo
     echo "Rising from the plains like a jewel in the grass, the upper-class settlement boasts elegant stone manors, manicured gardens, and wrought iron gates."
@@ -23,6 +24,7 @@ while [ $area_left -eq 0 ]; do
         exit $?
     fi
 
+    options+=("visit tavern")
     options+=("leave")
 
     bash src/request-selection.sh "${options[@]}"
@@ -33,6 +35,10 @@ while [ $area_left -eq 0 ]; do
         "recruit the tyus estates")
             bash src/world/trigger-activity.sh src/world/quests/tyus-estates-step-1.sh
             exit $?
+            ;;
+
+        "visit tavern")
+            bash src/world/tavern.sh
             ;;
 
         "leave")

@@ -2,11 +2,6 @@
 
 # PARAMS: CHARACTER_NAME
 
-# Exit if trying to unlock player
-if [ "$1" == "player" ]; then
-    exit
-fi
-
 unlocked_characters=($(bash src/data/get-unlocked-characters.sh))
 num_characters_unlocked=($(bash src/data/core/read-byte.sh data/unlocked-character-data.bin 0))
 
@@ -26,4 +21,4 @@ bash src/data/core/write-byte.sh data/unlocked-character-data.bin $new_num_chara
 
 display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
 
-bash src/print-dialogue.sh "*$display_name* has been unlocked."
+bash src/print-dialogue.sh "[*$display_name* has been unlocked]"

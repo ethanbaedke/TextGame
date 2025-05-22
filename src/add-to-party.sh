@@ -10,7 +10,7 @@ case $? in
     0)
         # Party had space
         display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
-        bash src/print-dialogue.sh "*$display_name* has been added to the party."
+        bash src/print-dialogue.sh "[*$display_name* has been added to the party]"
         ;;
     1)
         # Unknown error

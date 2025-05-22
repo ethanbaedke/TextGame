@@ -74,13 +74,13 @@ if [ ! -f "data/quest-data.bin" ]; then
     bash src/data/core/write-string.sh data/quest-data.bin "grossmans-rivera" 20 442
     bash src/data/core/write-string.sh data/quest-data.bin "keely" 20 463
     bash src/data/core/write-string.sh data/quest-data.bin "wrightmoor" 20 484
-    bash src/data/core/write-string.sh data/quest-data.bin "liberty" 20 505
+    bash src/data/core/write-string.sh data/quest-data.bin "libarun" 20 505
     bash src/data/core/write-string.sh data/quest-data.bin "tyus-estates" 20 526
     bash src/data/core/write-string.sh data/quest-data.bin "loklin" 20 547
     bash src/data/core/write-string.sh data/quest-data.bin "nordstead" 20 568
     bash src/data/core/write-string.sh data/quest-data.bin "madelyn" 20 589
     bash src/data/core/write-string.sh data/quest-data.bin "kavalieros-ridge" 20 610
-    bash src/data/core/write-string.sh data/quest-data.bin "max" 20 631
+    bash src/data/core/write-string.sh data/quest-data.bin "maxareth" 20 631
     bash src/data/core/write-string.sh data/quest-data.bin "schwartzville" 20 652
     bash src/data/core/write-string.sh data/quest-data.bin "phoebe" 20 673
     bash src/data/core/write-string.sh data/quest-data.bin "linksburg" 20 694

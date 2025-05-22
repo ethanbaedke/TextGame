@@ -5,6 +5,7 @@
 area_left=0
 while [ $area_left -eq 0 ]; do
 
+    clear
     bash src/display-image.sh "images/landscapes/schwartzville.png"
     echo
     echo "A tidy village sits nestled among the open plains, its timber-framed homes and cobbled paths radiating quiet industry."
@@ -23,6 +24,7 @@ while [ $area_left -eq 0 ]; do
         exit $?
     fi
 
+    options+=("visit tavern")
     options+=("leave")
 
     bash src/request-selection.sh "${options[@]}"
@@ -33,6 +35,10 @@ while [ $area_left -eq 0 ]; do
         "recruit schwartzville")
             bash src/world/trigger-activity.sh src/world/quests/schwartzville-step-1.sh
             exit $?
+            ;;
+
+        "visit tavern")
+            bash src/world/tavern.sh
             ;;
 
         "leave")

@@ -43,7 +43,7 @@ if [ ! $removed -eq 0 ]; then
     display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
 
     echo
-    echo "$display_name has been removed from the party."
+    bash src/print-dialogue.sh "[$display_name has been removed from the party]"
 else
     echo "ERROR! $0 called but the character name "$1" could not be found in data/party-data.bin"
     exit 1

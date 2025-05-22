@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 # Add all unlocked characters not currently in the party to a list
 unlocked_characters=($(bash src/data/get-unlocked-characters.sh))
 non_party_unlocked_characters=()
@@ -10,31 +12,26 @@ for character in ${unlocked_characters[@]}; do
     fi
 done
 
-echo
-echo "You enter the tavern."
+bash src/print-dialogue.sh "[Your party enters the tavern]"
 
 # Leave the tavern if there are no unlocked characters outside the current party
 if [ ${#non_party_unlocked_characters[@]} -eq 0 ]; then
-    echo
-    echo "It is deserted, there are no adventurers here."
-    echo "You leave the tavern."
+    bash src/print-dialogue.sh "[It is completely deserted, there are no adventurers here]"
     exit
 fi
 
-echo "You see some adventurers awaiting desiny's call."
-echo "Would you like to add an unlocked character to your party?"
+bash src/print-dialogue.sh "[You notice some adventurers awaiting desiny's call]"
+bash src/print-dialogue.sh "[Would you like to add an unlocked character to your party?]"
 bash src/request-selection.sh "yes" "no"
 selection=$(bash src/data/get-selection.sh)
 
 if [ "$selection" == "no" ]; then
-    echo
-    echo "You leave the tavern."
+    bash src/print-dialogue.sh "[You leave the tavern]"
     exit
 fi
 
 # Allow the user to select a character from the list
-echo
-echo "Who would you like to accompany you on your journey?"
+bash src/print-dialogue.sh "[Who shall accompany your party on their journey]"
 bash src/request-selection.sh ${non_party_unlocked_characters[@]}
 selection=$(bash src/data/get-selection.sh)
 
