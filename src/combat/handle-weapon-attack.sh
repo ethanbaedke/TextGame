@@ -13,13 +13,16 @@ weapon_damage=$(bash src/data/get-weapon-info.sh $weapon_name "DAMAGE")
 weapon_physical_type=$(bash src/data/get-weapon-info.sh $weapon_name "PHYSICAL_TYPE")
 weapon_elemental_type=$(bash src/data/get-weapon-info.sh $weapon_name "ELEMENTAL_TYPE")
 
-target_physical_resistance=$(bash src/data/get-actor-info.sh $2 "PHYSICAL_RESISTANCE")
-target_elemental_resistance=$(bash src/data/get-actor-info.sh $2 "ELEMENTAL_RESISTANCE")
+target_armor=$(bash src/data/get-actor-info.sh $2 "ARMOR")
+base_resistance=$(bash src/data/get-armor-info.sh $target_armor "BASE_RESISTANCE")
+physical_resistance=$(bash src/data/get-armor-info.sh $target_armor "PHYSICAL_RESISTANCE")
+elemental_resistance=$(bash src/data/get-armor-info.sh $target_armor "ELEMENTAL_RESISTANCE")
 
-damage=$weapon_damage
+# Handle base resistance to damage
+damage=$(($weapon_damage - $base_resistance))
 
 # Handle resistance to physical damage type
-if [ "$weapon_physical_type" == "$target_physical_resistance" ]; then
+if [ "$weapon_physical_type" == "$physical_resistance" ]; then
     bash src/print-dialogue.sh "[The attack was not very effective]"
     damage=$((weapon_damage - 2))
 fi
