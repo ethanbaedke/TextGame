@@ -30,6 +30,10 @@ case $selection in
                     bash src/print-dialogue.sh "[*$name* comes to the conclusion that the red berries have healing properties, while the green berries are poisonous]"
                     bash src/print-dialogue.sh "[*$name* eats the red berries]"
                     bash src/modify-temp-health.sh $character "-1"
+                    bash src/is-party-knocked-out.sh
+                    if [ $? -eq 1 ]; then
+                        exit 1
+                    fi
                 fi
                 ;;
 
@@ -41,6 +45,10 @@ case $selection in
                 else
                     bash src/print-dialogue.sh "[*$name* eats the plump red berries]"
                     bash src/modify-temp-health.sh $character "-1"
+                    bash src/is-party-knocked-out.sh
+                    if [ $? -eq 1 ]; then
+                        exit 1
+                    fi
                 fi
                 ;;
         esac
