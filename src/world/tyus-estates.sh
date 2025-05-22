@@ -20,11 +20,7 @@ while [ $area_left -eq 0 ]; do
         options+=("recruit the tyus estates")
     elif [ $tyus_estates_quest_progress -eq 3 ]; then
         bash src/world/trigger-activity.sh src/world/quests/tyus-estates-step-3.sh
-        if [ $? -eq 1 ]; then
-            exit 1
-        else
-            exit 0
-        fi
+        exit $?
     fi
 
     options+=("leave")
@@ -36,11 +32,7 @@ while [ $area_left -eq 0 ]; do
 
         "recruit the tyus estates")
             bash src/world/trigger-activity.sh src/world/quests/tyus-estates-step-1.sh
-            if [ $? -eq 1 ]; then
-                exit 1
-            else
-                exit 0
-            fi
+            exit $?
             ;;
 
         "leave")

@@ -20,11 +20,7 @@ while [ $area_left -eq 0 ]; do
         options+=("recruit schwartzville")
     elif [ $schwartzville_quest_progress -eq 3 ]; then
         bash src/world/trigger-activity.sh src/world/quests/schwartzville-step-3.sh
-        if [ $? -eq 1 ]; then
-            exit 1
-        else
-            exit 0
-        fi
+        exit $?
     fi
 
     options+=("leave")
@@ -36,11 +32,7 @@ while [ $area_left -eq 0 ]; do
 
         "recruit schwartzville")
             bash src/world/trigger-activity.sh src/world/quests/schwartzville-step-1.sh
-            if [ $? -eq 1 ]; then
-                exit 1
-            else
-                exit 0
-            fi
+            exit $?
             ;;
 
         "leave")
