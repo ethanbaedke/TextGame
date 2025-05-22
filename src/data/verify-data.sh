@@ -62,7 +62,7 @@ if [ ! -f "data/quest-data.bin" ]; then
     bash src/data/core/write-string.sh data/quest-data.bin "seltzham" 20 190
     bash src/data/core/write-string.sh data/quest-data.bin "emma" 20 211
     bash src/data/core/write-string.sh data/quest-data.bin "lawscrest" 20 232
-    bash src/data/core/write-string.sh data/quest-data.bin "ethan" 20 253
+    bash src/data/core/write-string.sh data/quest-data.bin "ethanor" 20 253
     bash src/data/core/write-string.sh data/quest-data.bin "main" 20 274
     bash src/data/core/write-string.sh data/quest-data.bin "fletch" 20 295
     bash src/data/core/write-string.sh data/quest-data.bin "gunderhaven" 20 316
@@ -158,19 +158,19 @@ if [ $? -eq 1 ]; then
 fi
 
 # Max - Jockey
-character_name=max
+character_name=maxareth
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0  "WEAPON" "fist" "ARMOR" "shirt" "DISPLAY_NAME" "Max" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 2 "DEXTERITY" 1 "INTELLIGENCE" 3 "CHARISMA" 3 "LUCK" 1 "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0  "WEAPON" "fist" "ARMOR" "shirt" "DISPLAY_NAME" "Maxareth" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Liberty - Shapeshifter (Horse)
-character_name=liberty
+character_name=libarun
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0  "WEAPON" "fist" "ARMOR" "shirt" "DISPLAY_NAME" "Liberty" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 2 "DEXTERITY" 1 "INTELLIGENCE" 4 "CHARISMA" 2 "LUCK" 1 "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0  "WEAPON" "fist" "ARMOR" "shirt" "DISPLAY_NAME" "Libarun" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Chelsea - Mermaid
@@ -278,11 +278,11 @@ if [ $? -eq 1 ]; then
 fi
 
 # Ethan - Human
-character_name=ethan
+character_name=ethanor
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "PHYSICAL_RESISTANCE" "piercing" "ELEMENTAL_RESISTANCE" "none" "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0 "WEAPON" "fist" "ARMOR" "shirt" "DISPLAY_NAME" "Ethan" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "STRENGTH" 2 "DEXTERITY" 2 "INTELLIGENCE" 2 "CHARISMA" 2 "LUCK" 2 "PHYSICAL_RESISTANCE" "piercing" "ELEMENTAL_RESISTANCE" "none" "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0 "WEAPON" "fist" "ARMOR" "shirt" "DISPLAY_NAME" "Ethanor" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Creates actor-data for all enemies ONLY IF actor-data does not already exist for them

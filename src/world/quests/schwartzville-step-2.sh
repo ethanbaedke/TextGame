@@ -5,7 +5,7 @@
 clear
 
 plainsrunner_display_name=$(bash src/data/get-actor-info.sh plainsrunner "DISPLAY_NAME")
-leader_display_name=$(bash src/data/get-actor-info.sh max "DISPLAY_NAME")
+leader_display_name=$(bash src/data/get-actor-info.sh maxareth "DISPLAY_NAME")
 
 bash src/print-dialogue.sh "[You hear a rumbling coming from trees on the horizon]"
 bash src/print-dialogue.sh "[A group of panicked riders bursts fourth into the clearing]"

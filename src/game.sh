@@ -42,7 +42,7 @@ main_quest_progress=$(bash src/data/get-quest-progress.sh main)
 if [ $main_quest_progress -eq 0 ]; then
 
     clear
-    player_display_name=$(bash src/data/get-actor-info.sh ethan "DISPLAY_NAME")
+    player_display_name=$(bash src/data/get-actor-info.sh ethanor "DISPLAY_NAME")
 
     bash src/print-dialogue.sh "[You stumble around the beach, weaving through dancers making merry around a blazing fire]"
     bash src/print-dialogue.sh "[A *Stranger* approaches you]"
@@ -80,7 +80,7 @@ main_quest_progress=$(bash src/data/get-quest-progress.sh main)
 if [ $main_quest_progress -eq 1 ]; then
 
     clear
-    player_display_name=$(bash src/data/get-actor-info.sh ethan "DISPLAY_NAME")
+    player_display_name=$(bash src/data/get-actor-info.sh ethanor "DISPLAY_NAME")
 
     bash src/print-dialogue.sh "[The sun stabs at your eyes as you awaken on the beach]"
     bash src/print-dialogue.sh "[Memories swirl through your mind, too cloudy to make out]"
@@ -114,8 +114,8 @@ if [ $main_quest_progress -eq 1 ]; then
     bash src/data/increment-quest-progress.sh schwartzville
     bash src/data/increment-quest-progress.sh linksburg
 
-    bash src/data/unlock-character.sh ethan
-    bash src/add-to-party.sh ethan
+    bash src/data/unlock-character.sh ethanor
+    bash src/add-to-party.sh ethanor
 
     bash src/data/increment-quest-progress.sh main
 fi

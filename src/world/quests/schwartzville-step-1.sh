@@ -6,7 +6,7 @@ clear
 
 party_characters=($(bash src/data/get-party-characters.sh))
 player_display_name=$(bash src/data/get-actor-info.sh ${party_characters[0]} "DISPLAY_NAME")
-leader_display_name=$(bash src/data/get-actor-info.sh max "DISPLAY_NAME")
+leader_display_name=$(bash src/data/get-actor-info.sh maxareth "DISPLAY_NAME")
 
 bash src/print-dialogue.sh "[You are taken to the leader of -Schwartzville-]"
 bash src/print-dialogue.sh "Soldier: *$leader_display_name*, this is *$player_display_name*, they have requested your attention."

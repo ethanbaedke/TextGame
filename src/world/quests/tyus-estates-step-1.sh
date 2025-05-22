@@ -6,7 +6,7 @@ clear
 
 party_characters=($(bash src/data/get-party-characters.sh))
 player_display_name=$(bash src/data/get-actor-info.sh ${party_characters[0]} "DISPLAY_NAME")
-leader_display_name=$(bash src/data/get-actor-info.sh liberty "DISPLAY_NAME")
+leader_display_name=$(bash src/data/get-actor-info.sh libarun "DISPLAY_NAME")
 
 bash src/print-dialogue.sh "[You are taken to the leader of the -Tyus Estates-]"
 bash src/print-dialogue.sh "Queensguard: *$leader_display_name*, there is an *$player_display_name* here for you."

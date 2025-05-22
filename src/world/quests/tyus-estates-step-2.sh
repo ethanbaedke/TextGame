@@ -9,7 +9,7 @@ party_characters=($(bash src/data/get-party-characters.sh))
 bash src/init-temp-health.sh ${all_actors[@]}
 
 player_display_name=$(bash src/data/get-actor-info.sh ${party_characters[0]} "DISPLAY_NAME")
-leader_display_name=$(bash src/data/get-actor-info.sh liberty "DISPLAY_NAME")
+leader_display_name=$(bash src/data/get-actor-info.sh libarun "DISPLAY_NAME")
 bandit_display_name=$(bash src/data/get-actor-info.sh bandit "DISPLAY_NAME")
 
 bash src/print-dialogue.sh "[You come across the -Bandit Camp- menioned by *$leader_display_name*]"
