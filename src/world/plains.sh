@@ -13,7 +13,7 @@ read -p "The wind carries the scent of earth and freedom, stirring memories of o
 # Schwartzville quest
 schwartzville_quest_progress=$(bash src/data/get-quest-progress.sh schwartzville)
 if [ $schwartzville_quest_progress -eq 2 ]; then
-    bash src/world/quests/schwartzville-step-2.sh
+    bash src/world/trigger-activity.sh src/world/quests/schwartzville-step-2.sh
     if [ $? -eq 1 ]; then
         exit 1
     else
@@ -33,7 +33,7 @@ fi
 # Start one of the random encounters
 encounter=$((RANDOM % 2))
 encounter=$((encounter + 1))
-bash src/world/trigger-encounter.sh src/world/encounters/plains-encounter-$encounter.sh
+bash src/world/trigger-activity.sh src/world/encounters/plains-encounter-$encounter.sh
 if [ $? -eq 1 ]; then
     exit 1
 fi

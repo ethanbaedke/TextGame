@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# PARAMS ENCOUNTER_PATH
-# EXIT CODE: 1 if the party was knocked out during the encounter
+# PARAMS ACTIVITY_PATH
+# Activities are encounters or quests
+# EXIT CODE: 1 if the party was knocked out during the encounter or quest
 
 party=$(bash src/data/get-party-characters.sh)
 bash src/init-temp-health.sh ${party[@]}

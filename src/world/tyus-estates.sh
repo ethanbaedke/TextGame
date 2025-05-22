@@ -19,7 +19,7 @@ while [ $area_left -eq 0 ]; do
     if [ $tyus_estates_quest_progress -eq 1 ]; then
         options+=("recruit the tyus estates")
     elif [ $tyus_estates_quest_progress -eq 3 ]; then
-        bash src/world/quests/tyus-estates-step-3.sh
+        bash src/world/trigger-activity.sh src/world/quests/tyus-estates-step-3.sh
         if [ $? -eq 1 ]; then
             exit 1
         else
@@ -35,7 +35,7 @@ while [ $area_left -eq 0 ]; do
     case "$selection" in
 
         "recruit the tyus estates")
-            bash src/world/quests/tyus-estates-step-1.sh
+            bash src/world/trigger-activity.sh src/world/quests/tyus-estates-step-1.sh
             if [ $? -eq 1 ]; then
                 exit 1
             else

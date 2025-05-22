@@ -4,7 +4,10 @@
 
 clear
 
+# Get and initialize health of characters involved in this quest
 party_characters=($(bash src/data/get-party-characters.sh))
+bash src/init-temp-health.sh ${all_actors[@]}
+
 player_display_name=$(bash src/data/get-actor-info.sh ${party_characters[0]} "DISPLAY_NAME")
 leader_display_name=$(bash src/data/get-actor-info.sh liberty "DISPLAY_NAME")
 bandit_display_name=$(bash src/data/get-actor-info.sh bandit "DISPLAY_NAME")
@@ -28,6 +31,10 @@ case $selection in
         else
             bash src/print-dialogue.sh "[*$stat_check_character_display_name* drops the rock on their foot, hurting themselves and alerting the *$bandit_display_name's*]"
             bash src/modify-temp-health.sh $stat_check_character "-1"
+            bash src/is-party-knocked-out.sh
+            if [ $? -eq 1 ]; then
+                exit 1
+            fi
             bash src/print-dialogue.sh "[All three *$bandit_display_name's* charge you]"
         fi
         ;;
@@ -40,6 +47,10 @@ case $selection in
             bash src/print-dialogue.sh "[*$stat_check_character_display_name* is caught scurrying into the -Bandit Camp-]"
             bash src/print-dialogue.sh "[A quick arrow fired by one of the *$bandit_display_name's* scrapes the check of *$stat_check_character_display_name*]"
             bash src/modify-temp-health.sh $stat_check_character "-1"
+            bash src/is-party-knocked-out.sh
+            if [ $? -eq 1 ]; then
+                exit 1
+            fi
             bash src/print-dialogue.sh "[All three *$bandit_display_name's* charge you]"
         fi
         ;;
@@ -54,6 +65,10 @@ case $selection in
             bash src/print-dialogue.sh "[While wasting time searching for a creative approach, *$stat_check_character_display_name* is noticed by the *$bandit_display_name's*]"
             bash src/print-dialogue.sh "[A quick arrow fired by one of the *$bandit_display_name's* scrapes the check of *$stat_check_character_display_name*]"
             bash src/modify-temp-health.sh $stat_check_character "-1"
+            bash src/is-party-knocked-out.sh
+            if [ $? -eq 1 ]; then
+                exit 1
+            fi
             bash src/print-dialogue.sh "[All three *$bandit_display_name's* charge you]"
         fi
         ;;
@@ -66,6 +81,10 @@ case $selection in
             bash src/print-dialogue.sh "[The *$bandit_display_name's* would never fall for such a cheap trick]"
             bash src/print-dialogue.sh "[One of the *$bandit_display_name's* catches *$stat_check_character_display_name* off guard and takes a slash at their leg]"
             bash src/modify-temp-health.sh $stat_check_character "-1"
+            bash src/is-party-knocked-out.sh
+            if [ $? -eq 1 ]; then
+                exit 1
+            fi
             bash src/print-dialogue.sh "[All three *$bandit_display_name's* charge you]"
         fi
         ;;
@@ -79,6 +98,10 @@ case $selection in
             bash src/print-dialogue.sh "[The *$bandit_display_name's* are not easily fooled]"
             bash src/print-dialogue.sh "[One of the *$bandit_display_name's* catches *$stat_check_character_display_name* off guard and takes a slash at their leg]"
             bash src/modify-temp-health.sh $stat_check_character "-1"
+            bash src/is-party-knocked-out.sh
+            if [ $? -eq 1 ]; then
+                exit 1
+            fi
             bash src/print-dialogue.sh "[All three *$bandit_display_name's* charge you]"
         fi
         ;;

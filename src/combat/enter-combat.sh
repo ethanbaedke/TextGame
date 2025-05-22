@@ -7,7 +7,7 @@ characters=($(bash src/data/get-party-characters.sh))
 enemies=($@)
 all_actors=(${characters[@]} ${enemies[@]})
 
-bash src/init-temp-health.sh ${all_actors[@]}
+bash src/init-temp-health.sh ${enemies[@]}
 
 # Sort all actors in order of highest dexterity to lowest dexterity
 turn_order=($(for actor in "${all_actors[@]}"; do
@@ -139,7 +139,7 @@ update_party_health() {
 # Loop through the turn_order array activating actors turns
 while (true); do
 
-    bash src/are-actors-knocked-out.sh ${characters[@]}
+    bash src/is-party-knocked-out.sh
     if [ $? -eq 1 ]; then
         echo
         echo "All characters have been knocked out."
@@ -150,7 +150,6 @@ while (true); do
     if [ $? -eq 1 ]; then
         echo
         echo "All enemies have been defeated."
-        bash src/save-party-temp-health.sh
         exit 0
     fi
 

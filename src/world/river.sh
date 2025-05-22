@@ -13,7 +13,7 @@ read -p "The gentle gurgle of flowing water is broken only by the occasional spl
 # Tyus Estates quest
 tyus_estates_quest_progress=$(bash src/data/get-quest-progress.sh tyus-estates)
 if [ $tyus_estates_quest_progress -eq 2 ]; then
-    bash src/world/quests/tyus-estates-step-2.sh
+    bash src/world/trigger-activity.sh src/world/quests/tyus-estates-step-2.sh
     if [ $? -eq 1 ]; then
         exit 1
     else
