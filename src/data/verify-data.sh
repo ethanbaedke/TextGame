@@ -139,6 +139,13 @@ if [ $? -eq 1 ]; then
     bash src/data/save-armor-info.sh "$armor_name" "BASE_RESISTANCE" 1 "PHYSICAL_RESISTANCE" "none" "ELEMENTAL_RESISTANCE" "none" "DISPLAY_NAME" "Shirt"
 fi
 
+# Create inventory data
+
+INVENTORY_FILE_SIZE=1 # Holds 1 byte for gold
+if [ ! -f "data/inventory-data.bin" ]; then
+    bash src/data/core/write-null.sh data/inventory-data.bin $INVENTORY_FILE_SIZE 0
+fi
+
 # Creates actor-data for all npc's ONLY IF actor-data does not already exist for them
 
 # Aidan - Hobbit
