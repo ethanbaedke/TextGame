@@ -141,7 +141,7 @@ fi
 
 # Create inventory data
 
-INVENTORY_FILE_SIZE=1 # Holds 1 byte for gold
+INVENTORY_FILE_SIZE=102 # Holds 1 byte for gold, 1 byte for number of items, and 10 bytes for 10 item names
 if [ ! -f "data/inventory-data.bin" ]; then
     bash src/data/core/write-null.sh data/inventory-data.bin $INVENTORY_FILE_SIZE 0
 fi
