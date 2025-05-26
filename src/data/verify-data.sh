@@ -92,35 +92,35 @@ weapon_name=fist
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 1 "PHYSICAL_TYPE" "impact" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Fists"
+    bash src/data/save-weapon-info.sh "$weapon_name" "VALUE" 0 "DAMAGE" 1 "PHYSICAL_TYPE" "impact" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Fists"
 fi
 
 weapon_name=sword
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 2 "PHYSICAL_TYPE" "slashing" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Sword"
+    bash src/data/save-weapon-info.sh "$weapon_name" "VALUE" 2 "DAMAGE" 2 "PHYSICAL_TYPE" "slashing" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Sword"
 fi
 
 weapon_name=hammer
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 2 "PHYSICAL_TYPE" "impact" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Hammer"
+    bash src/data/save-weapon-info.sh "$weapon_name" "VALUE" 2 "DAMAGE" 2 "PHYSICAL_TYPE" "impact" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Hammer"
 fi
 
 weapon_name=bow
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 2 "PHYSICAL_TYPE" "piercing" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Bow"
+    bash src/data/save-weapon-info.sh "$weapon_name" "VALUE" 2 "DAMAGE" 2 "PHYSICAL_TYPE" "piercing" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Bow"
 fi
 
 weapon_name=teeth
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "DAMAGE" 2 "PHYSICAL_TYPE" "piercing" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Teeth"
+    bash src/data/save-weapon-info.sh "$weapon_name" "VALUE" 2 "DAMAGE" 2 "PHYSICAL_TYPE" "piercing" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Teeth"
 fi
 
 # Create armor data
@@ -129,14 +129,14 @@ armor_name=none
 bash src/data/verify-file-existence.sh data/armor/$armor_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-armor-data.sh $armor_name
-    bash src/data/save-armor-info.sh "$armor_name" "BASE_RESISTANCE" 0 "PHYSICAL_RESISTANCE" "none" "ELEMENTAL_RESISTANCE" "none" "DISPLAY_NAME" "none"
+    bash src/data/save-armor-info.sh "$armor_name" "VALUE" 0 "BASE_RESISTANCE" 0 "PHYSICAL_RESISTANCE" "none" "ELEMENTAL_RESISTANCE" "none" "DISPLAY_NAME" "none"
 fi
 
 armor_name=shirt
 bash src/data/verify-file-existence.sh data/armor/$armor_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-armor-data.sh $armor_name
-    bash src/data/save-armor-info.sh "$armor_name" "BASE_RESISTANCE" 1 "PHYSICAL_RESISTANCE" "none" "ELEMENTAL_RESISTANCE" "none" "DISPLAY_NAME" "Shirt"
+    bash src/data/save-armor-info.sh "$armor_name" "VALUE" 2 "BASE_RESISTANCE" 1 "PHYSICAL_RESISTANCE" "none" "ELEMENTAL_RESISTANCE" "none" "DISPLAY_NAME" "Shirt"
 fi
 
 # Create inventory data
