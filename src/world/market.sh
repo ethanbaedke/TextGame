@@ -117,7 +117,7 @@ while [ $market_left -eq 0 ]; do
         "sell")
 
             # Ensure the players inventory is not empty
-            if [ ${#inventory_items} -eq 0 ]; then
+            if [ ${#inventory_items[@]} -eq 0 ]; then
                 bash src/print-dialogue.sh "[There are no items in your inventory]"
                 continue
             fi
