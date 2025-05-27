@@ -17,6 +17,8 @@ bash src/print-dialogue.sh "$leader_display_name: I will be waiting at the -tave
 bash src/print-dialogue.sh "[*$leader_display_name* awards your party 20 gold for their bravery]"
 bash src/data/modify-gold.sh 20
 
+bash src/distribute-experience.sh 4
+
 bash src/data/unlock-character.sh libarun
 bash src/data/increment-quest-progress.sh tyus-estates
 

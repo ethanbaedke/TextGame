@@ -26,6 +26,7 @@ case $selection in
                     bash src/print-dialogue.sh "[*$name* comes to the conclusion that the green berries have healing properties, while the red berries are poisonous]"
                     bash src/print-dialogue.sh "[*$name* eats the green berries]"
                     bash src/modify-temp-health.sh $character "1"
+                    bash src/gain-experience.sh $character 1
                 else
                     bash src/print-dialogue.sh "[*$name* comes to the conclusion that the red berries have healing properties, while the green berries are poisonous]"
                     bash src/print-dialogue.sh "[*$name* eats the red berries]"
@@ -42,6 +43,7 @@ case $selection in
                 if [ $roll_result -eq 0 ]; then
                     bash src/print-dialogue.sh "[*$name* eats the plump green berries]"
                     bash src/modify-temp-health.sh $character "1"
+                    bash src/gain-experience.sh $character 1
                 else
                     bash src/print-dialogue.sh "[*$name* eats the plump red berries]"
                     bash src/modify-temp-health.sh $character "-1"

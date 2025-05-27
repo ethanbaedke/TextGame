@@ -11,51 +11,57 @@ for ((i=2; i<=$#; i+=2)); do
     data_value="${!ii}"
 
     case "$data_name" in
-        "STRENGTH")
+        "LEVEL")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 0
             ;;
-        "DEXTERITY")
+        "EXPERIENCE")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 1
             ;;
-        "INTELLIGENCE")
+        "STRENGTH")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 2
             ;;
-        "CHARISMA")
+        "DEXTERITY")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 3
             ;;
-        "LUCK")
+        "INTELLIGENCE")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 4
             ;;
-        "MAX_HEALTH")
+        "CHARISMA")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 5
             ;;
-        "CURRENT_HEALTH")
+        "LUCK")
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 6
+            ;;
+        "MAX_HEALTH")
+            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 7
+            ;;
+        "CURRENT_HEALTH")
+            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 8
             ;;
         "TEMP_HEALTH")
             # This is a temporary data slot to track current health while the actor is in combat
             # This way, combat damage is only saved if desired (for characters) and only after combat has finished (doesn't save if combat ends abruptly)
-            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 7
+            bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 9
             ;;
         "WEAPON")
             bash src/data/verify-file-existence.sh data/weapons/$data_value-data.bin
             if [ $? -eq 1 ]; then
                 exit 1
             fi
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 8
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 10
             ;;
         "ARMOR")
             bash src/data/verify-file-existence.sh data/armor/$data_value-data.bin
             if [ $? -eq 1 ]; then
                 exit 1
             fi
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 18
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 20
             ;;
         "DISPLAY_NAME")
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 28
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 30
             ;;
         "FAVORITE_COLOR")
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 58
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 60
             ;;
     esac
 done

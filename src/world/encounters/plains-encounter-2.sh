@@ -55,6 +55,7 @@ case $selection in
         fi
 
         bash src/print-dialogue.sh "[The *$plainsrunner_name's* bodies lie still in the grass]"
+        bash src/distribute-experience.sh 3
         ;;
 
     "sneak away")
@@ -91,6 +92,9 @@ case $selection in
                 exit 1
             fi
             bash src/print-dialogue.sh "[The *$plainsrunner_name's* bodies lie still in the grass]"
+            bash src/distribute-experience.sh 3
+        else
+            bash src/distribute-experience.sh 1
         fi
         ;;
 esac

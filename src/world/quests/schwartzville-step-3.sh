@@ -18,6 +18,8 @@ bash src/print-dialogue.sh "$leader_display_name: *$player_display_name*, I will
 bash src/print-dialogue.sh "[*$leader_display_name* awards your party 20 gold for their bravery]"
 bash src/data/modify-gold.sh 20
 
+bash src/distribute-experience.sh 4
+
 
 # Unlock and add maxareth to the party
 bash src/data/unlock-character.sh maxareth
