@@ -24,6 +24,7 @@ while [ $area_left -eq 0 ]; do
         exit $?
     fi
 
+    options+=("visit market")
     options+=("visit tavern")
     options+=("leave")
 
@@ -35,6 +36,10 @@ while [ $area_left -eq 0 ]; do
         "recruit the tyus estates")
             bash src/world/trigger-activity.sh src/world/quests/tyus-estates-step-1.sh
             exit $?
+            ;;
+
+        "visit market")
+            bash src/world/market.sh sword hammer bow shirt
             ;;
 
         "visit tavern")
