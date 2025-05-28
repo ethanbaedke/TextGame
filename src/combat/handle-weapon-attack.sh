@@ -9,6 +9,13 @@ target_display_name=$(bash src/data/get-actor-info.sh $2 "DISPLAY_NAME")
 
 bash src/print-dialogue.sh "[*$attacker_display_name* attacked *$target_display_name* with their -$weapon_display_name-]"
 
+# Roll dexterity check for dodge
+bash src/roll-stat-check.sh $2 "DEXTERITY" -d
+if [ $? -eq 0 ]; then
+    bash src/print-dialogue.sh "[*$target_display_name* dodged the attack]"
+    exit
+fi
+
 weapon_damage=$(bash src/data/get-weapon-info.sh $weapon_name "DAMAGE")
 weapon_physical_type=$(bash src/data/get-weapon-info.sh $weapon_name "PHYSICAL_TYPE")
 weapon_elemental_type=$(bash src/data/get-weapon-info.sh $weapon_name "ELEMENTAL_TYPE")
