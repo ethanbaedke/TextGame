@@ -9,9 +9,9 @@ all_actors=(${characters[@]} ${enemies[@]})
 
 bash src/init-temp-health.sh ${enemies[@]}
 
-# Sort all actors in order of highest dexterity to lowest dexterity
+# Sort all actors in order of highest intelligence to lowest intelligence
 turn_order=($(for actor in "${all_actors[@]}"; do
-        printf "%s\t%s\n" "$(bash src/data/get-actor-info.sh $actor "DEXTERITY")" "$actor"
+        printf "%s\t%s\n" "$(bash src/data/get-actor-info.sh $actor "INTELLIGENCE")" "$actor"
     done | sort -n -r | cut -f2))
 
 # Tracks which actor's turn it is in the turn_order array
