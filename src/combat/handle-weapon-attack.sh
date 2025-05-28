@@ -18,8 +18,17 @@ base_resistance=$(bash src/data/get-armor-info.sh $target_armor "BASE_RESISTANCE
 physical_resistance=$(bash src/data/get-armor-info.sh $target_armor "PHYSICAL_RESISTANCE")
 elemental_resistance=$(bash src/data/get-armor-info.sh $target_armor "ELEMENTAL_RESISTANCE")
 
+damage=$(($weapon_damage))
+
+# Roll strength check for critical hit
+bash src/roll-stat-check.sh $1 "STRENGTH" -d
+if [ $? -eq 0 ]; then
+    bash src/print-dialogue.sh "[It was a critical hit]"
+    damage=$(($damage * 2))
+fi
+
 # Handle base resistance to damage
-damage=$(($weapon_damage - $base_resistance))
+damage=$(($damage - $base_resistance))
 
 # Handle resistance to physical damage type
 if [ "$weapon_physical_type" == "$physical_resistance" ]; then
