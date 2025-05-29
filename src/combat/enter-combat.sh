@@ -98,8 +98,15 @@ character_turn() {
         "mend self")
             local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
             echo
-            read -p "$display_name healed themselves 1 point of health."
+            bash src/print-dialogue.sh "[*$display_name* took a moment to heal themselves]"
             bash src/modify-temp-health.sh $1 1
+            
+            # Roll luck check for critical heal
+            bash src/roll-stat-check.sh $1 "LUCK" -d
+            if [ $? -eq 0 ]; then
+                bash src/print-dialogue.sh "[*$display_name* had some additional wounds mend themselves naturally]"
+                bash src/modify-temp-health.sh $1 1
+            fi
             ;;
     esac
 }
