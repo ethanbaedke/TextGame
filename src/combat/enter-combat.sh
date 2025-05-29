@@ -96,23 +96,24 @@ character_turn() {
             fi
             ;;
         "mend self")
-            local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
-            echo
-            bash src/print-dialogue.sh "[*$display_name* took a moment to heal themselves]"
-            bash src/modify-temp-health.sh $1 1
-            
-            # Roll luck check for critical heal
-            bash src/roll-stat-check.sh $1 "LUCK" -d
-            if [ $? -eq 0 ]; then
-                bash src/print-dialogue.sh "[*$display_name* had some additional wounds mend themselves naturally]"
-                bash src/modify-temp-health.sh $1 1
-            fi
+            bash src/combat/handle-mend.sh $1
             ;;
     esac
 }
 
 # PARAMS: ENEMY_NAME
 enemy_turn() {
+
+    # If the enemy is not at full health, have a 25% for the enemy to mend itself instead of attacking
+    local temp_health=$(bash src/data/get-actor-info.sh $1 "TEMP_HEALTH")
+    local max_health=$(bash src/data/get-actor-info.sh $1 "MAX_HEALTH")
+    if [ $temp_health -lt $max_health ]; then
+        local chance=$((RANDOM % 4))
+        if [ $chance -eq 0 ]; then
+            bash src/combat/handle-mend.sh $1
+            return
+        fi
+    fi
 
     # Attack a random character
     random_character=$((RANDOM % ${#characters[@]}))
@@ -180,7 +181,8 @@ while (true); do
 
     # Roll charisma check to see if actor takes a second turn
     bash src/roll-stat-check.sh $current_actor "CHARISMA" -d
-    if [ $actor_on_second_turn -eq 0 ] && [ $? -eq 0 ]; then
+    result=$?
+    if [ $actor_on_second_turn -eq 0 ] && [ $result -eq 0 ]; then
         display_name=$(bash src/data/get-actor-info.sh $current_actor "DISPLAY_NAME")
         bash src/print-dialogue.sh "[*$display_name's* charismatic nature distracted the others, allowing them to act an additional time]"
         actor_on_second_turn=1
