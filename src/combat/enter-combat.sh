@@ -144,6 +144,7 @@ update_party_health() {
 }
 
 # Loop through the turn_order array activating actors turns
+actor_on_second_turn=0
 while (true); do
 
     bash src/is-party-knocked-out.sh
@@ -177,7 +178,16 @@ while (true); do
 
     take_turn $current_actor
 
+    # Roll charisma check to see if actor takes a second turn
+    bash src/roll-stat-check.sh $current_actor "CHARISMA" -d
+    if [ $actor_on_second_turn -eq 0 ] && [ $? -eq 0 ]; then
+        display_name=$(bash src/data/get-actor-info.sh $current_actor "DISPLAY_NAME")
+        bash src/print-dialogue.sh "[*$display_name's* charismatic nature distracted the others, allowing them to act an additional time]"
+        actor_on_second_turn=1
+        continue
+    fi
+
     # Move the index to the next actor in the turn_order, looping to 0 if the end of the array was hit
     turn_index=$(((turn_index + 1) % ${#turn_order[@]}))
-
+    actor_on_second_turn=0
 done
