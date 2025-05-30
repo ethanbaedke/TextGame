@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bash src/data/request-help-menu.sh "PRINT_MAP"
+
 party_coord_x=$(bash src/data/get-party-location-x.sh)
 party_coord_y=$(bash src/data/get-party-location-y.sh)
 

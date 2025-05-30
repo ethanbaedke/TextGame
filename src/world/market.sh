@@ -19,6 +19,8 @@ while [ $market_left -eq 0 ]; do
 
     clear
 
+    bash src/data/request-help-menu.sh "MARKET"
+
     player_gold=$(bash src/data/get-gold.sh)
 
     # Print the market items with their prices

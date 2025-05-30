@@ -12,6 +12,8 @@ for character in ${unlocked_characters[@]}; do
     fi
 done
 
+bash src/data/request-help-menu.sh "TAVERN"
+
 bash src/print-dialogue.sh "[Your party enters the tavern]"
 
 # Leave the tavern if there are no unlocked characters outside the current party

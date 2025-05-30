@@ -15,6 +15,8 @@ while [ $point_assigned -eq 0 ]; do
 
     clear
 
+    bash src/data/request-help-menu.sh "LEVEL_UP"
+
     # Print the characters current stats
     strength=$(bash src/data/get-actor-info.sh $1 "STRENGTH")
     dexterity=$(bash src/data/get-actor-info.sh $1 "DEXTERITY")

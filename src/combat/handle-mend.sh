@@ -9,6 +9,7 @@ bash src/modify-temp-health.sh $1 1
 # Roll luck check for critical heal
 bash src/roll-stat-check.sh $1 "LUCK" -d
 if [ $? -eq 0 ]; then
+    bash src/data/request-help-menu.sh "COMBAT_LUCK"
     bash src/print-dialogue.sh "[*$display_name* had some additional wounds mend themselves naturally]"
     bash src/modify-temp-health.sh $1 1
 fi

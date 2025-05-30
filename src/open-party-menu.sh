@@ -1,6 +1,10 @@
 #!/bin/bash
 
 clear
+
+bash src/data/request-help-menu.sh "PARTY_MENU"
+
+echo
 echo "Members in your party..."
 
 party_characters=($(bash src/data/get-party-characters.sh))

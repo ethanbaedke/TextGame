@@ -3,12 +3,19 @@
 # PARAMS: STAT_NAME STAT_NAME STAT_NAME ...
 # Saves the STAT_NAME selected to the selection-data file
 
-echo
 party=($(bash src/data/get-party-characters.sh))
 party_size=$(bash src/data/get-party-size.sh)
-options=()
+
+if [ $party_size -eq 1 ]; then
+    bash src/request-individual-stat-check-selection.sh ${party[0]} $@
+    exit
+fi
+
+bash src/data/request-help-menu.sh "COMPOUND_STAT_CHECK"
 
 # Iterate over all stats that are able to be checked against
+echo
+options=()
 for ((i=1; i<=$#; i++)); do
     stat="${!i}"
     echo -n "$stat ("

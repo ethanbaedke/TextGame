@@ -4,6 +4,10 @@
 # Activities are encounters or quests
 # EXIT CODE: 1 if the party was knocked out during the encounter or quest
 
+if [[ "$1" == *"encounters"* ]]; then
+    bash src/data/request-help-menu.sh "TRIGGER_ENCOUNTER"
+fi
+
 party=$(bash src/data/get-party-characters.sh)
 bash src/init-temp-health.sh ${party[@]}
 

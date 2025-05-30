@@ -170,7 +170,11 @@ while (true); do
         continue
     fi
 
-    #clear
+    clear
+
+    bash src/data/request-help-menu.sh "COMBAT_INFO"
+    bash src/data/request-help-menu.sh "COMBAT_INTELLIGENCE"
+
     echo
     echo "------------------------------------------------------------"
     print_combat_info
@@ -183,6 +187,7 @@ while (true); do
     bash src/roll-stat-check.sh $current_actor "CHARISMA" -d
     result=$?
     if [ $actor_on_second_turn -eq 0 ] && [ $result -eq 0 ]; then
+        bash src/data/request-help-menu.sh "COMBAT_CHARISMA"
         display_name=$(bash src/data/get-actor-info.sh $current_actor "DISPLAY_NAME")
         bash src/print-dialogue.sh "[*$display_name's* charismatic nature distracted the others, allowing them to act an additional time]"
         actor_on_second_turn=1

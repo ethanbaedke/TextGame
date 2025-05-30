@@ -12,6 +12,7 @@ bash src/print-dialogue.sh "[*$attacker_display_name* attacked *$target_display_
 # Roll dexterity check for dodge
 bash src/roll-stat-check.sh $2 "DEXTERITY" -d
 if [ $? -eq 0 ]; then
+    bash src/data/request-help-menu.sh "COMBAT_DEXTERITY"
     bash src/print-dialogue.sh "[*$target_display_name* dodged the attack]"
     exit
 fi
@@ -30,6 +31,7 @@ damage=$(($weapon_damage))
 # Roll strength check for critical hit
 bash src/roll-stat-check.sh $1 "STRENGTH" -d
 if [ $? -eq 0 ]; then
+    bash src/data/request-help-menu.sh "COMBAT_STRENGTH"
     bash src/print-dialogue.sh "[It was a critical hit]"
     damage=$(($damage * 2))
 fi
@@ -39,7 +41,9 @@ damage=$(($damage - $base_resistance))
 
 # Handle resistance to physical damage type
 if [ "$weapon_physical_type" == "$physical_resistance" ]; then
-    bash src/print-dialogue.sh "[The attack was not very effective]"
+    bash src/data/request-help-menu.sh "COMBAT_RESIST"
+    target_armor_display_name=$(bash src/data/get-armor-info.sh $target_armor "DISPLAY_NAME")
+    bash src/print-dialogue.sh "[*$target_display_name's* $target_armor_display_name resisted the $weapon_display_name's $physical_resistance damage]"
     damage=$((weapon_damage - 2))
 fi
 

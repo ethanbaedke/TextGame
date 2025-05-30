@@ -3,6 +3,8 @@
 # PARAMS: CHARACTER_NAME STAT_NAME STAT_NAME STAT_NAME ...
 # Saves the STAT_NAME selected to the selection-data file
 
+bash src/data/request-help-menu.sh "INDIVIDUAL_STAT_CHECK"
+
 echo
 display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
 options=()

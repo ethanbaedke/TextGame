@@ -1,11 +1,11 @@
 #!/bin/bash
 
-clear
-
 menu_left=0
 while [ $menu_left -eq 0 ]; do
 
     clear
+    
+    bash src/data/request-help-menu.sh "EQUIPMENT_MENU"
 
     # Print all party members current equipment
     party=($(bash src/data/get-party-characters.sh))

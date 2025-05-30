@@ -20,9 +20,16 @@ if [ ! -d "data/armor" ]; then
     mkdir data/armor
 fi
 
-# Create the selection-data file if it doesn't exist, which holds 20 bytes for the name of the last made selection
+# Create the selection-data file if it doesn't exist, which holds 30 bytes for the name of the last made selection
 if [ ! -f "data/selection-data.bin" ]; then
     bash src/data/core/write-null.sh data/selection-data.bin 30 0
+fi
+
+HELP_MENU_FILE_SIZE=20 # Holds 20 bytes for 20 hints
+
+# Create the help-menu-data file if it doesn't exist
+if [ ! -f "data/help-menu-data.bin" ]; then
+    bash src/data/core/write-null.sh data/help-menu-data.bin $HELP_MENU_FILE_SIZE 0
 fi
 
 PARTY_FILE_SIZE=43 # Holds 2 bytes for world-location of party (x, y), 1 byte for how many characters are in the party, and 4 character names at 10 bytes each
