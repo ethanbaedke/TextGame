@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# PARAMS: PATH_TO_IMAGE
+# PARAMS: PATH_TO_IMAGE (-s for small display)
 
 # Run if catimg is installed
 if command -v catimg >/dev/null 2>&1; then
@@ -12,7 +12,11 @@ if command -v catimg >/dev/null 2>&1; then
     fi
 
     echo
-    catimg -w 256 "$1"
+    if [ "$2" == "-s" ]; then
+        catimg -w 128 "$1"
+    else
+        catimg -w 256 "$1"
+    fi
 else
     echo "(install catimg to see visual here)"
 fi

@@ -65,6 +65,8 @@ is_actor_alive() {
 # PARAMS: CHARACTER_NAME
 character_turn() {
 
+    bash src/display-image.sh images/characters/beautiful/$1.png -s
+
     # Have the actor make a common combat decision
     echo
     bash src/request-selection.sh "use weapon" "mend self"
@@ -103,6 +105,8 @@ character_turn() {
 
 # PARAMS: ENEMY_NAME
 enemy_turn() {
+
+    bash src/display-image.sh images/enemies/$1.png -s
 
     # If the enemy is not at full health, have a 25% for the enemy to mend itself instead of attacking
     local temp_health=$(bash src/data/get-actor-info.sh $1 "TEMP_HEALTH")
