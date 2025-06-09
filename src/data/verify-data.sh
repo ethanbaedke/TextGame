@@ -99,7 +99,7 @@ weapon_name=none
 bash src/data/verify-file-existence.sh data/weapons/$weapon_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-weapon-data.sh $weapon_name
-    bash src/data/save-weapon-info.sh "$weapon_name" "VALUE" 0 "DAMAGE" 1 "PHYSICAL_TYPE" "impact" "ELEMENTAL_TYPE" "none" "DISPLAY_NAME" "Fists"
+    bash src/data/save-weapon-info.sh "$weapon_name" "VALUE" 0 "DAMAGE" 1 "PHYSICAL_TYPE" "impact" "ELEMENTAL_TYPE" "flaming" "DISPLAY_NAME" "Fists"
 fi
 
 weapon_name=sword
@@ -143,7 +143,7 @@ armor_name=shirt
 bash src/data/verify-file-existence.sh data/armor/$armor_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-armor-data.sh $armor_name
-    bash src/data/save-armor-info.sh "$armor_name" "VALUE" 2 "BASE_RESISTANCE" 1 "PHYSICAL_RESISTANCE" "none" "ELEMENTAL_RESISTANCE" "none" "DISPLAY_NAME" "Shirt"
+    bash src/data/save-armor-info.sh "$armor_name" "VALUE" 2 "BASE_RESISTANCE" 1 "PHYSICAL_RESISTANCE" "none" "ELEMENTAL_RESISTANCE" "flaming" "DISPLAY_NAME" "Shirt"
 fi
 
 # Create inventory data
@@ -160,7 +160,7 @@ character_name=aidan
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Aidan" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Aidan" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Dylan - Wizard
@@ -168,7 +168,7 @@ character_name=dylan
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0  "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Dylan" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Dylan" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Max - Jockey
@@ -176,7 +176,7 @@ character_name=maxareth
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 2 "DEXTERITY" 1 "INTELLIGENCE" 3 "CHARISMA" 3 "LUCK" 1 "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0  "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Maxareth" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 2 "DEXTERITY" 1 "INTELLIGENCE" 3 "CHARISMA" 3 "LUCK" 1 "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Maxareth" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Liberty - Shapeshifter (Horse)
@@ -184,7 +184,7 @@ character_name=libarun
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 2 "DEXTERITY" 1 "INTELLIGENCE" 4 "CHARISMA" 2 "LUCK" 1 "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0  "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Libarun" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 2 "DEXTERITY" 1 "INTELLIGENCE" 4 "CHARISMA" 2 "LUCK" 1 "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Libarun" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Chelsea - Mermaid
@@ -192,7 +192,7 @@ character_name=chelsea
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Chelsea" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Chelsea" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Josie - Mage
@@ -200,7 +200,7 @@ character_name=josie
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Josie" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Josie" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Madelyn - Elf
@@ -208,7 +208,7 @@ character_name=madelyn
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Madelyn" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Madelyn" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Jake - Dwarf
@@ -216,7 +216,7 @@ character_name=jake
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Jake" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Jake" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Aly - Dragon
@@ -224,7 +224,7 @@ character_name=aly
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Aly" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Aly" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Loklin - Hobbit
@@ -232,7 +232,7 @@ character_name=loklin
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Loklin" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Loklin" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Jack - Dwarf
@@ -240,7 +240,7 @@ character_name=jack
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Jack" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Jack" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Emma - Wizard
@@ -248,7 +248,7 @@ character_name=emma
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Emma" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Emma" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Phoebe - Craftswoman
@@ -256,7 +256,7 @@ character_name=phoebe
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Phoebe" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Phoebe" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Keely - Eagle
@@ -264,7 +264,7 @@ character_name=keely
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Keely" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Keely" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Ceci - Elf
@@ -272,7 +272,7 @@ character_name=ceci
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Ceci" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Ceci" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Jackson - Paladin
@@ -280,7 +280,7 @@ character_name=jackson
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Jackson" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Jackson" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Fletch - Ent
@@ -288,7 +288,7 @@ character_name=fletch
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Fletch" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 5 "CURRENT_HEALTH" 5 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Fletch" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Ethan - Human
@@ -296,7 +296,7 @@ character_name=ethanor
 bash src/data/verify-file-existence.sh data/actors/$character_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $character_name
-    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 2 "DEXTERITY" 2 "INTELLIGENCE" 2 "CHARISMA" 2 "LUCK" 2 "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0 "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Ethanor" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$character_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 2 "DEXTERITY" 2 "INTELLIGENCE" 2 "CHARISMA" 2 "LUCK" 2 "MAX_HEALTH" 10 "CURRENT_HEALTH" 10 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "none" "ARMOR" "shirt" "DISPLAY_NAME" "Ethanor" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Creates actor-data for all enemies ONLY IF actor-data does not already exist for them
@@ -306,7 +306,7 @@ enemy_name=plainsrunner
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 2 "CURRENT_HEALTH" 2 "TEMP_HEALTH" 0 "WEAPON" "teeth" "ARMOR" "none" "DISPLAY_NAME" "Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 2 "CURRENT_HEALTH" 2 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "teeth" "ARMOR" "none" "DISPLAY_NAME" "Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Plainsrunner Jackel Pup
@@ -314,7 +314,7 @@ enemy_name=plainsrunner-pup
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 1 "CURRENT_HEALTH" 1 "TEMP_HEALTH" 0 "WEAPON" "teeth" "ARMOR" "none" "DISPLAY_NAME" "Plainsrunner Jackel Pup" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 1 "CURRENT_HEALTH" 1 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "teeth" "ARMOR" "none" "DISPLAY_NAME" "Plainsrunner Jackel Pup" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Plainsrunner Jackel Pup
@@ -322,7 +322,7 @@ enemy_name=alpha-plainsrunner
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "TEMP_HEALTH" 0 "WEAPON" "teeth" "ARMOR" "none" "DISPLAY_NAME" "Alpha Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "teeth" "ARMOR" "shirt" "DISPLAY_NAME" "Alpha Plainsrunner Jackel" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Reedshade Bandit
@@ -330,7 +330,7 @@ enemy_name=bandit
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 2 "CURRENT_HEALTH" 2 "TEMP_HEALTH" 0 "WEAPON" "sword" "ARMOR" "shirt" "DISPLAY_NAME" "Reedshade Bandit" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 2 "CURRENT_HEALTH" 2 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "sword" "ARMOR" "shirt" "DISPLAY_NAME" "Reedshade Bandit" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Reedshade Bandit Snaremaster
@@ -338,7 +338,7 @@ enemy_name=bandit-snaremaster
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 1 "CURRENT_HEALTH" 1 "TEMP_HEALTH" 0 "WEAPON" "bow" "ARMOR" "shirt" "DISPLAY_NAME" "Reedshade Bandit Snaremaster" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 1 "CURRENT_HEALTH" 1 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "bow" "ARMOR" "shirt" "DISPLAY_NAME" "Reedshade Bandit Snaremaster" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Reedshade Bandit Captain
@@ -346,7 +346,7 @@ enemy_name=bandit-captain
 bash src/data/verify-file-existence.sh data/actors/$enemy_name-data.bin > /dev/null 2>&1
 if [ $? -eq 1 ]; then
     bash src/data/create-actor-data.sh $enemy_name
-    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "TEMP_HEALTH" 0 "WEAPON" "sword" "ARMOR" "shirt" "DISPLAY_NAME" "Reedshade Bandit Captain" "FAVORITE_COLOR" "Unknown"
+    bash src/data/save-actor-info.sh "$enemy_name" "LEVEL" 1 "EXPERIENCE" 0 "STRENGTH" 0 "DEXTERITY" 0 "INTELLIGENCE" 0 "CHARISMA" 0 "LUCK" 0 "MAX_HEALTH" 3 "CURRENT_HEALTH" 3 "TEMP_HEALTH" 0 "TEMP_ELEMENTAL_AFFLICTION" "none" "WEAPON" "sword" "ARMOR" "shirt" "DISPLAY_NAME" "Reedshade Bandit Captain" "FAVORITE_COLOR" "Unknown"
 fi
 
 # Create the map-data file if it doesn't exist

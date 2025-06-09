@@ -43,25 +43,29 @@ for ((i=2; i<=$#; i+=2)); do
             # This way, combat damage is only saved if desired (for characters) and only after combat has finished (doesn't save if combat ends abruptly)
             bash src/data/core/write-byte.sh data/actors/$1-data.bin $data_value 9
             ;;
+        "TEMP_ELEMENTAL_AFFLICTION")
+            # This is a temporary data slot to track elemental affliction while the actor is in combat
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 10
+            ;;
         "WEAPON")
             bash src/data/verify-file-existence.sh data/weapons/$data_value-data.bin
             if [ $? -eq 1 ]; then
                 exit 1
             fi
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 10
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 20
             ;;
         "ARMOR")
             bash src/data/verify-file-existence.sh data/armor/$data_value-data.bin
             if [ $? -eq 1 ]; then
                 exit 1
             fi
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 20
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 10 30
             ;;
         "DISPLAY_NAME")
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 30
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 40
             ;;
         "FAVORITE_COLOR")
-            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 60
+            bash src/data/core/write-string.sh data/actors/$1-data.bin "$data_value" 30 70
             ;;
     esac
 done

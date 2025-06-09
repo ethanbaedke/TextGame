@@ -45,20 +45,25 @@ case "$2" in
             value=($(bash src/data/core/read-byte.sh data/actors/$1-data.bin 9))
             echo $value
             ;;
-        "WEAPON")
+        "TEMP_ELEMENTAL_AFFLICTION")
+            # This is a temporary data slot to track elemental affliction while the actor is in combat
             value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 10)
             echo $value
             ;;
-        "ARMOR")
+        "WEAPON")
             value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 20)
             echo $value
             ;;
+        "ARMOR")
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 10 30)
+            echo $value
+            ;;
         "DISPLAY_NAME")
-            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 30)
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 40)
             echo $value
             ;;
         "FAVORITE_COLOR")
-            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 60)
+            value=$(bash src/data/core/read-string.sh data/actors/$1-data.bin 30 70)
             echo $value
             ;;
 esac

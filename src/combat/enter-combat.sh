@@ -8,6 +8,9 @@ enemies=($@)
 all_actors=(${characters[@]} ${enemies[@]})
 
 bash src/init-temp-health.sh ${enemies[@]}
+for enemy in ${enemies[@]}; do
+    bash src/data/save-actor-info.sh $enemy "TEMP_ELEMENTAL_AFFLICTION" "none"
+done
 
 # Sort all actors in order of highest intelligence to lowest intelligence
 turn_order=($(for actor in "${all_actors[@]}"; do
@@ -26,12 +29,23 @@ print_combat_info() {
         local character_display_name=$(bash src/data/get-actor-info.sh $character "DISPLAY_NAME")
         local character_max_health=$(bash src/data/get-actor-info.sh $character "MAX_HEALTH")
         local character_temp_health=$(bash src/data/get-actor-info.sh $character "TEMP_HEALTH")
+        local character_temp_elemental_affliction=$(bash src/data/get-actor-info.sh $character "TEMP_ELEMENTAL_AFFLICTION")
 
         # Color the characters's info yellow if it's their turn, and leave it uncolored if not
         if [ "$character" == "${turn_order[$turn_index]}" ]; then
-            echo -e "\\e[33m$character_display_name (health=$character_temp_health/$character_max_health)\\e[0m"
+            echo -n -e "\\e[33m$character_display_name (health=$character_temp_health/$character_max_health)\\e[0m"
+            if [ ! "$character_temp_elemental_affliction" == "none" ]; then
+                echo " ($character_temp_elemental_affliction)"
+            else
+                echo
+            fi
         else
-            echo "$character_display_name (health=$character_temp_health/$character_max_health)"
+            echo -n "$character_display_name (health=$character_temp_health/$character_max_health)"
+            if [ ! "$character_temp_elemental_affliction" == "none" ]; then
+                echo " ($character_temp_elemental_affliction)"
+            else
+                echo
+            fi
         fi
     done
 
@@ -42,12 +56,23 @@ print_combat_info() {
         local enemy_display_name=$(bash src/data/get-actor-info.sh $enemy "DISPLAY_NAME")
         local enemy_max_health=$(bash src/data/get-actor-info.sh $enemy "MAX_HEALTH")
         local enemy_TEMP_HEALTH=$(bash src/data/get-actor-info.sh $enemy "TEMP_HEALTH")
+        local enemy_temp_elemental_affliction=$(bash src/data/get-actor-info.sh $enemy "TEMP_ELEMENTAL_AFFLICTION")
 
         # Color the enemy's info yellow if it's their turn
         if [ "$enemy" == "${turn_order[$turn_index]}" ]; then
-            echo -e "\\e[33m$enemy_display_name (health=$enemy_TEMP_HEALTH/$enemy_max_health)\\e[0m"
+            echo -n -e "\\e[33m$enemy_display_name (health=$enemy_TEMP_HEALTH/$enemy_max_health)\\e[0m"
+            if [ ! "$enemy_temp_elemental_affliction" == "none" ]; then
+                echo " ($enemy_temp_elemental_affliction)"
+            else
+                echo
+            fi
         else
-            echo "$enemy_display_name (health=$enemy_TEMP_HEALTH/$enemy_max_health)"
+            echo -n "$enemy_display_name (health=$enemy_TEMP_HEALTH/$enemy_max_health)"
+            if [ ! "$enemy_temp_elemental_affliction" == "none" ]; then
+                echo " ($enemy_temp_elemental_affliction)"
+            else
+                echo
+            fi
         fi
     done
 }
@@ -140,6 +165,27 @@ take_turn() {
     enemy_turn $1
 }
 
+# PARAMS: ACTOR_NAME
+# RETURN: 1 if an elemental affliction was activated, and 0 otherwise
+handle_elemental_affliction() {
+
+    affliction=$(bash src/data/get-actor-info.sh $1 "TEMP_ELEMENTAL_AFFLICTION")
+
+    if [ "$affliction" == "none" ]; then
+        return 0
+    fi
+
+    local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
+    case $affliction in
+        "flaming")
+            bash src/print-dialogue.sh "[*$display_name* was hurt from burning alive]"
+            bash src/modify-temp-health.sh $1 -1
+            ;;
+    esac
+
+    return 1
+}
+
 update_party_health() {
     local character
     for character in ${characters[@]}; do
@@ -184,6 +230,23 @@ while (true); do
     print_combat_info
     echo
     echo "------------------------------------------------------------"
+
+    handle_elemental_affliction $current_actor
+        if [ $? -eq 1 ]; then
+        is_actor_alive $current_actor
+        if [ $? -eq 1 ]; then
+            turn_index=$(((turn_index + 1) % ${#turn_order[@]}))
+            continue
+        fi
+
+        clear
+
+        echo
+        echo "------------------------------------------------------------"
+        print_combat_info
+        echo
+        echo "------------------------------------------------------------"
+    fi
 
     take_turn $current_actor
 
