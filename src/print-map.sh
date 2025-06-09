@@ -15,8 +15,10 @@ for ((y=0; y<5; y++)); do
     for ((x=0; x<5; x++)); do
 
         visited_status=$(bash src/data/get-map-area-visited-status.sh $x $y)
-        
-        if [ $visited_status -eq 1 ]; then
+
+        if [ $visited_status -eq 0 ]; then
+            line+="     "
+        elif [ $visited_status -eq 1 ]; then
             line+="?????"
         elif [ $visited_status -eq 2 ]; then
 
