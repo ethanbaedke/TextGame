@@ -71,6 +71,7 @@ if [ "$weapon_elemental_type" == "$elemental_resistance" ]; then
 fi
 
 # Apply the affliction
+bash src/data/request-help-menu.sh "COMBAT_ELEMENTAL_AFFLICTION_APPLICATION"
 bash src/data/save-actor-info.sh $2 "TEMP_ELEMENTAL_AFFLICTION" "$weapon_elemental_type"
 case $weapon_elemental_type in
     "flaming")

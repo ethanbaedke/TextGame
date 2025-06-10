@@ -152,4 +152,28 @@ case $1 in
             echo -e "\\e[33m(HINT: less damage is dealt if a defender has armor that resists the attack type of the attacker)\\e[0m"
         fi
         ;;
+    "COMBAT_ELEMENTAL_RESIST")
+        value=$(bash src/data/core/read-byte.sh data/help-menu-data.bin 17)
+        if [ $value -eq 0 ]; then
+            value=$(bash src/data/core/write-byte.sh data/help-menu-data.bin 1 17)
+            echo
+            echo -e "\\e[33m(HINT: the elemental type of an attackers weapon has no effect if the defender has armor that resists that element)\\e[0m"
+        fi
+        ;;
+    "COMBAT_ELEMENTAL_AFFLICTION_APPLICATION")
+        value=$(bash src/data/core/read-byte.sh data/help-menu-data.bin 18)
+        if [ $value -eq 0 ]; then
+            value=$(bash src/data/core/write-byte.sh data/help-menu-data.bin 1 18)
+            echo
+            echo -e "\\e[33m(HINT: a weapon with an elemental type will apply a relevant affliction to a combatant hit by it)\\e[0m"
+        fi
+        ;;
+    "COMBAT_ELEMENTAL_AFFLICTION_ACTIVATION")
+        value=$(bash src/data/core/read-byte.sh data/help-menu-data.bin 19)
+        if [ $value -eq 0 ]; then
+            value=$(bash src/data/core/write-byte.sh data/help-menu-data.bin 1 19)
+            echo
+            echo -e "\\e[33m(HINT: a combatant with an elemental affliction will feel the effects of that affliction at the beginning of their turn)\\e[0m"
+        fi
+        ;;
 esac 

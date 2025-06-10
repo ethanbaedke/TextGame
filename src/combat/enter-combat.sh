@@ -175,6 +175,8 @@ handle_elemental_affliction() {
         return 0
     fi
 
+    bash src/data/request-help-menu.sh "COMBAT_ELEMENTAL_AFFLICTION_ACTIVATION"
+
     local display_name=$(bash src/data/get-actor-info.sh $1 "DISPLAY_NAME")
     case $affliction in
         "flaming")
