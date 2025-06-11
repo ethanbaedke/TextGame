@@ -15,8 +15,8 @@ bash src/print-dialogue.sh "$leader_display_name: I shall be departing on a jour
 bash src/print-dialogue.sh "$leader_display_name: I hope to see all of you in good health when I return."
 bash src/print-dialogue.sh "$leader_display_name: *$player_display_name*, I will be waiting at the -tavern-. Find me there whenever you wish to depart with me."
 
-bash src/print-dialogue.sh "[*$leader_display_name* awards your party 20 gold for their bravery]"
-bash src/data/modify-gold.sh 20
+bash src/print-dialogue.sh "[*$leader_display_name* awards your party 4 gold for their bravery]"
+bash src/data/modify-gold.sh 4
 
 bash src/distribute-experience.sh 4
 

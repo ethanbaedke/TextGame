@@ -39,7 +39,7 @@ while [ $area_left -eq 0 ]; do
             ;;
 
         "visit market")
-            bash src/world/market.sh sword hammer bow shirt
+            bash src/world/market.sh sword hammer
             ;;
 
         "visit tavern")

@@ -14,8 +14,8 @@ bash src/print-dialogue.sh "$player_display_name: I have defeated the *$bandit_d
 bash src/print-dialogue.sh "$leader_display_name: As promised, I shall journey alongside you."
 bash src/print-dialogue.sh "$leader_display_name: I will be waiting at the -tavern-. Find me there whenever you wish to depart with me."
 
-bash src/print-dialogue.sh "[*$leader_display_name* awards your party 20 gold for their bravery]"
-bash src/data/modify-gold.sh 20
+bash src/print-dialogue.sh "[*$leader_display_name* awards your party 4 gold for their bravery]"
+bash src/data/modify-gold.sh 4
 
 bash src/distribute-experience.sh 4
 
